@@ -2268,6 +2268,57 @@ case 'brainly':
 			sanz.sendMessage(from, teks, text,{quoted:mek,detectLinks: false})                        
             })              
 			break
+case 'nulis':
+  let fontPath = '/source/font/Zahraaa.ttf'
+  let inputPath ='/source/nulis/magernulis1.jpg'
+  let outputPath = '/source/nulis/jadi.jpg'
+  let tgl = new Date().toLocaleDateString()
+  let hari = '=>'
+  let teks = args.join(` `)
+  sanz.reply(mek.chat, util.format({fontPath, inputPath, outputPath, tgl, hari, teks}), mek)
+  spawn('convert', [
+    inputPath,
+    '-font',
+    fontPath,
+    '-size',
+    '700x960',
+    '-pointsize',
+    '100',
+    '-interline-spacing',
+    '1',
+    '-annotate',
+    '+4100+460',
+    hari,
+    '-font',
+    fontPath,
+    '-size',
+    '700x960',
+    '-pointsize',
+    '100',
+    '-interline-spacing',
+    '1',
+    '-annotate',
+    '+4100+640',
+    tgl,
+    '-font',
+    fontPath,
+    '-size',
+    '6000x8000',
+    '-pointsize',
+    '130',
+    '-interline-spacing',
+    '1',
+    '-annotate',
+    '+1010+1010',
+    teks,
+    outputPath
+  ])
+  .on('error', e => sanz.reply(mek.chat, util.format(e), mek))
+  .on('exit', () => {
+    sanz.sendFile(mek.chat, outputPath, 'jadi.jpg', 'p')
+  })
+  .stdout.on('data', process.stdout.write)
+  break
 case 'google':
       if(!q) return reply('Yang mau di cari afa?')
 			.then(res => res.json())
