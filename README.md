@@ -11,14 +11,26 @@
 <summary>Ingredient/Bahan</summary>
 
 ```bash
+> Id
 > Android Version
 > termux
 > WhatsApp
 > 2 HandPhone
 
-> Laptop Version
+> Windows Version
 > Gunakan Terminal Git bash Atau sejenisnya
-> Sudah Terinstall Node Js Dan Sudah Ter Add path
+> Sudah Terinstall Node Js & ffmpeg  Dan Sudah Ter Add path
+
+> Eng
+> Android Version
+> termux
+> WhatsApp
+> 2 HandPhone 1 for send image and scan your whatsapp
+
+> Windows Version
+> Use Terminal Git bash or the like
+> Already install Node Js & ffmpeg and Add to path system
+
 ```
 
 </details>
@@ -50,18 +62,18 @@
 <details><summary>Install On PC/VPS/RDP</summary>
 
 - Download [`libwebp & tutorial`](https://developers.google.com/speed/webp/download)
-- Download [`FFmpeg`](https://ffmpeg.org/download.html) - And Touch Me From [`Tutorial Installing`](http://blog.gregzaal.com/how-to-install-ffmpeg-on-windows/)
+- Download [`FFmpeg`](https://ffmpeg.org/download.html) - And Touch Me For [`Tutorial Installing`](http://blog.gregzaal.com/how-to-install-ffmpeg-on-windows/)
 - Download [`Wget & tutorial`](http://gnuwin32.sourceforge.net/packages/wget.htm)
-- Download [`tesseract-ocr`](https://tesseract-ocr.github.io/tessdoc/Downloads.html) - And Touch Me From [`Tutorial Installing`](https://emop.tamu.edu/Installing-Tesseract-Windows8)
+- Download [`tesseract-ocr`](https://tesseract-ocr.github.io/tessdoc/Downloads.html) - And Touch Me For [`Tutorial Installing`](https://emop.tamu.edu/Installing-Tesseract-Windows8)
 - Download [`NodeJS`](https://nodejs.org/en/download/)
-- Download [`Git`](https://git-scm.com/downloads) - And Touch Me From [`Tutorial Installing`](https://phoenixnap.com/kb/how-to-install-git-windows)
+- Download [`Git`](https://git-scm.com/downloads) - And Touch Me For [`Tutorial Installing`](https://phoenixnap.com/kb/how-to-install-git-windows)
 
 ##
 
 ```bash
 ( if that is all done installed / jika  semua sudah terinstall )
 > git clone https://github.com/sanzorez/selfsanz
-> cd sabot
+> cd selfsanz
 > bash install.sh
 > npm start
 > Scan Qr xD
