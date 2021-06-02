@@ -1088,7 +1088,7 @@ switch (command) {
 
 ┌⑆ *${prefix}kontag*
 ├ Kontak tag from me to all member
-└ Example : ${prefix}kontag 6┌⑆xx|siapa
+└ Example : ${prefix}kontag 628xx|siapa
 
 ┌⑆ *${prefix}totag*
 ├ To tag from me to all member
