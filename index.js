@@ -28,7 +28,6 @@ const ms = require('parse-ms')
 const toMs = require('ms')
 const util = require('util')
 const canvass = require('canvacord')
-const path = require("path")
 const { error } = require("qrcode-terminal")
 const { getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
 const { color, bgcolor } = require('./lib/color')
@@ -213,18 +212,18 @@ sanz.on('chat-update', async (mek) => {
         //MESS
         
 		mess = {
-			wait: 'Wait a second...',
-			success: 'Was successfully',
-			wrongFormat: `Incorrect format, take another look at the ${prefix}menu`,
+			wait: 'Otewe',
+			success: 'Berhasil!',
+			wrongFormat: 'Format salah, coba liat lagi di menu',
 			error: {
-				stick: 'Not that sticker :v',
-				Iv: 'The link is wrong: v'
+				stick: 'bukan sticker itu:v',
+				Iv: 'Linknya error:v'
 			},
 			only: {
-				me: 'This Command Only For Saia...',
-				group: 'Only in group baby..',
-				admin: 'Only Admin...',
-				Badmin: 'I am not admin'
+				me: 'This Command Only For Saia..',
+				group: 'Khusus grup bg',
+				admin: 'Only Admin..',
+				Badmin: 'Saia tidak admin :('
 			}
 		}
 		const isUrl = (url) => {
@@ -575,49 +574,52 @@ const levelup = (pushname, sender, getLevelingXp,  getLevel, getLevelingLevel, r
           ucapanWaktu = 'Selamat Malam🌚'
         }
         /**HARI**/
-	var date = new Date();
-	var tahun = date.getFullYear();
-	var bulan = date.getMonth();
-	var tanggal = date.getDate();
-	var hari = date.getDay();
+var date = new Date();
 
-	switch(hari) {
-	case 0: hari = "Minggu"; break;
-	case 1: hari = "Senin"; break;
-	case 2: hari = "Selasa"; break;
-	case 3: hari = "Rabu"; break;
-	case 4: hari = "Kamis"; break;
-	case 5: hari = "Jum'at"; break;
-	case 6: hari = "Sabtu"; break;
-	}
-	switch(bulan) {
-	case 0: bulan = "Januari"; break;
-	case 1: bulan = "Februari"; break;
-	case 2: bulan = "Maret"; break;
-	case 3: bulan = "April"; break;
-	case 4: bulan = "Mei"; break;
-	case 5: bulan = "Juni"; break;
-	case 6: bulan = "Juli"; break;
-	case 7: bulan = "Agustus"; break;
-	case 8: bulan = "September"; break;
-	case 9: bulan = "Oktober"; break;
-	case 10: bulan = "November"; break;
-	case 11: bulan = "Desember"; break;
-	}
-	var tampilTanggal = hari + " "+ tanggal + " " + bulan + " " + tahun;
+var tahun = date.getFullYear();
+var bulan = date.getMonth();
+var tanggal = date.getDate();
+var hari = date.getDay();
+
+switch(hari) {
+ case 0: hari = "Minggu"; break;
+ case 1: hari = "Senin"; break;
+ case 2: hari = "Selasa"; break;
+ case 3: hari = "Rabu"; break;
+ case 4: hari = "Kamis"; break;
+ case 5: hari = "Jum'at"; break;
+ case 6: hari = "Sabtu"; break;
+}
+switch(bulan) {
+ case 0: bulan = "Januari"; break;
+ case 1: bulan = "Februari"; break;
+ case 2: bulan = "Maret"; break;
+ case 3: bulan = "April"; break;
+ case 4: bulan = "Mei"; break;
+ case 5: bulan = "Juni"; break;
+ case 6: bulan = "Juli"; break;
+ case 7: bulan = "Agustus"; break;
+ case 8: bulan = "September"; break;
+ case 9: bulan = "Oktober"; break;
+ case 10: bulan = "November"; break;
+ case 11: bulan = "Desember"; break;
+}
+
+var tampilTanggal = hari + " "+ tanggal + " " + bulan + " " + tahun;
 //========================================================================================================================//
-	colors = ['blue']
-	const isMedia = (type === 'imageMessage' || type === 'videoMessage')
-	const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
-	const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
-	const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
-	const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
-	const isQuotedDocument = type === 'extendedTextMessage' && content.includes('documentMessage')
-	if (!isGroup && isCmd) console.log('\x1b[1;37m>', '[ \x1b[1;36mEXECC\x1b[1;37m ]', time, color(command), 'from', color(sender.split('@')[0]))
-   	if (isCmd && isGroup) console.log('\x1b[1;37m>', '[ \x1b[1;36mEXECC\x1b[1;37m ]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName))
-	if (!mek.key.fromMe && banChats === true) return
-
+		colors = ['blue']
+		const isMedia = (type === 'imageMessage' || type === 'videoMessage')
+		const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
+		const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
+		const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
+		const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
+		const isQuotedDocument = type === 'extendedTextMessage' && content.includes('documentMessage')
+      	if (!isGroup && isCmd) console.log('\x1b[1;37m>', '[ \x1b[1;36mEXECC\x1b[1;37m ]', time, color(command), 'from', color(sender.split('@')[0]))
+     	if (isCmd && isGroup) console.log('\x1b[1;37m>', '[ \x1b[1;36mEXECC\x1b[1;37m ]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName))
 //
+		if (!mek.key.fromMe && banChats === true) return
+
+//mengnunya
 switch (command) {
   case 'menu':
   case 'help':
@@ -642,480 +644,477 @@ switch (command) {
     var menu = ` 
  Hai ${pushname} ${ucapanWaktu}
 
-⎋ *Road To Idul Adha✨*
-⎋ *${tuidha}*
+- *Road To Idul Adha✨*
+- *${tuidha}*
 
-⎋ *${tampilTanggal}*
+- *${tampilTanggal}*
 
-⎋ *${jam} WIB*
-⎋ *${wita} WITA*
-⎋ *${wit} WIT*
+- *${jam} WIB*
+- *${wita} WITA*
+- *${wit} WIT*
 
-⎋ *Brand Hp :* ${device_manufacturer}
-⎋ *Device :* ${device_model}
-⎋ *RAM :* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
-⎋ *Android :* ${os_version}
-⎋ *Versi OS :* ${os_build_number}
-⎋ *MCC :* ${mcc}
-⎋ *MNC :* ${mnc}
-⎋ *Whatsapp Version :* ${wa_version}
-⎋ *Group Chat :* ${giid.length}
-⎋ *Personal Chat :* ${totalchat.length - giid.length}
-⎋ *Total Chat :* ${totalchat.length}
-⎋ *Speed :* ${sepid.toFixed(4)} Second
-⎋ *Runtime :* ${runtem}
-⎋ *Hit Today :* ${hit_today.length}
-⎋ *Prefix :* 「 ${prefix} 」
+- *Brand Hp :* ${device_manufacturer}
+- *Device :* ${device_model}
+- *RAM :* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+- *Android :* ${os_version}
+- *Versi OS :* ${os_build_number}
+- *MCC :* ${mcc}
+- *MNC :* ${mnc}
+- *Whatsapp Version* : ${wa_version}
+- *Group Chat :* ${giid.length}
+- *Personal Chat :* ${totalchat.length - giid.length}
+- *Total Chat :* ${totalchat.length}
+- *Speed :* ${sepid.toFixed(4)} Second
+- *Runtime :* ${runtem}
+- *Hit Today : ${hit_today.length}*
+- Prefix : 「 ${prefix} 」
 
-┌⑆ *${prefix}off*
-└ For offline bot mode
+1. *${prefix}off*
+To offline bot mode
 
-┌⑆ *${prefix}on*
-└ For online bot mode
+2. *${prefix}on*
+To online bot mode
 
-┌⑆ *${prefix}status*
-└ For view status in your chat
+3. *${prefix}status*
+To view status in your chat
 
-┌⑆ *${prefix}self*
-└ For active self mode
+4. *${prefix}self*
+To active self mode
 
-┌⑆ *${prefix}public*
-└ For active public mode
+5. *${prefix}public*
+To active public mode
 
-┌⑆ *${prefix}peson*
-└ For active pesan sementara
+6. *${prefix}peson*
+To active pesan sementara
 
-┌⑆ *${prefix}pesoff*
-└ For off pesan sementara
+7. *${prefix}pesoff*
+To off pesan sementara
 
-┌⑆ *${prefix}spam*
-├ Spam text
-└ Example : ${prefix}spam message|10
+8. *${prefix}spam*
+Spam text
+Usage : ${prefix}spam message|10
 
-┌⑆ *${prefix}mute*
-└ For mute now chats
+9. *${prefix}mute*
+To mute now chats
 
-┌⑆ *${prefix}unmute*
-└ For unmute this chat
+10. *${prefix}unmute*
+To unmute this chat
 
-┌⑆ *${prefix}delete*
-└ For delete chat
+11. *${prefix}delete*
+To delete chat
 
-┌⑆ *${prefix}setfake*
-├ For set fakereply text in menu
-└ Example : ${prefix}setreply saia siapa
+12. *${prefix}setfake*
+To set fakereply text in menu
+Usage : ${prefix}setreply saia siapa
 
-┌⑆ *${prefix}setfakeimg*
-├ For set fake img
-└ Example : ${prefix}setfakeimg @tag image
+13. *${prefix}setfakeimg*
+To set fake img
+Usage : ${prefix}setfakeimg @tag image
 
-┌⑆ *${prefix}setprefix*
-├ For set prefix
-└ Example : ${prefix}setprefix afa
+14. *${prefix}setprefix*
+To set prefix
+Usage : ${prefix}setprefix afa
 
-┌⑆ *${prefix}setthumb*
-├ For set thumbnail
-└ Example : ${prefix}setthumb @tag image
+15. *${prefix}setthumb*
+To set thumbnail
+Usage : ${prefix}setthumb @tag image
 
-┌⑆ *${prefix}settarget*
-├ For set target fitnah pc
-└ Example : ${prefix}settarget @tag or number targets
+16. *${prefix}settarget*
+To set target fitnah pc
+Usage : ${prefix}settarget @tag or number targets
 
-┌⑆ *$* 
-├ For terminal command
-└ Example : $ ls
+17. *$* 
+To terminal command
+Usage : $ ls
 
-┌⑆  *>*
-├ For eval
-└ Example : > mek
+18.  *>*
+For eval
+Usage : > mek
 
-┌⑆ *${prefix}covidindo*
-└ Get information covid Indonesia
+19. *${prefix}covidindo*
+Get information covid Indonesia
 
-┌⑆ *${prefix}covidworld*
-└ Get information covid global world
+20. *${prefix}covidworld*
+Get information covid global world
 
-┌⑆ *${prefix}cnn*
-└ Get news information from cnn
+21. *${prefix}cnn*
+Get information cnn
 
-┌⑆ *${prefix}infogempa*
-└ Get information about gempa 
+22. *${prefix}infogempa*
+Get information about gempa 
 
-┌⑆ *${prefix}wikipedia*
-├ For search wikipedia
-└ Example : ${prefix}wikipedia indonesia
+23. *${prefix}wikipedia*
+To search wikipedia
+Usage : ${prefix}wikipedia indonesia
 
-┌⑆ *${prefix}get*
-├ For screenshoot website
-└ Example : ${prefix}get google.com
+25. *${prefix}get*
+To screenshoot website
+Usage : ${prefix}get google.com
 
-┌⑆ *${prefix}revip*
-├ For Reverse ip from domain or ip
-└ Example : ${prefix}get 8.8.8.8
+26. *${prefix}revip*
+To Reverse ip from domain or ip
+Usage : ${prefix}get 8.8.8.8
 
-┌⑆ *${prefix}avatar*
-└ Get random image avatar 
+27. *${prefix}avatar*
+Get random image avatar 
 
-┌⑆ *${prefix}loli*
-└ Get random image loli 
+28. *${prefix}loli*
+Get random image loli 
  
-┌⑆ *${prefix}waifu*
-└ Get random image waifu
+29. *${prefix}waifu*
+Get random image waifu
 
-┌⑆ *${prefix}husbu*
-└ Get random image husbu
+30. *${prefix}husbu*
+Get random image husbu
 
-┌⑆ *${prefix}otakuongoing*
-└ Get Info About otakudesu OnGoing
+31. *${prefix}otakuongoing*
+Get Info About otakudesu OnGoing
 
-┌⑆ *${prefix}image*
-├ Get image from your search
-└ Example : ${prefix}image boruto
+32. *${prefix}image*
+Get image from your search
+Usage : ${prefix}image boruto
 
-┌⑆ *${prefix}pinterest*
-├ Get image from pinterest search
-└ Example : ${prefix}pinterest Kawai
+33. *${prefix}pinterest*
+Get image from pinterest search
+Usage : ${prefix}pinterest Kawai
 
-┌⑆ *${prefix}anime*
-└Get random image anime
+34. *${prefix}anime*
+Get random image anime
 
-┌⑆ *${prefix}wallpaperanime*
-└ Get random Image Wallpaper anime
+35. *${prefix}wallpaperanime*
+Get random Image Wallpaper anime
 
-┌⑆ *${prefix}nsfwavatar* 
-└ Get random image nswf avatar
+36. *${prefix}nsfwavatar* 
+Get random image nswf avatar
 
-┌⑆ *${prefix}nekopoi* 
-└ Get random gif image nekopoi 
+37. *${prefix}nekopoi* 
+Get random gif image nekopoi 
 
-┌⑆ *${prefix}pussy* 
-└ Get random gif image anime pussy
+38. *${prefix}pussy* 
+Get random gif image anime pussy
 
-┌⑆ *${prefix}pussyimage* 
-└ Get random image pussy
+39. *${prefix}pussyimage* 
+Get random image pussy
 
-┌⑆ *${prefix}feetg* 
-└ Get random gif image feetg
+40. *${prefix}feetg* 
+Get random gif image feetg
 
-┌⑆ *${prefix}bj* 
-└ Get random gif image bj
+41. *${prefix}bj* 
+Get random gif image bj
 
-┌⑆ *${prefix}ero* 
-└ Get random image ero
+42. *${prefix}ero* 
+Get random image ero
 
-┌⑆ *${prefix}erokemo* 
-└ Get random image erokemo
+43. *${prefix}erokemo* 
+Get random image erokemo
 
-┌⑆ *${prefix}eroyuri* 
-└ Get random image eroyuri
+44. *${prefix}eroyuri* 
+Get random image eroyuri
 
-┌⑆ *${prefix}tickle* 
-└ Get random image tickle
+45. *${prefix}tickle* 
+Get random image tickle
 
-┌⑆ *${prefix}feed*
-└ Get random image feed 
+46. *${prefix}feed*
+Get random image feed 
 
-┌⑆ *${prefix}kuni* 
-└ Get random image kuni
+47. *${prefix}kuni* 
+Get random image kuni
 
-┌⑆ *${prefix}femdom* 
-└ Get random gif image femdom
+48. *${prefix}femdom* 
+Get random gif image femdom
 
-┌⑆ *${prefix}futanari* 
-└ Get random image futanari
+49. *${prefix}futanari* 
+Get random image futanari
 
-┌⑆ *${prefix}les* 
-└ Get random image les
+50. *${prefix}les* 
+Get random image les
 
-┌⑆ *${prefix}trap* 
-└ Get random image trap
+51. *${prefix}trap* 
+Get random image trap
 
-┌⑆ *${prefix}pat* 
-└ Get random gif image pat
+52. *${prefix}pat* 
+Get random gif image pat
 
-┌⑆ *${prefix}boobs* 
-└ Get random gif image boobs
+53. *${prefix}boobs* 
+Get random gif image boobs
 
-┌⑆ *${prefix}blowjob* 
-└ Get random image blowjob
+54. *${prefix}blowjob* 
+Get random image blowjob
 
-┌⑆ *${prefix}hentai* 
-└ Get random image hentai
+55. *${prefix}hentai* 
+Get random image hentai
 
-┌⑆ *${prefix}hololewed* 
-└ Get random image hololewed
+56. *${prefix}hololewed* 
+Get random image hololewed
 
-┌⑆ *${prefix}lewd* 
-└ Get random image lewd
+57. *${prefix}lewd* 
+Get random image lewd
 
-┌⑆ *${prefix}lewdk* 
-└ Get random image lewdk
+58. *${prefix}lewdk* 
+Get random image lewdk
 
-┌⑆ *${prefix}lewdkemo* 
-└Get random image lewdkemo
+59. *${prefix}lewdkemo* 
+Get random image lewdkemo
 
-┌⑆ *${prefix}goose* 
-└ Get random image ghoose
+60. *${prefix}goose* 
+Get random image ghoose
 
-┌⑆ *${prefix}solog* 
-└ Get random image solog
+61. *${prefix}solog* 
+Get random image solog
 
-┌⑆ *${prefix}yuri* 
-└ Get random image boobs
+62. *${prefix}yuri* 
+Get random image boobs
 
-┌⑆ *${prefix}anal* 
-└ Get random gif image anal
+63. *${prefix}anal* 
+Get random gif image anal
 
-┌⑆ *${prefix}pwankg* 
-└ Get random gif image pwanpkg
+64. *${prefix}pwankg* 
+Get random gif image pwanpkg
 
-┌⑆ *${prefix}eron* 
-└ Get random image eron
+65. *${prefix}eron* 
+Get random image eron
 
-┌⑆ *${prefix}kiss* 
-└ Get random gif image boobs
+66. *${prefix}kiss* 
+Get random gif image boobs
 
-┌⑆ *${prefix}keta* 
-└ Get random image keta
+67. *${prefix}keta* 
+Get random image keta
 
-┌⑆ *${prefix}cum* 
-└ Get random gif image boobs
+68. *${prefix}cum* 
+Get random gif image boobs
 
-┌⑆ *${prefix}cumimage* 
-└ Get random image boobs
+69. *${prefix}cumimage* 
+Get random image boobs
 
-┌⑆ *${prefix}oppai* 
-└ Get random image boobs
+70. *${prefix}oppai* 
+Get random image boobs
 
-┌⑆ *${prefix}holoero* 
-└ Get random image boobs
+71. *${prefix}holoero* 
+Get random image boobs
 
-┌⑆ *${prefix}sticker*
-├ Convert image/gif to sticker
-└ Example : ${prefix}sticker @tag image
+72. *${prefix}sticker*
+Convert image/gif to sticker
+Usage : ${prefix}sticker @tag image
 
-┌⑆ *${prefix}swm*
-├ Convert image/gif to sticker with watermark 
-└ Example : ${prefix}swm author|packname 
+73. *${prefix}swm*
+ Convert image/gif to sticker with watermark 
+ Usage : ${prefix}swm author|packname 
  
-┌⑆ *${prefix}take*
-├ Convert image/gif to sticker with watermark 
-└ Example : ${prefix}swm author|packname 
+74. *${prefix}take*
+Convert image/gif to sticker with watermark 
+ Usage : ${prefix}swm author|packname 
 
-┌⑆ *${prefix}jagokata*
-├ To suggestion kata for  life
-└ Example : ${prefix}jagokata saya
+75. *${prefix}jagokata*
+To suggestion kata for  life
+Usage : ${prefix}jagokata saya
 
-┌⑆ *${prefix}quotes*
-├ To quote for  life
-└ Example : ${prefix}quotes kehidupan
+76. *${prefix}quotes*
+To quote for  life
+Usage : ${prefix}quotes kehidupan
 
-┌⑆ *${prefix}fdeface*
-├ To fake deface for show off 
-└ Example : ${prefix}swm author|packname 
+77. *${prefix}fdeface*
+To fake deface for show off 
+ Usage : ${prefix}swm author|packname 
  
-┌⑆ *${prefix}emoji*
-├ Convert emoji to sticker
-└ Example : ${prefix}emoji 🗿
+78. *${prefix}emoji*
+Convert emoji to sticker
+Usage : ${prefix}emoji 🗿
 
-┌⑆ *${prefix}attp*
-├ From convert teks to maker gif sticker
-└ Example : ${prefix}attp saia siapa
+79. *${prefix}attp*
+To teks maker gif sticker
+Usage : ${prefix}attp saia siapa
 
-┌⑆ *${prefix}toimg*
-├ Convert sticker biasa to image
-└ Example : ${prefix}toimg @tag image sticker
+80. *${prefix}toimg*
+Convert sticker biasa to image
+Usage : ${prefix}toimg @tag image sticker
 
-┌⑆ *${prefix}tovid*
-├ Convert sticker gif to video
-└ Example : ${prefix}tovid @tag gif sticker
+81. *${prefix}tovid*
+Convert sticker gif to video
+Usage : ${prefix}tovid @tag gif sticker
 
-┌⑆ *${prefix}tomp3*
-├ Convert video to mp3
-└ Example : ${prefix}tomp3 @tag video
+82. *${prefix}tomp3*
+Convert video to mp3
+Usage : ${prefix}tomp3 @tag video
 
-┌⑆ *${prefix}slow*
-├ Convert video to slow duration
-└ Example : ${prefix}slow @tag video
+83. *${prefix}slow*
+Convert video to slow duration
+Usage : ${prefix}slow @tag video
 
-┌⑆ *${prefix}fast* 
-├ Convert video to fast duration
-└ Example : ${prefix}fast @tag video
+84. *${prefix}fast* 
+Convert video to fast duration
+Usage : ${prefix}fast @tag video
 
-┌⑆ *${prefix}reverse* 
-├ Convert video to reverse
-└ Example : ${prefix}reverse @tag video
+85. *${prefix}reverse* 
+Convert video to reverse
+Usage : ${prefix}reverse @tag video
 
-┌⑆ *${prefix}tourl*
-├ Convert or Upload image to url
-└ Example : ${prefix}tourl @tag image
+86. *${prefix}tourl*
+Convert or Upload image to url
+Usage : ${prefix}tourl @tag image
 
-┌⑆ *${prefix}upswteks*
-├ Upload story text from whatsapp me 
-└ Example : ${prefix}upswteks your message
+87. *${prefix}upswteks*
+Upload story text from whatsapp me 
+Usage : ${prefix}upswteks your message
 
-┌⑆ *${prefix}upswimage*
-├ Upload story image from whatsapp me 
-└ Example : ${prefix}upswimage your message
+88. *${prefix}upswimage*
+Upload story image from whatsapp me 
+Usage : ${prefix}upswimage your message
 
-┌⑆ *${prefix}upswvideo*
-├ Upload story video from whatsapp me 
-└ Example : ${prefix}video your message
+89. *${prefix}upswvideo*
+Upload story video from whatsapp me 
+Usage : ${prefix}video your message
 
-┌⑆ *${prefix}herolist*
-└ View info about list hero mobile legends
+90. *${prefix}herolist*
+View info about list hero mobile legends
 
-┌⑆ *${prefix}herodetail* 
-├ View info about hero mobile legends
-└ Example : ${prefix}herodetail fanny
+91. *${prefix}herodetail* 
+View info about hero mobile legends
+Usage : ${prefix}herodetail fanny
 
-┌⑆ *${prefix}play*
-├ Play music from youtube
-└ Example : ${prefix}play menepi
+92. *${prefix}play*
+Play music from youtube
+Usage : ${prefix}play menepi
 
-┌⑆ *${prefix}video*
-├ Play video from youtube
-└ Example : ${prefix}video menepi
+93. *${prefix}video*
+Play video from youtube
+Usage : ${prefix}video menepi
 
-┌⑆ *${prefix}ytmp3*
-├ Youtube to mp3 from link youtube
-└ Example : ${prefix}ytmp3 link
+94. *${prefix}ytmp3*
+Youtube to mp3 from link youtube
+Usage : ${prefix}ytmp3 link
 
-┌⑆ *${prefix}ytmp4*
-├ Youtube to mp4 from link youtube
-└ Example : ${prefix}ytmp4 link
+95. *${prefix}ytmp4*
+Youtube to mp4 from link youtube
+Usage : ${prefix}ytmp4 link
 
-┌⑆ *${prefix}ytsearch*
-├ Youtube search 
-└ Example : ${prefix}ytsearch menepi
+96. *${prefix}ytsearch*
+Youtube search 
+Usage : ${prefix}ytsearch menepi
 
-┌⑆ ~*${prefix}ig*~
-├ Instagram downloader from link
-└ Example : ${prefix}ig link
+97. *${prefix}ig*
+Instagram downloader from link
+Usage : ${prefix}ig link
 
-┌⑆ *${prefix}igstalk*
-├ Instagram stalker from user
-└ Example : ${prefix}igstalk sanzorez_
+98. *${prefix}igstalk*
+Instagram stalker from user
+Usage : ${prefix}igstalk sanzorez_
 
-┌⑆ *${prefix}twitter*
-├ Twitter downloader from link
-└ Example : ${prefix}twitter link
+99. *${prefix}twitter*
+Twitter downloader from link
+Usage : ${prefix}twitter link
 
-┌⑆ ~*${prefix}tiktok*~
-├ Tiktok downloader from link
-└ Example : ${prefix}tiktok link
+100. *${prefix}tiktok*
+Tiktok downloader from link
+Usage : ${prefix}tiktok link
 
-┌⑆ ~*${prefix}tiktokaudio*~
-├ Tiktok sound downloader from link
-└ Example : ${prefix}tiktokaudio link
+101. *${prefix}tiktokaudio*
+Tiktok sound downloader from link
+Usage : ${prefix}tiktokaudio link
 
-┌⑆ *${prefix}fb*
-├ Facebook downloader from link
-└ Example : ${prefix}facebook link
+102. *${prefix}fb*
+Facebook downloader from link
+Usage : ${prefix}facebook link
 
-┌⑆ *${prefix}brainly*
-├ Brainly search for tugas
-└ Example : ${prefix}brainly apa itu kubus
+103. *${prefix}brainly*
+Brainly search for tugas
+Usage : ${prefix}brainly apa itu kubus
 
-┌⑆ *${prefix}google*
-├ Google search screenshoot
-└ Example : ${prefix}google alan walker
+104. *${prefix}google*
+Google search from screenshoot
+Usage : ${prefix}google alan walker
 
-┌⑆ *${prefix}googleimage*
-├ Google image search
-└ Example : ${prefix}googleimage alan walker
+105. *${prefix}googleimage*
+Google image search
+Usage : ${prefix}googleimage alan walker
 
-┌⑆ *${prefix}grup*
-├ Grup close 
-└ Example : ${prefix}grup y/n
+106. *${prefix}grup*
+Grup close 
+Usage : ${prefix}grup y/n
 
-┌⑆ *${prefix}add*
-├ Add member from number
-└ Example : ${prefix}add 628xx
+107. *${prefix}add*
+Add member from number
+Usage : ${prefix}add 628xx
 
-┌⑆ *${prefix}kick*
-├Kick member from group
-└ Example : ${prefix}kick @tag member
+108. *${prefix}kick*
+Kick member from group
+Usage : ${prefix}kick @tag member
 
-┌⑆ *${prefix}promote*
-├ Promote to admin member
-└ Example : ${prefix}promote @tag member
+109. *${prefix}promote*
+Promote to admin member
+Usage : ${prefix}promote @tag member
 
-┌⑆ *${prefix}demote*
-├ Demote admin to member 
-└ Example : ${prefix}demote @tag admin
+110. *${prefix}demote*
+Demote admin to member 
+Usage : ${prefix}demote @tag admin
 
-┌⑆ *${prefix}inspect*
-├ View info about group chat with link
-└ Example : ${prefix}inspect link group 
+112. *${prefix}inspect*
+View info about group chat with link
+Usage : ${prefix}inspect link group 
 
-┌⑆ *${prefix}fitnah*
-├ Fitnah from fake tag
-└ Example : ${prefix}fitnah @tag|message|reply me
+113. *${prefix}fitnah*
+Fitnah from fake tag
+Usage : ${prefix}fitnah @tag|message|reply me
 
-┌⑆ *${prefix}fitnahpc*
-├ Fitnah private chat from fake tag
-└ Example : ${prefix}fitnahpc message @tag|reply me
+114. *${prefix}fitnahpc*
+Fitnah private chat from fake tag
+Usage : ${prefix}fitnahpc message @tag|reply me
 
-┌⑆ *${prefix}kontak*
-├ Send kontak from number
-└ Example : ${prefix}kontak 6┌⑆xx|siapa
+115. *${prefix}kontak*
+Send kontak from number
+Usage : ${prefix}kontak 628xx|siapa
 
-┌⑆ *${prefix}tagall*
-└ Tag all members from this group
+116. *${prefix}tagall*
+Tag all members from this group
 
-┌⑆ *${prefix}tagall2**
-└ Tag all members from this group
+117. *${prefix}tagall2**
+Tag all members from this group
 
-┌⑆ *${prefix}tagall3*
-└ Tag all members from this group
+118. *${prefix}tagall3*
+Tag all members from this group
 
-┌⑆ *${prefix}hidetag*
-├ Hide tag from me to all member
-└ Example : ${prefix}hidetag message
+119. *${prefix}hidetag*
+Hide tag from me to all member
+Usage : ${prefix}hidetag message
 
-┌⑆ *${prefix}sticktag*
-├ Sticker tag from me to all member
-└ Example : ${prefix}sticktag message
+120. *${prefix}sticktag*
+Sticker tag from me to all member
+Usage : ${prefix}sticktag message
 
-┌⑆ *${prefix}giftag* 
-├ Gif tag from me to all member
-└ Example : ${prefix}giftag message
+121. *${prefix}giftag* 
+Gif tag from me to all member
+Usage : ${prefix}giftag message
 
-┌⑆ *${prefix}doctag*
-├ Document tag from me to all member
-└ Example : ${prefix}doctag message
+122. *${prefix}doctag*
+Document tag from me to all member
+Usage : ${prefix}doctag message
 
-┌⑆ *${prefix}kontag*
-├ Kontak tag from me to all member
-└ Example : ${prefix}kontag 628xx|siapa
+123. *${prefix}kontag*
+Kontak tag from me to all member
+Usage : ${prefix}kontag 628xx|siapa
 
-┌⑆ *${prefix}totag*
-├ To tag from me to all member
-└ Example : ${prefix}totag @tag all media
+124. *${prefix}totag*
+To tag from me to all member
+Usage : ${prefix}totag @tag all media
 
-┌⑆ *${prefix}ping*
-└ Test ping response bot
+125. *${prefix}ping*
+Test ping response bot
 
-┌⑆ *${prefix}join*
-├ Joinned bot to your group chat
-└ Example : ${prefix}join link chat
+126. *${prefix}join*
+Joinned bot to your group chat
+Usage : ${prefix}join link chat
 
-┌⑆ *${prefix}term*
-├ Terminal or exec
-└ Example : ${prefix}term ls
+127. *${prefix}term*
+Terminal or exec
+Usage : ${prefix}term ls
 
-┌⑆ *${prefix}runtime*
-└ View runtime activated bot
+128. *${prefix}runtime*
+View runtime activated bot
 
-┌⑆ *${prefix}speed*
-└ Test speed response bot
+129. *${prefix}speed*
+Test speed response bot
 
-┌⑆ note :
-├ pause 3 seconds so as not to spam
-├ calls, banned!!
-├⑆ Owner :
-└ wa.me/6289656439589
+- Owner :
+- https://wa.me/6289656439589
 `
 menuu = fs.readFileSync('./stik/thumb.jpeg')
         	sanz.sendMessage(from, menuu, image, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `0@s.whatsapp.net` } : {})},message: {'contactMessage': {'displayName': `Hai ${pushname}`,'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${ucapanWaktu},;;;\nFN:${ucapanWaktu},\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,'jpegThumbnail': fs.readFileSync('./stik/thumb.jpeg')}}}, thumbnail:fs.readFileSync('./stik/fake.jpeg'), caption:menu, sendEphemeral: true})
@@ -2269,57 +2268,6 @@ case 'brainly':
 			sanz.sendMessage(from, teks, text,{quoted:mek,detectLinks: false})                        
             })              
 			break
-case 'nulis':
-  let fontPath = '/source/font/Zahraaa.ttf'
-  let inputPath ='/source/nulis/magernulis1.jpg'
-  let outputPath = '/source/nulis/jadi.jpg'
-  let tgl = new Date().toLocaleDateString()
-  let hari = '=>'
-  let teks = args.join(` `)
-  sanz.sendMessage(from, util.format({fontPath, inputPath, outputPath, tgl, hari, teks}), MessageType.text, { quoted: mek })
-  spawn('convert', [
-    inputPath,
-    '-font',
-    fontPath,
-    '-size',
-    '700x960',
-    '-pointsize',
-    '100',
-    '-interline-spacing',
-    '1',
-    '-annotate',
-    '+4100+460',
-    hari,
-    '-font',
-    fontPath,
-    '-size',
-    '700x960',
-    '-pointsize',
-    '100',
-    '-interline-spacing',
-    '1',
-    '-annotate',
-    '+4100+640',
-    tgl,
-    '-font',
-    fontPath,
-    '-size',
-    '6000x8000',
-    '-pointsize',
-    '130',
-    '-interline-spacing',
-    '1',
-    '-annotate',
-    '+1010+1010',
-    teks,
-    outputPath
-  ])
-  .on('error', e => sanz.reply(mek.chat, util.format(e), mek))
-  .on('exit', () => {
-    sanz.sendMessage(from, outputPath, 'jadi.jpg', { quoted: mek })
-  })
-  .stdout.on('data', process.stdout.write)
-  break
 case 'google':
       if(!q) return reply('Yang mau di cari afa?')
 			.then(res => res.json())
@@ -2499,6 +2447,7 @@ case 'fitnah':
 			sanz.sendMessage(from, optionshidetag, text)
 			break
 case 'tagall':
+if (!isMe) return reply(mess.only.me)
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
 members_id = []
