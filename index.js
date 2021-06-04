@@ -2449,7 +2449,6 @@ case 'fitnah':
 case 'tagall':
 if (!isMe) return reply(mess.only.me)
 if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
 members_id = []
 teks = (args.length > 1) ? body.slice(8).trim() : ''
 teks += '\n\n'
@@ -2462,7 +2461,6 @@ break
 case 'tagall2':
 if (!isMe) return reply(mess.only.me)
 if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
 members_id = []
 teks = (args.length > 1) ? body.slice(8).trim() : ''
 teks += '\n\n'
@@ -2475,7 +2473,6 @@ break
 case 'tagall3':
 if (!isMe) return reply(mess.only.me)
 if (!isGroup) return reply(mess.only.group)
-if (!isGroupAdmins) return reply(mess.only.admin)
 members_id = []
 teks = (args.length > 1) ? body.slice(8).trim() : ''
 teks += '\n\n'
