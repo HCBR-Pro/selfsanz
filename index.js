@@ -1,5 +1,4 @@
-//Tq udh make jgn lupa cantumkan author :'
-//jgn cuma makenya doang sc kiddie Lo
+// das créditos puta
 
 //npm
 const qrcode = require("qrcode-terminal")
@@ -7,7 +6,7 @@ const moment = require("moment-timezone")
 const speed = require('performance-now')
 const request = require('request');
 const { spawn, exec, execSync } = require("child_process")
-const fs = require("fs-extra")
+const fs = require("fs")
 const axios = require("axios")
 const ffmpeg = require('fluent-ffmpeg')
 const { EmojiAPI } = require("emoji-api");
@@ -26,38 +25,29 @@ const brainly = require('brainly-scraper')
 const yts = require( 'yt-search')
 const ms = require('parse-ms')
 const toMs = require('ms')
-const util = require('util')
-const canvass = require('canvacord')
 const { error } = require("qrcode-terminal")
+const util = require('util')
 const { getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
 const { color, bgcolor } = require('./lib/color')
 const { fetchJson, getBase64, kyun, createExif } = require('./lib/fetcher')
-const { yta, ytv, igdl, upload, formatDate } = require('./lib/ytdl')
+const { yta, ytv, igdl, upload } = require('./lib/ytdl')
 const { webp2mp4File} = require('./lib/webp2mp4')
 const { sleep, isAfk, cekafk, addafk } = require('./lib/offline')
-
-//waktu
-const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
-const date = new Date().toLocaleDateString()
-const jam = moment.tz('Asia/Jakarta').format('HH:mm:ss')
-const wita = moment.tz('Asia/Makassar').format('HH:mm:ss')
-const wit = moment.tz('Asia/Jayapura').format('HH:mm:ss')
+const time = moment().tz('Asia/Jakarta').format("HH:mm:ss")
 
 //json file
 const _leveling = JSON.parse(fs.readFileSync('./database/leveling.json'))
 const _level = JSON.parse(fs.readFileSync('./database/level.json'))
 const afk = JSON.parse(fs.readFileSync('./database/off.json'))
+const welkom = JSON.parse(fs.readFileSync('./database/welkom.json'))
 
 //Config
 const { covidindo } = require("./config/covidindo.js")
 const { covidworld } = require("./config/covidworld.js")
 const { cnn } = require("./config/cnn.js")
 const { Gempa } = require("./config/gempa.js");
-const { jagoKata } = require("./config/jagokata.js");
 const { herolist } = require("./config/herolist.js")
 const { herodetails } = require("./config/herodetail.js")
-const { onGoing } = require("./config/otakudesu.js");
-const { wikiSearch } = require("./config/wiki.js");
 
 //wa connect
 const
@@ -78,93 +68,74 @@ const
 		mentionedJid,
 		processTime,
 	} = require("@adiwajshing/baileys")
-const sanz = new WAConnection()
-//=================================================//
-prefix = 'z'
+//===========================================================//
+prefix = '.'
 hit_today = []
 blocked = []
 banChats = false
 offline = false
-targetpc = '6289656439589'
-owner = '6289656439589'
-fake = 'SA-BOT'
+targetpc = '5521981449242'
+owner = '5521981449242'
+fake = '☙𝐊𝐚𝐋𝐢↭𝐋𝐢𝐍𝐮𝐗❧'
 numbernye = '0'
 waktu = '-'
 alasan = '-'
-//=================================================//
+//===========================================================//
 async function starts() {
-	sanz.logger.level = 'warn'
-	console.log('>', '[',color('INGFO','blue'),']','Menglogin kawan...')
-	sanz.on('qr', () => {
-	console.log(color('[','white'), color('!','red'), color(']','white'), color(' Scan the qr code above'))
+	const pato = new WAConnection()
+	pato.logger.level = 'warn'
+	console.log('>', '[',color('CHECK','green'),']','𝐂𝐡𝐞𝐜𝐚𝐧𝐝𝐨 𝐜𝐫𝐞𝐝𝐞𝐧𝐜𝐢𝐚𝐢𝐬...')
+	pato.on('qr', () => {
+	console.log(color('[','green'), color('!','red'), color(']','green'), color(' 𝐒𝐜𝐚𝐧𝐞𝐢𝐞 𝐨 𝐜𝐨𝐝𝐢𝐠𝐨 𝐐𝐑 𝐚𝐜𝐢𝐦𝐚!'))
 	})
 
-	fs.existsSync('./session.json') && sanz.loadAuthInfo('./session.json')
-	sanz.on('connecting', () => {
-	console.log(color('> [ INGFO ]', 'white'), color('Connecting...'))
+	fs.existsSync('./session.json') && pato.loadAuthInfo('./session.json')
+	pato.on('connecting', () => {
+	console.log(color('> [ INGFO ]', 'white'), color('Cσиєcтαиdσ...'))
 	})
-	sanz.on('open', () => {
-	console.log(color('> [ INGFO ]', 'white'), color('Connected'))
+	pato.on('open', () => {
+	console.log(color('> [ INGFO ]', 'white'), color('Cσиєcтαdσ'))
 	})
-		await sanz.connect({timeoutMs: 30*1000})
-  fs.writeFileSync('./session.json', JSON.stringify(sanz.base64EncodedAuthInfo(), null, '\t'))
-
-//Welkom
-sanz.on('group-participants-update', async (anu) => {
-		var member = anu.participants
-        for (var x of member) {
-		try {
-			var from = anu.jid
-			const mdata = await sanz.groupMetadata(anu.jid)
-			console.log(anu)
-			if (anu.action == 'add' && { public :true}) {
-				num = anu.participants[0]
-				try {
-					ppimg = await sanz.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
-				} catch {
-					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-				}
-				teks = `Welcome @${num.split('@')[0]}`
-				let buff = await getBuffer(ppimg)
-				sanz.sendMessage(from, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
-			} else if (anu.action == 'remove' && { public: true }) {
-				num = anu.participants[0]
-				try {
-					ppimg = await sanz.getProfilePicture(`${num.split('@')[0]}@c.us`)
-				} catch {
-					ppimg = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
-				}
-				teks = `Sayonaraaa @${num.split('@')[0]}`
-				let buff = await getBuffer(ppimg)
-				sanz.sendMessage(from, buff, MessageType.image, {caption: teks, contextInfo: {"mentionedJid": [num]}})
-			}
-		} catch {
-			continue
-		}
-		}
-	})
-}
-starts()
-sanz.on('CB:action,,call', async json => {
+		await pato.connect({timeoutMs: 30*1000})
+  fs.writeFileSync('./session.json', JSON.stringify(pato.base64EncodedAuthInfo(), null, '\t'))
+//Banned Call
+pato.on('CB:action,,call', async json => {
     const callerId = json[2][0][1].from;
     console.log("call dari "+ callerId)
-        sanz.sendMessage(callerId, "Auto block system, don't call please", MessageType.text)
-        await sanz.blockUser(callerId, "add")
+        pato.sendMessage(callerId, "𝐒𝐢𝐬𝐭𝐞𝐦𝐚 𝐝𝐞 𝐛𝐥𝐨𝐪𝐮𝐞𝐢𝐨 𝐚𝐮𝐭𝐨𝐦𝐚𝐭𝐢𝐜𝐨, 𝐧𝐚𝐨 𝐥𝐢𝐠𝐮𝐞, 𝐩𝐨𝐫 𝐟𝐚𝐯𝐨𝐫!", MessageType.text)
+        await sleep(4000)
+        await pato.blockUser(callerId, "add")
 })
-
-sanz.on('group-update', async(chat) => {
-  console.log(chat)
-  var from = chat.jid
-  var group = await sanz.groupMetadata(from)
-  if(!chat.desc == ''){
-  var tag = chat.descOwner.split('@')[0] + '@s.whatsapp.net'
-  var teks = `- [ Group Description Change ] -\n\nDeskripsi Group telah diubah oleh Admin @${chat.descOwner.split('@')[0]}\nDeskripsi Baru : ${chat.desc}`
-    sanz.sendMessage(group.id, teks, MessageType.text, {contextInfo: {"mentionedJid": [tag]}})
-    console.log(`- [ Group Description Change ] - In ${group.subject}`)
-  }
+//Welkom
+	pato.on('group-participants-update', async (anu) => {
+		if (!welkom.includes(anu.jid)) return
+		try {
+            num = anu.participants[0]
+            const mdata = await pato.groupMetadata(anu.jid)
+            try {
+                var pp_user = await pato.getProfilePicture(num)
+            } catch (e) {
+                var pp_user = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png?q=60'
+            }
+            if (anu.action == 'add') {
+                ini_user = pato.contacts[num]
+                ini_img = await getBuffer(`http://api.lolhuman.xyz/api/welcomeimage?apikey=${LolHuman}&img=${pp_user}&text=${ini_user.notify}`)
+                group_info = await pato.groupMetadata(anu.jid)
+                welkam = `𝐒𝐚𝐥𝐯𝐞 ${ini_user.notify}\n◪ 𝐒𝐞𝐣𝐚 𝐛𝐞𝐦 𝐯𝐢𝐧𝐝𝐨\n├─ ${mdata.subject}\n\n└─ ❏ Numero: ${num.replace('@s.whatsapp.net', '')}\n 𝐋𝐞𝐢𝐚 𝐚𝐬 𝐫𝐞𝐠𝐫𝐚𝐬 𝐬𝐞 𝐜𝐨𝐦𝐩𝐨𝐫𝐭𝐞 𝐞 𝐧𝐚𝐨 𝐟𝐚ç𝐚 𝐬𝐩𝐚𝐦 𝐜𝐨𝐦 𝐨 𝐛𝐨𝐭!\n${ini_user.notify}`
+                pato.sendMessage(anu.jid, ini_img, MessageType.image, { caption: welkam })
+            }
+            if (anu.action == 'remove') {
+                ini_user = pato.contacts[num]
+                ini_img = await getBuffer(`http://api.lolhuman.xyz/api/welcomeimage?apikey=${LolHuman}&img=${pp_user}&text=${ini_user.notify}`)
+                out = `◪ 𝐓𝐜𝐡𝐚𝐮 ${ini_user.notify}\n◪ 𝐒𝐚𝐢𝐮 𝐩𝐨𝐫𝐪𝐮𝐞 𝐪𝐮𝐢𝐬 \n${mdata.subject}\n│\n└─ ❏ Numero: ${num.replace('@s.whatsapp.net', '')}\n𝐒𝐞 𝐬𝐚𝐢𝐮 𝐧𝐚 𝐯𝐚𝐜𝐢𝐥𝐚ç𝐚𝐨 𝐞𝐬𝐩𝐞𝐫𝐨 𝐪𝐮𝐞 𝐧𝐚𝐨 𝐯𝐨𝐥𝐭𝐞!`
+                pato.sendMessage(anu.jid, ini_img, MessageType.image, { caption: out })
+            }
+		} catch (e) {
+			console.log('Error : %s', color(e, 'red'))
+		}
 })
 	// Chat Update
-sanz.on('chat-update', async (mek) => {
+pato.on('chat-update', async (mek) => {
 	try {
         if (!mek.hasNewMessage) return
         mek = mek.messages.all()[0]
@@ -176,28 +147,27 @@ sanz.on('chat-update', async (mek) => {
 		const from = mek.key.remoteJid
 		const { text, extendedText, contact, location, liveLocation, image, video, sticker, document, audio, product } = MessageType
 		const time = moment.tz('Asia/Jakarta').format('DD/MM HH:mm:ss')
-        const type = Object.keys(mek.message)[0]        
-        const cmd = (type === 'conversation' && mek.message.conversation) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text ? mek.message.extendedTextMessage.text : ''.slice(1).trim().split(/ +/).shift().toLowerCase()
+        const type = Object.keys(mek.message)[0]
         body = (type === 'conversation' && mek.message.conversation.startsWith(prefix)) ? mek.message.conversation : (type == 'imageMessage') && mek.message.imageMessage.caption.startsWith(prefix) ? mek.message.imageMessage.caption : (type == 'videoMessage') && mek.message.videoMessage.caption.startsWith(prefix) ? mek.message.videoMessage.caption : (type == 'extendedTextMessage') && mek.message.extendedTextMessage.text.startsWith(prefix) ? mek.message.extendedTextMessage.text : ''
 		budy = (type === 'conversation') ? mek.message.conversation : (type === 'extendedTextMessage') ? mek.message.extendedTextMessage.text : ''
-		const command = body.slice(1).trim().split(/ +/).shift().toLowerCase()		
+		const command = body.slice(0).trim().split(/ +/).shift().toLowerCase()
 		hit_today.push(command)
         const arg = budy.slice(command.length + 1, budy.length)
 		const args = body.trim().split(/ +/).slice(1)
 		const isCmd = body.startsWith(prefix)
 		const q = args.join(' ')
-		const meNumber = sanz.user.jid
-        const botNumber = sanz.user.jid.split("@")[0]
-        const ownerNumber = ['6289656439589@s.whatsapp.net'] //sanz owner
-//=======++=====
+		//const meNumber = pato.user.jid.split("@")[0]
+		const botNumber = pato.user.jid
+		const ownerNumber = ['5521981449242@s.whatsapp.net']        //Dono do BoT
+//SETTING WeA
 		const isGroup = from.endsWith('@g.us')
-		const sender = mek.key.fromMe ? sanz.user.jid : isGroup ? mek.participant : mek.key.remoteJid
-        const senderNumber = sender.split("@")[0]
-        const isMe = senderNumber == botNumber
-        const isOwner = senderNumber == ownerNumber || senderNumber == botNumber || ownerNumber.includes(senderNumber)
-//========++====
-        const totalchat = await sanz.chats.all()
-        const groupMetadata = isGroup ? await sanz.groupMetadata(from) : ''
+		const sender = isGroup ? mek.participant : mek.key.remoteJid
+		const senderme = mek.participant
+		const isOwner = ownerNumber.includes(sender)
+		const isMe = botNumber.includes(senderme)
+//
+		const totalchat = await pato.chats.all()
+		const groupMetadata = isGroup ? await pato.groupMetadata(from) : ''
 		const groupName = isGroup ? groupMetadata.subject : ''
 		const groupId = isGroup ? groupMetadata.jid : ''
 		const groupMembers = isGroup ? groupMetadata.participants : ''
@@ -206,24 +176,23 @@ sanz.on('chat-update', async (mek) => {
 		const groupAdmins = isGroup ? getGroupAdmins(groupMembers) : ''
 		const isBotGroupAdmins = groupAdmins.includes(botNumber) || false
 		const isGroupAdmins = groupAdmins.includes(sender) || false
-        const conts = mek.key.fromMe ? sanz.user.jid : sanz.contacts[sender] || { notify: jid.replace(/@.+/, '') }
-        const pushname = mek.key.fromMe ? sanz.user.name : conts.notify || conts.vname || conts.name || '-'
+        const conts = mek.key.fromMe ? pato.user.jid : pato.contacts[sender] || { notify: jid.replace(/@.+/, '') }
+        const pushname = mek.key.fromMe ? pato.user.name : conts.notify || conts.vname || conts.name || '-'
        
         //MESS
         
 		mess = {
-			wait: 'Otewe',
-			success: 'Berhasil!',
-			wrongFormat: 'Format salah, coba liat lagi di menu',
+			wait: '𝐒𝐞𝐣𝐚 𝐩𝐚𝐜𝐢𝐞𝐧𝐭𝐞, 𝐭𝐮𝐝𝐨 𝐧𝐨 𝐬𝐞𝐮 𝐭𝐞𝐦𝐩𝐨!',
+			success: '𝐒𝐮𝐜𝐞𝐬𝐬𝐨!',
+			wrongFormat: '𝐅𝐨𝐫𝐦𝐚𝐭𝐨 𝐞𝐫𝐫𝐚𝐝𝐨, 𝐭𝐞𝐧𝐭𝐞 𝐧𝐨𝐯𝐚𝐦𝐞𝐧𝐭𝐞!',
 			error: {
-				stick: 'bukan sticker itu:v',
-				Iv: 'Linknya error:v'
+				stick: '𝐍𝐚𝐨 𝐜𝐨𝐧𝐬𝐞𝐠𝐮𝐢 𝐜𝐨𝐧𝐯𝐞𝐫𝐭𝐞𝐫, 𝐝𝐞𝐬𝐜𝐮𝐥𝐩𝐞!',
+				Iv: '𝐄 𝐞𝐬𝐬𝐞 𝐥𝐢𝐧𝐤 𝐟𝐮𝐧𝐜𝐢𝐨𝐧𝐚?'
 			},
 			only: {
-				me: 'This Command Only For Saia..',
-				group: 'Khusus grup bg',
-				admin: 'Only Admin..',
-				Badmin: 'Saia tidak admin :('
+				group: '𝐀𝐩𝐞𝐧𝐚𝐬 𝐞𝐦 𝐠𝐫𝐮𝐩𝐨𝐬!',
+				admin: '𝐀𝐩𝐞𝐧𝐚𝐬 𝐚𝐝𝐦𝐢𝐧𝐢𝐬𝐭𝐫𝐚𝐝𝐨𝐫𝐞𝐬!',
+				Badmin: '𝐍𝐚𝐨 𝐬𝐨𝐮 𝐮𝐦 𝐚𝐝𝐦𝐢𝐧𝐢𝐬𝐭𝐫𝐚𝐝𝐨𝐫!'
 			}
 		}
 		const isUrl = (url) => {
@@ -231,30 +200,73 @@ sanz.on('chat-update', async (mek) => {
         }
 
         const reply = (teks) => {
-            sanz.sendMessage(from, teks, text, {quoted:mek})
+            pato.sendMessage(from, teks, text, {quoted:mek})
         }
 
         const sendMess = (hehe, teks) => {
-            sanz.sendMessage(hehe, teks, text, {sendEphemeral: true})
+            pato.sendMessage(hehe, teks, text, {sendEphemeral: true})
         }
 
         const mentions = (teks, memberr, id) => {
-            (id == null || id == undefined || id == false) ? sanz.sendMessage(from, teks.trim(), extendedText, { contextInfo: { "mentionedJid": memberr } }) : sanz.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": memberr }, sendEphemeral: true })
+            (id == null || id == undefined || id == false) ? pato.sendMessage(from, teks.trim(), extendedText, { contextInfo: { "mentionedJid": memberr } }) : pato.sendMessage(from, teks.trim(), extendedText, { quoted: mek, contextInfo: { "mentionedJid": memberr } })
         }
-        
         //FAKEH
-        const fakekontak = (teks) => {
-        sanz.sendMessage(from, teks, MessageType.text, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `0@s.whatsapp.net` } : {})},message: {'contactMessage': {'displayName': `Hai ${pushname}`,'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${ucapanWaktu},;;;\nFN:${ucapanWaktu},\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,'jpegThumbnail': fs.readFileSync('./stik/thumb.jpeg')}}}, sendEphemeral:true})
+const fakekontak = (teks) => {
+pato.sendMessage(from, teks, MessageType.text, {
+quoted: {
+key: {
+fromMe: false,
+ participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `0@s.whatsapp.net` } : {})
+ },
+message: {
+ 'contactMessage': {
+ 'displayName': `𝐒𝐚𝐥𝐯𝐞 ${pushname}`,
+'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${ucapanWaktu},;;;\nFN:${ucapanWaktu},\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,
+ 'jpegThumbnail': fs.readFileSync('./stik/thumb.jpeg')
+}
+}
+                }
+            })
         }
 
+
+			
+
         const fakethumb = (teks, yes) => {
-            sanz.sendMessage(from, teks, image, {thumbnail:fs.readFileSync('./stik/fake.jpeg'),quoted:mek,caption:yes})
+            pato.sendMessage(from, teks, image, {thumbnail:fs.readFileSync('./stik/fake.jpeg'),quoted:mek,caption:yes})
         }
         const fakestatus = (teks) => {
-            sanz.sendMessage(from, teks, text, { quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})}, message: { "imageMessage": { "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", "mimetype": "image/jpeg", "caption": `Hai ${pushname}, ${ucapanWaktu}`, "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=", "fileLength": "28777", "height": 1080, "width": 1079, "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=", "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=", "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69", "mediaKeyTimestamp": "1610993486", "jpegThumbnail": fs.readFileSync('./stik/thumb.jpeg'), "scansSidecar": "1W0XhfaAcDwc7xh1R8lca6Qg/1bB4naFCSngM2LKO2NoP5RI7K+zLw==" }}, contextInfo: { "forwardingScore": 999, "isForwarded": true }}, sendEphemeral: true})
+            pato.sendMessage(from, teks, text, {
+                quoted: {
+                    key: {
+                        fromMe: false,
+                        participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
+                    },
+                    message: {
+                        "imageMessage": {
+                            "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc",
+                            "mimetype": "image/jpeg",
+                            "caption": `ㅤ𝐒𝐚𝐥𝐯𝐞➛ㅤ${pushname}`,
+                            "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=",
+                            "fileLength": "28777",
+                            "height": 1080,
+                            "width": 1079,
+                            "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=",
+                            "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=",
+                            "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69",
+                            "mediaKeyTimestamp": "1610993486",
+                            "jpegThumbnail": fs.readFileSync('./stik/thumb.jpeg'),
+                            "scansSidecar": "1W0XhfaAcDwc7xh1R8lca6Qg/1bB4naFCSngM2LKO2NoP5RI7K+zLw=="
+                        }
+                    },
+                    contextInfo: {
+                      "forwardingScore": 999, "isForwarded": true
+                    }
+                }
+            })
         }
         const fakegroup = (teks) => {
-            sanz.sendMessage(from, teks, text, {
+            pato.sendMessage(from, teks, text, {
                 quoted: {
                     key: {
                         fromMe: false,
@@ -264,7 +276,7 @@ sanz.on('chat-update', async (mek) => {
                         "imageMessage": {
                             "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc",
                             "mimetype": "image/jpeg",
-                            "caption": `Hai ${pushname}, ${ucapanWaktu}`,
+                            "caption": `ㅤ𝐒𝐚𝐥𝐯𝐞↠ㅤ${pushname}`,
                             "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=",
                             "fileLength": "28777",
                             "height": 1080,
@@ -280,12 +292,31 @@ sanz.on('chat-update', async (mek) => {
                 }
             })
         }
-        const faketoko = (teks) => {
-        sanz.sendMessage(from, teks, text, {quoted: { key: {fromMe: false,participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: 'status@broadcast' } : {}) }, message: {'productMessage': {'product': {'productImage':{'mimetype': 'image/jpeg','jpegThumbnail': fs.readFileSync('./stik/thumb.jpeg')},'title': `Hai ${pushname}, ${ucapanWaktu}`,'productImageCount': 9999},'businessOwnerJid': `0@s.whatsapp.net`}}}})
+ const faketoko = (teks) => {
+ pato.sendMessage(from, teks, text, {
+quoted: {
+ key: {
+fromMe: false,
+participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: 'status@broadcast' } : {}) 
+}, message: {
+'productMessage': {
+'product': {
+ 'productImage':{
+'mimetype': 'image/jpeg',
+ 'jpegThumbnail': fs.readFileSync('./stik/thumb.jpeg')
+},
+'title': `ㅤ𝐒𝐚𝐥𝐯𝐞⇝ㅤ${pushname}`,
+'productImageCount': 9999
+},
+'businessOwnerJid': `0@s.whatsapp.net`
+}
+}
+                }
+            })
         }
-        const faketokoforwaded = (teks) => {
-        anu = {
-        key: {
+const faketokoforwaded = (teks) => {
+	anu = {
+	  key: {
 			fromMe: false,
 			participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
 		},
@@ -296,7 +327,7 @@ sanz.on('chat-update', async (mek) => {
 						"mimetype": "image/jpeg",
 						"jpegThumbnail": fs.readFileSync(`./stik/thumb.jpeg`)
 					},
-					"title": `Hai ${pushname}, ${ucapanWaktu}`,
+					"title": `ㅤ𝐒𝐚𝐥𝐯𝐞 ${pushname}, ${ucapanWaktu}`,
 					"retailerId": "Self Bot",
 					"productImageCount": 1
 				},
@@ -304,7 +335,7 @@ sanz.on('chat-update', async (mek) => {
 		}
 	}
 }
-        sanz.sendMessage(from, teks, text, {
+	pato.sendMessage(from, teks, text, {
 	  quoted: anu,
 	  contextInfo:{
 	    "forwardingScore": 999, "isForwarded": true
@@ -324,7 +355,7 @@ sanz.on('chat-update', async (mek) => {
                     let asw = './stik' + names + '.webp'
                     exec(`ffmpeg -i ${filess} -vcodec libwebp -filter:v fps=fps=20 -lossless 1 -loop 0 -preset default -an -vsync 0 -s 512:512 ${asw}`, (err) => {
                         let media = fs.readFileSync(asw)
-                        sanz.sendMessage(to, media, MessageType.sticker,{quoted:mek})
+                        pato.sendMessage(to, media, MessageType.sticker,{quoted:mek})
                         fs.unlinkSync(filess)
                         fs.unlinkSync(asw)
                     });
@@ -354,7 +385,7 @@ sanz.on('chat-update', async (mek) => {
                     if(mime.split("/")[0] === "audio"){
                         mime = Mimetype.mp4Audio
                     }
-                    sanz.sendMessage(to, media, type, { quoted: mek, mimetype: mime, caption: text,contextInfo: {"mentionedJid": mids}})
+                    pato.sendMessage(to, media, type, { quoted: mek, mimetype: mime, caption: text,contextInfo: {"mentionedJid": mids}})
                     
                     fs.unlinkSync(filename)
                 });
@@ -366,7 +397,7 @@ sanz.on('chat-update', async (mek) => {
             if (isAfk(mek.key.remoteJid)) return
             addafk(mek.key.remoteJid)
             heheh = ms(Date.now() - waktu) 
-            sanz.sendMessage(mek.key.remoteJid,`@${owner} Sedang Offline!\n\n*Alasan :* ${alasan}\n*Sejak :* ${heheh.hours} Jam, ${heheh.minutes} Menit, ${heheh.seconds} Detik lalu\n\nSilahkan Hubungi Lagi Nanti`, MessageType.text,{contextInfo:{ mentionedJid: [`${owner}@s.whatsapp.net`],'stanzaId': "B826873620DD5947E683E3ABE663F263", 'participant': "0@s.whatsapp.net", 'remoteJid': 'status@broadcast', 'quotedMessage': {"imageMessage": {"caption": "*OFFLINE*", 'jpegThumbnail': fs.readFileSync('./stik/thumb.jpeg')}}}})
+            pato.sendMessage(mek.key.remoteJid,`@${owner} 𝐀𝐭𝐮𝐚𝐥𝐦𝐞𝐧𝐭𝐞 𝐨𝐟𝐟𝐥𝐢𝐧𝐞!\n\n*𝐑𝐚𝐳𝐚𝐨 :* ${alasan}\n* 𝐃𝐞𝐬𝐝𝐞 𝐚 :* ${heheh.hours} 𝐇𝐨𝐫𝐚, ${heheh.minutes} 𝐌𝐢𝐧𝐮𝐭𝐨, ${heheh.seconds} 𝐒𝐞𝐠𝐮𝐧𝐝𝐨𝐬 𝐚𝐭𝐫𝐚𝐬\n\n𝐄𝐧𝐭𝐫𝐞 𝐞𝐦 𝐜𝐨𝐧𝐭𝐚𝐭𝐨 𝐧𝐨𝐯𝐚𝐦𝐞𝐧𝐭𝐞 𝐦𝐚𝐢𝐬 𝐭𝐚𝐫𝐝𝐞`, MessageType.text,{contextInfo:{ mentionedJid: [`${owner}@s.whatsapp.net`],'stanzaId': "B826873620DD5947E683E3ABE663F263", 'participant': "0@s.whatsapp.net", 'remoteJid': 'status@broadcast', 'quotedMessage': {"imageMessage": {"caption": "*OFFLINE*", 'jpegThumbnail': fs.readFileSync('./stik/thumb.jpeg')}}}})
             }
             }   
         if (mek.key.remoteJid.endsWith('@g.us') && offline) {
@@ -379,7 +410,7 @@ sanz.on('chat-update', async (mek) => {
         if (isAfk(mek.key.remoteJid)) return
         addafk(mek.key.remoteJid)
         heheh = ms(Date.now() - waktu)
-        sanz.sendMessage(mek.key.remoteJid,`@${owner} Sedang Offline!\n\n *Alasan :* ${alasan}\n *Sejak :* ${heheh.hours} Jam, ${heheh.minutes} Menit, ${heheh.seconds} Detik lalu\n\nSilahkan Hubungi Lagi Nanti`, MessageType.text,{contextInfo:{ mentionedJid: [`${owner}@s.whatsapp.net`],'stanzaId': "B826873620DD5947E683E3ABE663F263", 'participant': "0@s.whatsapp.net", 'remoteJid': 'status@broadcast', 'quotedMessage': {"imageMessage": {"caption": "*OFFLINE*", 'jpegThumbnail': fs.readFileSync('./stik/thumb.jpeg')}}}})
+        pato.sendMessage(mek.key.remoteJid,`@${owner} 𝐀𝐭𝐮𝐚𝐥𝐦𝐞𝐧𝐭𝐞 𝐨𝐟𝐟𝐥𝐢𝐧𝐞!\n\n *𝐑𝐚𝐳𝐚𝐨 :* ${alasan}\n * 𝐃𝐞𝐬𝐝𝐞 𝐚 :* ${heheh.hours} 𝐇𝐨𝐫𝐚, ${heheh.minutes} 𝐌𝐢𝐧𝐮𝐭𝐨, ${heheh.seconds} 𝐒𝐞𝐠𝐮𝐧𝐝𝐨𝐬 𝐚𝐭𝐫𝐚𝐬\n\n𝐄𝐧𝐭𝐫𝐞 𝐞𝐦 𝐜𝐨𝐧𝐭𝐚𝐭𝐨 𝐧𝐨𝐯𝐚𝐦𝐞𝐧𝐭𝐞 𝐦𝐚𝐢𝐬 𝐭𝐚𝐫𝐝𝐞`, MessageType.text,{contextInfo:{ mentionedJid: [`${owner}@s.whatsapp.net`],'stanzaId': "B826873620DD5947E683E3ABE663F263", 'participant': "0@s.whatsapp.net", 'remoteJid': 'status@broadcast', 'quotedMessage': {"imageMessage": {"caption": "*OFFLINE*", 'jpegThumbnail': fs.readFileSync('./stik/thumb.jpeg')}}}})
           }
         }
             }
@@ -492,51 +523,51 @@ const getLevelingXp = (sender) => {
 			} 
 			/*[-- function rank --]*/
 			const levelRole = getLevelingLevel(sender)
-   	     var role = 'Trainee'
+   	     var role = 'Noob'
    	     if (levelRole <= 3) {
-   	         role = 'Warrior I'
+   	         role = 'Aun noob'
    	     } else if (levelRole <= 5) {
-   	         role = 'Warrior II'
+   	         role = 'Soldado'
    	     } else if (levelRole <= 7) {
-   	         role = 'Warrior III'
+   	         role = 'Asalto'
    	     } else if (levelRole <= 8) {
-   	         role = 'Warrior IV'
+   	         role = 'Sargento'
    	     } else if (levelRole <= 9) {
-   	         role = 'Elit I'
+   	         role = 'Sargento II'
    	     } else if (levelRole <= 10) {
-   	         role = 'Elit II'
+   	         role = 'Sargento III'
    	     } else if (levelRole <= 11) {
-   	         role = 'Elit II'
+   	         role = 'Sargento IV'
    	     } else if (levelRole <= 12) {
-   	         role = 'Elit III'
+   	         role = 'Teniente'
    	     } else if (levelRole <= 13) {
-   	         role = 'Master I'
+   	         role = 'Teniente II'
    	     } else if (levelRole <= 14) {
-   	         role = 'Master II'
+   	         role = 'Sgt 1st class III'
    	     } else if (levelRole <= 14) {
-   	         role = 'Master III'
+   	         role = 'Ggt 1st class IV'
    	     } else if (levelRole <= 15) {
-   	         role = 'King Master I'
+   	         role = 'Master sgt I'
    	     } else if (levelRole <= 16) {
-   	         role = 'King Master II'
+   	         role = 'Master sgt II'
    	     } else if (levelRole <= 17) {
-   	         role = 'King Master III'
+   	         role = 'Master sgt III'
    	     } else if (levelRole <= 18) {
-   	         role = 'Legend I'
+   	         role = 'Master sgt IV'
    	     } else if (levelRole <= 19) {
-   	         role = 'Legend II'
+   	         role = 'Master sgt V'
    	     } else if (levelRole <= 20) {
-   	         role = 'Legend III'
+   	         role = '2nd Lt I'
    	     } else if (levelRole <= 21) {
-   	         role = 'Glory I'
+   	         role = '2nd Lt II'
    	     } else if (levelRole <= 22) {
-   	         role = 'Glory II'
+   	         role = '2nd Lt III'
    	     } else if (levelRole <= 23) {
-   	         role = 'Glory III'
+   	         role = '2nd Lt IV'
    	     }
    //Function Level Up
 const levelup = (pushname, sender, getLevelingXp,  getLevel, getLevelingLevel, role) => {
-	fakekontak(`*「 CONGRATULATIONS 」*\n├  *Xp* : ${getLevelingXp(sender)}\n├ *Role*: ${role}\n└  *Level* : ${getLevel} > ${getLevelingLevel(sender)}`)
+	fakekontak(`\nㅤㅤㅤㅤ↶𝐹𝐸𝐿𝐼𝒞𝐼𝒟𝒜𝒟𝐸𝒮↷ \nㅤㅤ𝒩𝑜𝑚𝑒 : ${pushname}\nㅤㅤ𝒩𝑢𝑚𝑒𝑟𝑜 : wa.me/${sender.split("@")[0]}\nㅤㅤ𝒳𝒫 : ${getLevelingXp(sender)}\nㅤㅤ𝑅𝑜𝑙 : ${role}\nㅤㅤ𝒩𝑖𝑣𝑒𝑙 : ${getLevel} ⊱ ${getLevelingLevel(sender)}`)
 }
 //Function Level
             if (isGroup) {
@@ -559,53 +590,20 @@ const levelup = (pushname, sender, getLevelingXp,  getLevel, getLevelingLevel, r
 //=====================//      
          // Ucapan Waktu
         const hour_now = moment().format('HH')
-        var ucapanWaktu = 'Pagi Kawan👋'
+        var ucapanWaktu = 'wenas👋'
         if (hour_now >= '03' && hour_now <= '10') {
-          ucapanWaktu = 'Pagi Kawan👋'
+          ucapanWaktu = 'wenas👋'
         } else if (hour_now >= '10' && hour_now <= '14') {
-          ucapanWaktu = 'Siang Kawan👋'
+          ucapanWaktu = 'wenas👋'
         } else if (hour_now >= '14' && hour_now <= '17') {
-          ucapanWaktu = 'Soree Kawan👋'
+          ucapanWaktu = 'wenas👋'
         } else if (hour_now >= '17' && hour_now <= '18') {
-          ucapanWaktu = 'Selamat petang👋'
+          ucapanWaktu = 'wenas👋'
         } else if (hour_now >= '18' && hour_now <= '23') {
-          ucapanWaktu = 'Malam Kawan🌚'
+          ucapanWaktu = 'wenas🌚'
         } else {
-          ucapanWaktu = 'Selamat Malam🌚'
+          ucapanWaktu = 'wenas🌚'
         }
-        /**HARI**/
-var date = new Date();
-
-var tahun = date.getFullYear();
-var bulan = date.getMonth();
-var tanggal = date.getDate();
-var hari = date.getDay();
-
-switch(hari) {
- case 0: hari = "Minggu"; break;
- case 1: hari = "Senin"; break;
- case 2: hari = "Selasa"; break;
- case 3: hari = "Rabu"; break;
- case 4: hari = "Kamis"; break;
- case 5: hari = "Jum'at"; break;
- case 6: hari = "Sabtu"; break;
-}
-switch(bulan) {
- case 0: bulan = "Januari"; break;
- case 1: bulan = "Februari"; break;
- case 2: bulan = "Maret"; break;
- case 3: bulan = "April"; break;
- case 4: bulan = "Mei"; break;
- case 5: bulan = "Juni"; break;
- case 6: bulan = "Juli"; break;
- case 7: bulan = "Agustus"; break;
- case 8: bulan = "September"; break;
- case 9: bulan = "Oktober"; break;
- case 10: bulan = "November"; break;
- case 11: bulan = "Desember"; break;
-}
-
-var tampilTanggal = hari + " "+ tanggal + " " + bulan + " " + tahun;
 //========================================================================================================================//
 		colors = ['blue']
 		const isMedia = (type === 'imageMessage' || type === 'videoMessage')
@@ -616,13 +614,13 @@ var tampilTanggal = hari + " "+ tanggal + " " + bulan + " " + tahun;
 		const isQuotedDocument = type === 'extendedTextMessage' && content.includes('documentMessage')
       	if (!isGroup && isCmd) console.log('\x1b[1;37m>', '[ \x1b[1;36mEXECC\x1b[1;37m ]', time, color(command), 'from', color(sender.split('@')[0]))
      	if (isCmd && isGroup) console.log('\x1b[1;37m>', '[ \x1b[1;36mEXECC\x1b[1;37m ]', time, color(command), 'from', color(sender.split('@')[0]), 'in', color(groupName))
-//
+//selfmode
 		if (!mek.key.fromMe && banChats === true) return
-
-//mengnunya
+//botna
 switch (command) {
-  case 'menu':
-  case 'help':
+  case prefix+ 'menu':
+  case prefix+ 'help':
+  case prefix+ '?':
     let i = []
     let giid = []
     for (mem of totalchat){
@@ -635,602 +633,337 @@ switch (command) {
     }
     let timestampi = speed();
     let sepid = speed() - timestampi
-    var { device_manufacturer, device_model, mcc, mnc, os_version, os_build_number, wa_version  } = sanz.user.phone
+    var { device_manufacturer, device_model, mcc, mnc, os_version, os_build_number, wa_version  } = pato.user.phone
     anu = process.uptime()
     runtem = `${kyun(anu)}`
 //
-    var iduladha = new Date('2021','07','20').valueOf()
-    tuidha = moment(iduladha - Date.now()).format('DD[:]HH[:]mm[:]ss')
-    var menu = ` 
- Hai ${pushname} ${ucapanWaktu}
-⎋ *Road To Idul Adha✨*
-⎋ *${tuidha}*
-⎋ *${tampilTanggal}*
-⎋ *${jam} WIB*
-⎋ *${wita} WITA*
-⎋ *${wit} WIT*
-⎋ *Brand Hp :* ${device_manufacturer}
-⎋ *Device :* ${device_model}
-⎋ *RAM :* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
-⎋ *Android :* ${os_version}
-⎋ *Versi OS :* ${os_build_number}
-⎋ *MCC :* ${mcc}
-⎋ *MNC :* ${mnc}
-⎋ *Whatsapp Version :* ${wa_version}
-⎋ *Group Chat :* ${giid.length}
-⎋ *Personal Chat :* ${totalchat.length - giid.length}
-⎋ *Total Chat :* ${totalchat.length}
-⎋ *Speed :* ${sepid.toFixed(4)} Second
-⎋ *Runtime :* ${runtem}
-⎋ *Hit Today :* ${hit_today.length}
-⎋ *Prefix :* 「 ${prefix} 」
-┌⑆ *${prefix}off*
-└ For offline bot mode
-┌⑆ *${prefix}on*
-└ For online bot mode
-┌⑆ *${prefix}status*
-└ For view status in your chat
-┌⑆ *${prefix}self*
-└ For active self mode
-┌⑆ *${prefix}public*
-└ For active public mode
-┌⑆ *${prefix}peson*
-└ For active pesan sementara
-┌⑆ *${prefix}pesoff*
-└ For off pesan sementara
-┌⑆ *${prefix}spam*
-├ Spam text
-└ Example : ${prefix}spam message|10
-┌⑆ *${prefix}mute*
-└ For mute now chats
-┌⑆ *${prefix}unmute*
-└ For unmute this chat
-┌⑆ *${prefix}delete*
-└ For delete chat
-┌⑆ *${prefix}setfake*
-├ For set fakereply text in menu
-└ Example : ${prefix}setreply saia siapa
-┌⑆ *${prefix}setfakeimg*
-├ For set fake img
-└ Example : ${prefix}setfakeimg @tag image
-┌⑆ *${prefix}setprefix*
-├ For set prefix
-└ Example : ${prefix}setprefix afa
-┌⑆ *${prefix}setthumb*
-├ For set thumbnail
-└ Example : ${prefix}setthumb @tag image
-┌⑆ *${prefix}settarget*
-├ For set target fitnah pc
-└ Example : ${prefix}settarget @tag or number targets
-┌⑆ *$* 
-├ For terminal command
-└ Example : $ ls
-┌⑆  *>*
-├ For eval
-└ Example : > mek
-┌⑆ *${prefix}covidindo*
-└ Get information covid Indonesia
-┌⑆ *${prefix}covidworld*
-└ Get information covid global world
-┌⑆ *${prefix}cnn*
-└ Get news information from cnn
-┌⑆ *${prefix}infogempa*
-└ Get information about gempa 
-┌⑆ *${prefix}wikipedia*
-├ For search wikipedia
-└ Example : ${prefix}wikipedia indonesia
-┌⑆ *${prefix}get*
-├ For screenshoot website
-└ Example : ${prefix}get google.com
-┌⑆ *${prefix}revip*
-├ For Reverse ip from domain or ip
-└ Example : ${prefix}get 8.8.8.8
-┌⑆ *${prefix}avatar*
-└ Get random image avatar 
-┌⑆ *${prefix}loli*
-└ Get random image loli 
- 
-┌⑆ *${prefix}waifu*
-└ Get random image waifu
-┌⑆ *${prefix}husbu*
-└ Get random image husbu
-┌⑆ *${prefix}otakuongoing*
-└ Get Info About otakudesu OnGoing
-┌⑆ *${prefix}image*
-├ Get image from your search
-└ Example : ${prefix}image boruto
-┌⑆ *${prefix}pinterest*
-├ Get image from pinterest search
-└ Example : ${prefix}pinterest Kawai
-┌⑆ *${prefix}anime*
-└Get random image anime
-┌⑆ *${prefix}wallpaperanime*
-└ Get random Image Wallpaper anime
-┌⑆ *${prefix}nsfwavatar* 
-└ Get random image nswf avatar
-┌⑆ *${prefix}nekopoi* 
-└ Get random gif image nekopoi 
-┌⑆ *${prefix}pussy* 
-└ Get random gif image anime pussy
-┌⑆ *${prefix}pussyimage* 
-└ Get random image pussy
-┌⑆ *${prefix}feetg* 
-└ Get random gif image feetg
-┌⑆ *${prefix}bj* 
-└ Get random gif image bj
-┌⑆ *${prefix}ero* 
-└ Get random image ero
-┌⑆ *${prefix}erokemo* 
-└ Get random image erokemo
-┌⑆ *${prefix}eroyuri* 
-└ Get random image eroyuri
-┌⑆ *${prefix}tickle* 
-└ Get random image tickle
-┌⑆ *${prefix}feed*
-└ Get random image feed 
-┌⑆ *${prefix}kuni* 
-└ Get random image kuni
-┌⑆ *${prefix}femdom* 
-└ Get random gif image femdom
-┌⑆ *${prefix}futanari* 
-└ Get random image futanari
-┌⑆ *${prefix}les* 
-└ Get random image les
-┌⑆ *${prefix}trap* 
-└ Get random image trap
-┌⑆ *${prefix}pat* 
-└ Get random gif image pat
-┌⑆ *${prefix}boobs* 
-└ Get random gif image boobs
-┌⑆ *${prefix}blowjob* 
-└ Get random image blowjob
-┌⑆ *${prefix}hentai* 
-└ Get random image hentai
-┌⑆ *${prefix}hololewed* 
-└ Get random image hololewed
-┌⑆ *${prefix}lewd* 
-└ Get random image lewd
-┌⑆ *${prefix}lewdk* 
-└ Get random image lewdk
-┌⑆ *${prefix}lewdkemo* 
-└Get random image lewdkemo
-┌⑆ *${prefix}goose* 
-└ Get random image ghoose
-┌⑆ *${prefix}solog* 
-└ Get random image solog
-┌⑆ *${prefix}yuri* 
-└ Get random image boobs
-┌⑆ *${prefix}anal* 
-└ Get random gif image anal
-┌⑆ *${prefix}pwankg* 
-└ Get random gif image pwanpkg
-┌⑆ *${prefix}eron* 
-└ Get random image eron
-┌⑆ *${prefix}kiss* 
-└ Get random gif image boobs
-┌⑆ *${prefix}keta* 
-└ Get random image keta
-┌⑆ *${prefix}cum* 
-└ Get random gif image boobs
-┌⑆ *${prefix}cumimage* 
-└ Get random image boobs
-┌⑆ *${prefix}oppai* 
-└ Get random image boobs
-┌⑆ *${prefix}holoero* 
-└ Get random image boobs
-┌⑆ *${prefix}sticker*
-├ Convert image/gif to sticker
-└ Example : ${prefix}sticker @tag image
-┌⑆ *${prefix}swm*
-├ Convert image/gif to sticker with watermark 
-└ Example : ${prefix}swm author|packname 
- 
-┌⑆ *${prefix}take*
-├ Convert image/gif to sticker with watermark 
-└ Example : ${prefix}swm author|packname 
-┌⑆ *${prefix}jagokata*
-├ To suggestion kata for  life
-└ Example : ${prefix}jagokata saya
-┌⑆ *${prefix}quotes*
-├ To quote for  life
-└ Example : ${prefix}quotes kehidupan
-┌⑆ *${prefix}fdeface*
-├ To fake deface for show off 
-└ Example : ${prefix}swm author|packname 
- 
-┌⑆ *${prefix}emoji*
-├ Convert emoji to sticker
-└ Example : ${prefix}emoji 🗿
-┌⑆ *${prefix}attp*
-├ From convert teks to maker gif sticker
-└ Example : ${prefix}attp saia siapa
-┌⑆ *${prefix}toimg*
-├ Convert sticker biasa to image
-└ Example : ${prefix}toimg @tag image sticker
-┌⑆ *${prefix}tovid*
-├ Convert sticker gif to video
-└ Example : ${prefix}tovid @tag gif sticker
-┌⑆ *${prefix}tomp3*
-├ Convert video to mp3
-└ Example : ${prefix}tomp3 @tag video
-┌⑆ *${prefix}slow*
-├ Convert video to slow duration
-└ Example : ${prefix}slow @tag video
-┌⑆ *${prefix}fast* 
-├ Convert video to fast duration
-└ Example : ${prefix}fast @tag video
-┌⑆ *${prefix}reverse* 
-├ Convert video to reverse
-└ Example : ${prefix}reverse @tag video
-┌⑆ *${prefix}tourl*
-├ Convert or Upload image to url
-└ Example : ${prefix}tourl @tag image
-┌⑆ *${prefix}upswteks*
-├ Upload story text from whatsapp me 
-└ Example : ${prefix}upswteks your message
-┌⑆ *${prefix}upswimage*
-├ Upload story image from whatsapp me 
-└ Example : ${prefix}upswimage your message
-┌⑆ *${prefix}upswvideo*
-├ Upload story video from whatsapp me 
-└ Example : ${prefix}video your message
-┌⑆ *${prefix}herolist*
-└ View info about list hero mobile legends
-┌⑆ *${prefix}herodetail* 
-├ View info about hero mobile legends
-└ Example : ${prefix}herodetail fanny
-┌⑆ *${prefix}play*
-├ Play music from youtube
-└ Example : ${prefix}play menepi
-┌⑆ *${prefix}video*
-├ Play video from youtube
-└ Example : ${prefix}video menepi
-┌⑆ *${prefix}ytmp3*
-├ Youtube to mp3 from link youtube
-└ Example : ${prefix}ytmp3 link
-┌⑆ *${prefix}ytmp4*
-├ Youtube to mp4 from link youtube
-└ Example : ${prefix}ytmp4 link
-┌⑆ *${prefix}ytsearch*
-├ Youtube search 
-└ Example : ${prefix}ytsearch menepi
-┌⑆ ~*${prefix}ig*~
-├ Instagram downloader from link
-└ Example : ${prefix}ig link
-┌⑆ *${prefix}igstalk*
-├ Instagram stalker from user
-└ Example : ${prefix}igstalk sanzorez_
-┌⑆ *${prefix}twitter*
-├ Twitter downloader from link
-└ Example : ${prefix}twitter link
-┌⑆ ~*${prefix}tiktok*~
-├ Tiktok downloader from link
-└ Example : ${prefix}tiktok link
-┌⑆ ~*${prefix}tiktokaudio*~
-├ Tiktok sound downloader from link
-└ Example : ${prefix}tiktokaudio link
-┌⑆ *${prefix}fb*
-├ Facebook downloader from link
-└ Example : ${prefix}facebook link
-┌⑆ *${prefix}brainly*
-├ Brainly search for tugas
-└ Example : ${prefix}brainly apa itu kubus
-┌⑆ *${prefix}google*
-├ Google search screenshoot
-└ Example : ${prefix}google alan walker
-┌⑆ *${prefix}googleimage*
-├ Google image search
-└ Example : ${prefix}googleimage alan walker
-┌⑆ *${prefix}grup*
-├ Grup close 
-└ Example : ${prefix}grup y/n
-┌⑆ *${prefix}add*
-├ Add member from number
-└ Example : ${prefix}add 628xx
-┌⑆ *${prefix}kick*
-├Kick member from group
-└ Example : ${prefix}kick @tag member
-┌⑆ *${prefix}promote*
-├ Promote to admin member
-└ Example : ${prefix}promote @tag member
-┌⑆ *${prefix}demote*
-├ Demote admin to member 
-└ Example : ${prefix}demote @tag admin
-┌⑆ *${prefix}inspect*
-├ View info about group chat with link
-└ Example : ${prefix}inspect link group 
-┌⑆ *${prefix}fitnah*
-├ Fitnah from fake tag
-└ Example : ${prefix}fitnah @tag|message|reply me
-┌⑆ *${prefix}fitnahpc*
-├ Fitnah private chat from fake tag
-└ Example : ${prefix}fitnahpc message @tag|reply me
-┌⑆ *${prefix}kontak*
-├ Send kontak from number
-└ Example : ${prefix}kontak 6┌⑆xx|siapa
-┌⑆ *${prefix}tagall*
-└ Tag all members from this group
-┌⑆ *${prefix}tagall2**
-└ Tag all members from this group
-┌⑆ *${prefix}tagall3*
-└ Tag all members from this group
-┌⑆ *${prefix}hidetag*
-├ Hide tag from me to all member
-└ Example : ${prefix}hidetag message
-┌⑆ *${prefix}sticktag*
-├ Sticker tag from me to all member
-└ Example : ${prefix}sticktag message
-┌⑆ *${prefix}giftag* 
-├ Gif tag from me to all member
-└ Example : ${prefix}giftag message
-┌⑆ *${prefix}doctag*
-├ Document tag from me to all member
-└ Example : ${prefix}doctag message
-┌⑆ *${prefix}kontag*
-├ Kontak tag from me to all member
-└ Example : ${prefix}kontag 628xx|siapa
-┌⑆ *${prefix}totag*
-├ To tag from me to all member
-└ Example : ${prefix}totag @tag all media
-┌⑆ *${prefix}ping*
-└ Test ping response bot
-┌⑆ *${prefix}join*
-├ Joinned bot to your group chat
-└ Example : ${prefix}join link chat
-┌⑆ *${prefix}term*
-├ Terminal or exec
-└ Example : ${prefix}term ls
-┌⑆ *${prefix}runtime*
-└ View runtime activated bot
-┌⑆ *${prefix}speed*
-└ Test speed response bot
-┌⑆ note :
-├ pause 3 seconds so as not to spam
-├ calls, banned!!
-├⑆ Owner :
-└ wa.me/6289656439589
+    var menu = `  
+                ☙𝐊𝐚𝐋𝐢↭𝐋𝐢𝐍𝐮𝐗❧
+ㅤㅤㅤㅤㅤㅤ   ↶»𝘉𝘰𝘛⇝☠⇜𝘏𝘊𝘉𝘙«↷
+
+╔═════ 𝔻𝕚𝕤𝕡𝕠𝕤𝕚𝕥𝕚𝕧𝕠 
+║ㅤ➛Hits de hoje : ${hit_today.length}
+║ㅤ➛Celular : ${device_manufacturer}
+║ㅤ➛Modelo : ${device_model}
+║ㅤ➛RAM : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+║ㅤ➛Android : ${os_version}
+║ㅤ➛Versão do WhatsApp : ${wa_version}
+║ㅤ➛Grupos : ${giid.length}
+║ㅤ➛Chats : ${totalchat.length - giid.length}
+║ㅤ➛Total de chat : ${totalchat.length}
+║ㅤ➛Velocidade : ${sepid.toFixed(4)}ㅤMilissegundos
+║ㅤ➛Meu tempo de atividade: ${runtem}
+║ㅤ➛Prefix : 「 ${prefix} 」
+╚═══════.✵.═══════╝
+
+╭────➛𝕄𝕖𝕟𝕦 
+┃
+├⇝ㅤ${prefix}off
+├⇝ㅤ${prefix}on
+├⇝ㅤ${prefix}status
+├⇝ㅤ${prefix}dono
+├⇝ㅤ${prefix}self
+├⇝ㅤ${prefix}public
+├⇝ㅤ${prefix}peson
+├⇝ㅤ${prefix}pesoff
+├⇝ㅤ${prefix}spam
+├⇝ㅤ${prefix}mute
+├⇝ㅤ${prefix}unmute
+├⇝ㅤ${prefix}delete
+├⇝ㅤ${prefix}setfake
+├⇝ㅤ${prefix}welcome 1/0
+├⇝ㅤ${prefix}setfakeimg
+├⇝ㅤ${prefix}setprefix
+├⇝ㅤ${prefix}setthumb
+├⇝ㅤ${prefix}settarget
+├⇝ㅤ${prefix}covidindo
+├⇝ㅤ${prefix}covidworld
+├⇝ㅤ${prefix}cnn
+├⇝ㅤ${prefix}infogempa
+├⇝ㅤ${prefix}get [ᵍᵒᵒᵍˡᵉ.ᶜᵒᵐ]
+├⇝ㅤ${prefix}revip [ 8.8.8.8 ]
+├⇝ㅤ${prefix}avatar
+├⇝ㅤ${prefix}loli
+├⇝ㅤ${prefix}waifu
+├⇝ㅤ${prefix}husbu
+├⇝ㅤ${prefix}image [ᵃˡᵉᵃᵗᵒʳⁱᵃ]
+├⇝ㅤ${prefix}pinterest [ᵃˡᵉᵃᵗᵒʳⁱᵃ]
+├⇝ㅤ${prefix}anime [ᵃˡᵉᵃᵗᵒʳⁱᵃ]
+├⇝ㅤ${prefix}wallpaperanime
+├⇝ㅤ${prefix}nsfwavatar 
+├⇝ㅤ${prefix}nekopoi  
+├⇝ㅤ${prefix}hentai 
+├⇝ㅤ${prefix}sticker [ⁱᵐᵃᵍᵉ>ᵃᵈᵉˢⁱᵛᵒ]
+├⇝ㅤ${prefix}swm [ⁿᵒᵐᵉ ᵈᵒ ᵖᵃᶜᵒᵗᵉ]
+├⇝ㅤ${prefix}take [ⁿᵒᵐᵉ ᵈᵒ ᵖᵃᶜᵒᵗᵉ]
+├⇝ㅤ${prefix}fdeface
+├⇝ㅤ${prefix}emoji
+├⇝ㅤ${prefix}attp
+├⇝ㅤ${prefix}toimg [ᵃᵈᵉˢⁱᵛᵒ>ⁱᵐᵃᵍᵉ]
+├⇝ㅤ${prefix}tovid [ᵃᵈᵉˢⁱᵛᵒ>ᵛⁱᵈᵉᵒ]
+├⇝ㅤ${prefix}tomp3 [ᵃᵈᵉˢⁱᵛᵒ>ᵐᵖ3]
+├⇝ㅤ${prefix}slow [ᵛⁱᵈᵉᵒ>ˡᵉⁿᵗᵒ]
+├⇝ㅤ${prefix}fast [ᵛⁱᵈᵉᵒ>ʳᵃᵖⁱᵈᵒ]
+├⇝ㅤ${prefix}reverse [ᵛⁱᵈᵉᵒ>ʳᵉᵛᵉʳˢᵒ]
+├⇝ㅤ${prefix}tourl [ⁱᵐᵃᵍᵉ>ᵘʳˡ]
+├⇝ㅤ${prefix}upswteks
+├⇝ㅤ${prefix}upswimage
+├⇝ㅤ${prefix}upswvideo
+├⇝ㅤ${prefix}herolist
+├⇝ㅤ${prefix}herodetail [ᵇᵃʳᵃᵗᵒ]
+├⇝ㅤ${prefix}igstalk [ⁿᵒᵐᵉᵈᵒᵘˢᵘᵃʳⁱᵒ]
+├⇝ㅤ${prefix}ig [ˡⁱⁿᵏ] 
+├⇝ㅤ${prefix}play [ⁱⁿˢᵉʳⁱʳ] 
+├⇝ㅤ${prefix}video [ⁱⁿˢᵉʳⁱʳ] 
+├⇝ㅤ${prefix}ytmp3 [ˡⁱⁿᵏ] 
+├⇝ㅤ${prefix}ytmp4 [ˡⁱⁿᵏ] 
+├⇝ㅤ${prefix}ytsearch [ⁱⁿˢᵉʳⁱʳ] 
+├⇝ㅤ${prefix}twitter [ˡⁱⁿᵏ] 
+├⇝ㅤ${prefix}tiktok [ˡⁱⁿᵏ] 
+├⇝ㅤ${prefix}tiktokaudio [ˡⁱⁿᵏ] 
+├⇝ㅤ${prefix}fb [ˡⁱⁿᵏ] 
+├⇝ㅤ${prefix}tiktokaudio [ⁱⁿˢᵉʳⁱʳ] 
+├⇝ㅤ${prefix}brainly [ⁱⁿˢᵉʳⁱʳ] 
+├⇝ㅤ${prefix}add [5521xxxxx-xxxx]
+├⇝ㅤ${prefix}kick [ᵐᵃʳᶜᵃʳ]
+├⇝ㅤ${prefix}promote [ᵐᵃʳᶜᵃʳ ᵐᵉᵐᵇʳᵒ]
+├⇝ㅤ${prefix}demote [ᵐᵃʳᶜᵃʳ ᵃᵈᵐⁱⁿ]
+├⇝ㅤ${prefix}kontak [628xxᵉᵘ]
+├⇝ㅤ${prefix}hidetag [ˢᵘᵃ ᵐᵉⁿˢᵃᵍᵉᵐ]
+├⇝ㅤ${prefix}sticktag [ᵃᵈᵉˢⁱᵛᵒ>ᵐᵃʳᶜᵃʳ]
+├⇝ㅤ${prefix}giftag [ᵍⁱᶠ>ᵐᵃʳᶜᵃʳ]
+├⇝ㅤ${prefix}doctag [ᵈᵒᶜᵘᵐᵉⁿᵗᵒ>ᵐᵃʳᶜᵃʳ]
+├⇝ㅤ${prefix}kontag [687xxᵉᵘ>ᵐᵃʳᶜᵃʳ]
+├⇝ㅤ${prefix}totag [ᵐⁱᵈⁱᵃ>ᵐᵃʳᶜᵃʳ]
+├⇝ㅤ${prefix}ping
+├⇝ㅤ${prefix}term [ᶜᵒᵈⁱᵍᵒ]
+├⇝ㅤ${prefix}runtime
+├⇝ㅤ${prefix}speed
+┃
+╰─ ☙𝐊𝐚𝐋𝐢↭𝐋𝐢𝐍𝐮𝐗❧─
+ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ
+↶»𝘉𝘰𝘛⇝☠⇜𝘏𝘊𝘉𝘙«↷          
+
 `
-menuu = fs.readFileSync('./stik/thumb.jpeg')
-        	sanz.sendMessage(from, menuu, image, {quoted: { key: { fromMe: false, participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: `0@s.whatsapp.net` } : {})},message: {'contactMessage': {'displayName': `Hai ${pushname}`,'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${ucapanWaktu},;;;\nFN:${ucapanWaktu},\nitem1.TEL;waid=${sender.split('@')[0]}:${sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`,'jpegThumbnail': fs.readFileSync('./stik/thumb.jpeg')}}}, thumbnail:fs.readFileSync('./stik/fake.jpeg'), caption:menu, sendEphemeral: true})
+        	faketokoforwaded(menu)
            	break
-    case 'on':
+    case prefix+ 'on':
             if (!mek.key.fromMe) return 
             offline = false
-            fakestatus(' ``ANDA TELAH ONLINE``` ')
+            fakestatus(' 𝐎𝐍𝐋𝐈𝐍𝐄 ')
             break       
-    case 'off':
+    case prefix+ 'off':
             if (!mek.key.fromMe) return 
             offline = true
             waktu = Date.now()
             anuu = args.join(' ') ? args.join(' ') : '-'
             alasan = anuu
-            fakestatus(' ```ANDA TELAH OFFLINE``` ')
+            fakestatus(' 𝐃𝐞𝐬𝐥𝐢𝐠𝐚𝐝𝐨 ')
             break
-    case 'status':
-            fakestatus(`*STATUS*\n${offline ? '> OFFLINE' : '> ONLINE'}\n${banChats ? '> SELF-MODE' : '> PUBLIC-MODE'}`)
+    case prefix+ 'status':
+            fakestatus(` 𝐒𝐓𝐀𝐓𝐔𝐒 \n${offline ? '> OFFLINE' : '> ONLINE'}\n${banChats ? '> SELF-MODE' : '> PUBLIC-MODE'}`)
             break
-	case 'self':
-          	if (!mek.key.fromMe) return fakestatus('This command only for me')
+	case prefix+ 'self':
+          	if (!mek.key.fromMe) return fakestatus(' 𝐕𝐨𝐜𝐞 𝐧𝐚𝐨 𝐞 𝐦𝐞𝐮 𝐝𝐨𝐧𝐨 !')
           	if (banChats === true) return
           	uptime = process.uptime()
          	 // var taged = ben.message.extendedTextMessage.contextInfo.mentionedJid[0]
          	banChats = true
-          	fakestatus(`「 *SELF-MODE* 」`)
+          	fakestatus(`「 𝐏𝐫𝐢𝐯𝐚𝐝𝐨 」`)
           	break
  //Set Owner For gc
-    case 'public':
-          	if (!mek.key.fromMe) return fakestatus('This command only for me')
+    case prefix+ 'public':
+          	if (!mek.key.fromMe) return fakestatus(' 𝐕𝐨𝐜𝐞 𝐧𝐚𝐨 𝐞 𝐦𝐞𝐮 𝐝𝐨𝐧𝐨 !')
           	if (banChats === false) return
           	// var taged = ben.message.extendedTextMessage.contextInfo.mentionedJid[0]
           	banChats = false
-          	fakestatus(`「 *PUBLIC-MODE* 」`)
+          	fakestatus(`「 𝑃𝑈𝐵𝐿𝐼𝐶𝑂 」`)
           	break
-					case 'peson':
-					  sanz.toggleDisappearingMessages(from, WA_DEFAULT_EPHEMERAL)
+					case prefix+ 'peson':
+					  pato.toggleDisappearingMessages(from, WA_DEFAULT_EPHEMERAL)
 					  break
-					  case 'pesoff':
-					    sanz.toggleDisappearingMessages(from, 0)
+					  case prefix+ 'pesoff':
+					    pato.toggleDisappearingMessages(from, 0)
 					    break
-            case 'spam':
-                if (!isMe) return reply(mess.only.me)
-                if (!arg) return reply(`Penggunaan ${prefix}spam teks|jumlahspam`)
+            case prefix+ 'spam':
+                if (!isMe) return reply(' 𝐕𝐨𝐜𝐞 𝐧𝐚𝐨 𝐞 𝐦𝐞𝐮 𝐝𝐨𝐧𝐨 !')
+                if (!arg) return reply(` 𝐔𝐬𝐚𝐫 ${prefix}𝐒𝐩𝐚𝐦 𝐭𝐞𝐱𝐭𝐨|𝐪𝐮𝐚𝐧𝐭𝐢𝐝𝐚𝐝𝐞 𝐝𝐞 𝐬𝐩𝐚𝐦`)
                 argz = arg.split("|")
-                if (!argz) return reply(`Penggunaan ${prefix}spam teks|jumlah`)
-                if (isNaN(argz[1])) return reply(`harus berupa angka`)
+                if (!argz) return reply(` 𝐔𝐬𝐚𝐫 ${prefix}𝐒𝐩𝐚𝐦 𝐭𝐞𝐱𝐭𝐨|𝐪𝐮𝐚𝐧𝐭𝐢𝐝𝐚𝐝𝐞 𝐝𝐞 𝐬𝐩𝐚𝐦`)
+                if (isNaN(argz[1])) return reply(` 𝐝𝐞𝐯𝐞 𝐬𝐞𝐫 𝐮𝐦 𝐧𝐮𝐦𝐞𝐫𝐨𝐬 `)
                 for (let i = 0; i < argz[1]; i++){
-                sanz.sendMessage(from, argz[0], MessageType.text, {sendEphemeral: true})
+                pato.sendMessage(from, argz[0], MessageType.text, {sendEphemeral: true})
                 }
 	        break
-             case 'mute':
-                if (!isMe) return reply(mess.only.me)
-                sanz.modifyChat(from, ChatModification.mute, 24*60*60*1000)
-                reply('*succes mute this chat*')
-                console.log('succes mute chat = ' + from)
+             case prefix+ 'mute':
+                if (!isMe) return reply(' 𝐕𝐨𝐜𝐞 𝐧𝐚𝐨 𝐞 𝐦𝐞𝐮 𝐝𝐨𝐧𝐨 !')
+                pato.modifyChat(from, ChatModification.mute, 24*60*60*1000)
+                reply(' 𝐌𝐮𝐭𝐚𝐧𝐝𝐨 𝐜𝐡𝐚𝐭 ')
+                console.log(' 𝐒𝐮𝐜𝐞𝐬𝐬𝐨 𝐜𝐡𝐚𝐭 𝐦𝐮𝐭𝐚𝐝𝐨  = ' + from)
                 break
-            case 'unmute':
-                if (!isMe) return reply(mess.only.me)
-                sanz.modifyChat(from, ChatModification.unmute)
-                reply('*succes unmute this chat*')
-                console.log('succes unmute chat = ' + from)
+            case prefix+ 'unmute':
+                if (!isMe) return reply(' 𝐕𝐨𝐜𝐞 𝐧𝐚𝐨 𝐞 𝐦𝐞𝐮 𝐝𝐨𝐧𝐨 !')
+                pato.modifyChat(from, ChatModification.unmute)
+                reply('𝐄𝐮 𝐣𝐚 𝐩𝐨𝐬𝐬𝐨 𝐯𝐞𝐫 𝐨 𝐝𝐞𝐥𝐞𝐬 𝐜𝐨𝐧𝐯𝐞𝐫𝐬𝐚𝐬 ')
+                console.log(' 𝐒𝐮𝐜𝐞𝐬𝐬𝐨 𝐧𝐨 𝐛𝐚𝐭𝐞-𝐩𝐚𝐩𝐨 𝐜𝐨𝐦 𝐚𝐮𝐝𝐢𝐨  = ' + from)
                 break
-            case 'delete':
-                if (!isMe) return reply(mess.only.me)
-                reply('*succes delete this chat*')
-                console.log('succes delete chat = ' + from)
-                sanz.modifyChat(from, ChatModification.delete)
+            case prefix+ 'delete':
+                if (!isMe) return reply(' 𝐕𝐨𝐜𝐞 𝐧𝐚𝐨 𝐞 𝐦𝐞𝐮 𝐝𝐨𝐧𝐨 !')
+                reply(' 𝐁𝐚𝐭𝐞-𝐩𝐚𝐩𝐨𝐬 𝐞𝐱𝐜𝐥𝐮𝐢𝐝𝐨𝐬 ')
+                console.log('𝐒𝐮𝐜𝐞𝐬𝐬𝐨 𝐞𝐱𝐜𝐥𝐮𝐢𝐫 𝐛𝐚𝐭𝐞-𝐩𝐚𝐩𝐨 = ' + from)
+                pato.modifyChat(from, ChatModification.delete)
                 break
-	case 'setreply':
-	case 'setfake':
-	  if (isMe) return('Khusus Sayah bang kamu siapa?')
+	case prefix+ 'setreply':
+	case prefix+ 'setfake':
+	  if (isMe) return('𝐏𝐫𝐢𝐦𝐞𝐢𝐫𝐚𝐦𝐞𝐧𝐭𝐞 𝐢𝐫𝐦𝐚𝐨, 𝐪𝐮𝐞𝐦 𝐞 𝐯𝐨𝐜𝐞 ?')
 			if (!q) return fakegroup(mess.wrongFormat)
 			fake = q
-			fakegroup(`Succes Mengganti Conversation Fake : ${q}`)
+			fakegroup(` 𝐒𝐮𝐜𝐞𝐬𝐬𝐨 𝐧𝐚 𝐦𝐮𝐝𝐚𝐧ç𝐚 𝐝𝐞 𝐜𝐨𝐧𝐯𝐞𝐫𝐬𝐚 𝐟𝐚𝐥𝐬𝐚 : ${q}`)
 			break
-	case 'setfakeimg':
-	  if (isMe) return('Khusus Sayah bang kamu siapa?')
+	case prefix+ 'setfakeimg':
+	  if (isMe) return(' 𝐕𝐨𝐜𝐞 𝐧𝐚𝐨 𝐞 𝐦𝐞𝐮 𝐝𝐨𝐧𝐨 !')
         	if ((isMedia && !mek.message.videoMessage || isQuotedImage || isQuotedSticker) && args.length == 0) {
           	boij = isQuotedImage || isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-			delb = await sanz.downloadMediaMessage(boij)
+			delb = await pato.downloadMediaMessage(boij)
 			fs.writeFileSync(`./stik/fake.jpeg`, delb)
-			fakestatus('Sukses')
+			fakestatus(' 𝐅𝐞𝐢𝐭𝐨 𝐦𝐞𝐮 𝐦𝐞𝐬𝐭𝐫𝐞 ')
         	} else {
-            reply(`Kirim gambar dengan caption ${prefix}sethumb`)
+            reply(` 𝐄𝐧𝐯𝐢𝐞 𝐮𝐦𝐚 𝐟𝐨𝐭𝐨 𝐜𝐨𝐦 𝐮𝐦𝐚 𝐥𝐞𝐠𝐞𝐧𝐝𝐚 ${prefix}sethumb`)
           	}
 			break	
-	case 'setprefix':
-if (!isMe) return reply(mess.only.me)
-prefix = q
-			fakegroup(`Succes Mengganti Prefix : ${q}`)
+	case prefix+ 'setprefix':
+	  if (isMe) return(' 𝐕𝐨𝐜𝐞 𝐧𝐚𝐨 𝐞 𝐦𝐞𝐮 𝐝𝐨𝐧𝐨 !')
+			prefix = q
+			fakegroup(` 𝐒𝐮𝐜𝐞𝐬𝐬𝐨 𝐧𝐚 𝐚𝐥𝐭𝐞𝐫𝐚ç𝐚𝐨 𝐝𝐨 𝐩𝐫𝐞𝐟𝐢𝐱𝐨 : ${q}`)
 			break
-	case 'setthumb':
-		  if (isMe) return('Khusus Sayah bang kamu siapa?')
+	case prefix+ 'setthumb':
+		  if (isMe) return(' 𝐕𝐨𝐜𝐞 𝐧𝐚𝐨 𝐞 𝐦𝐞𝐮 𝐝𝐨𝐧𝐨 !')
 	        if ((isMedia && !mek.message.videoMessage || isQuotedImage || isQuotedSticker) && args.length == 0) {
           	boij = isQuotedImage || isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-			delb = await sanz.downloadMediaMessage(boij)
+			delb = await pato.downloadMediaMessage(boij)
 			fs.writeFileSync(`./stik/thumb.jpeg`, delb)
-			fakestatus('Sukses')
+			fakestatus(' 𝐅𝐞𝐢𝐭𝐨 𝐦𝐞𝐮 𝐦𝐞𝐬𝐭𝐫𝐞 ')
         	} else {
-            reply(`Kirim gambar dengan caption ${prefix}sethumb`)
+            reply(` 𝐄𝐧𝐯𝐢𝐞 𝐮𝐦𝐚 𝐟𝐨𝐭𝐨 𝐜𝐨𝐦 𝐮𝐦𝐚 𝐥𝐞𝐠𝐞𝐧𝐝𝐚  ${prefix}sethumb`)
           	}
 			break	
-    case 'settarget':
-	  if (isMe) return('Khusus Sayah bang kamu siapa?')
-            if(!q) return reply(`${prefix}settarget 628xxxxx`)
+    case prefix+ 'settarget':
+	  if (isMe) return(' 𝐕𝐨𝐜𝐞 𝐧𝐚𝐨 𝐞 𝐦𝐞𝐮 𝐝𝐨𝐧𝐨 !')
+            if(!q) return reply(`${prefix}settarget 503xxxxx`)
             targetpc = args[0]
-            fakegroup(`Succes Mengganti target fitnahpc : ${targetpc}`)
+            fakegroup(` 𝐒𝐮𝐜𝐞𝐬𝐬𝐨 𝐦𝐮𝐝𝐚𝐧𝐝𝐨 𝐨 𝐚𝐥𝐯𝐨 𝐝𝐚 𝐜𝐚𝐥𝐮𝐧𝐢𝐚: ${targetpc}`)
             break
-case 'term':
-if (!isMe) return reply(mess.only.me)
+case prefix+ 'term':
+if (!isMe) return reply(' 𝐀𝐩𝐞𝐧𝐚𝐬 𝐦𝐞𝐮 𝐌𝐞𝐬𝐭𝐫𝐞')
 			if (!q) return fakegroup(mess.wrongFormat)
 			exec(q, (err, stdout) => {
-			if (err) return fakegroup(`sanz@self:~$ ${err}`)
+			if (err) return fakegroup(`pato@self:~$ ${err}`)
 			if (stdout) {
 			fakegroup(stdout)
 			}
 			})
 		    break 
 //INFORMATION
-    case 'covidindo':
+    case prefix+ 'covidindo':
                 ci = await covidindo()
                 var { kasus, kematian, sembuh } = ci[0]
-                reply(`Kasus : ${kasus}\n\nKematian : ${kematian}\n\nSembuh : ${sembuh}`)
+                reply(` 𝐂𝐚𝐬𝐨 : ${kasus}\n\n 𝐌𝐨𝐫𝐭𝐨 : ${kematian}\n\n 𝐑𝐞𝐜𝐮𝐩𝐞𝐫𝐚𝐝𝐨𝐬 : ${sembuh}`)
                 break
-    case 'covidworld':
+    case prefix+ 'covidworld':
                  cw= await covidworld()
                 var { kasus, kematian, sembuh } = cw[0]
-                reply(`Kasus : ${kasus}\n\nKematian : ${kematian}\n\nSembuh : ${sembuh}`)
+                reply(` 𝐂𝐚𝐬𝐨 : ${kasus}\n\n 𝐌𝐨𝐫𝐭𝐨 : ${kematian}\n\n 𝐑𝐞𝐜𝐮𝐩𝐞𝐫𝐚𝐝𝐨𝐬 : ${sembuh}`)
                 break
-    case 'cnn':
+    case prefix+ 'cnn':
                 var result = await cnn()
-                cn = 'CNN NEWS'
+                cn = '𝐂𝐍𝐍 𝐍𝐄𝐖𝐒'
                 for (let i = 0; i < result.length; i++) {
-                  cn += `\n\nTitle : ${result[i].judul}\nLink : ${result[i].link}\nImage: ${result[i].thumb}`
+                  cn += `\n\n 𝐓𝐢𝐭𝐮𝐥𝐨 : ${result[i].judul}\n 𝐋𝐢𝐧𝐤 : ${result[i].link}\n 𝐈𝐦𝐚𝐠𝐞𝐦 : ${result[i].thumb}`
                 }
                 buff = await getBuffer(result[0].thumb)
-                sanz.sendMessage(from, buff, MessageType.image, {caption: cn})
+                pato.sendMessage(from, buff, MessageType.image, {caption: cn})
                 break
-    case 'infogempa':
+    case prefix+ 'infogempa':
                 tres = await Gempa()
                 var { Waktu, Lintang, Bujur, Magnitude, Kedalaman, Wilayah, Map } = tres.result
                 console.log(Map)
-                captt = `Waktu : ${Waktu}\nLintang : ${Lintang}\nBujur : ${Bujur}\nWilayah : ${Wilayah}`
+                captt = ` 𝐓𝐞𝐦𝐩𝐨 : ${Waktu}\n 𝐋𝐚𝐭𝐢𝐭𝐮𝐝𝐞 : ${Lintang}\n 𝐋𝐨𝐧𝐠𝐢𝐭𝐮𝐝𝐞 : ${Bujur}\n 𝐑𝐞𝐠𝐢𝐚𝐨 : ${Wilayah}`
                 thumbbb = await getBuffer(Map)
-                sanz.sendMessage(from, thumbbb, MessageType.image, {caption: `${captt}`})
+                pato.sendMessage(from, thumbbb, MessageType.image, {caption: `${captt}`})
                 break
-     case 'wiki':
-     case 'wikipedia':
-     query = args.join(' ')
-var result = await wikiSearch(query)  
-                wik = `Wikipedia Search`
-                for (let i = 0; i < result.length; i++) {
-                  wik += `\n\nSearch : *${result[i].judul}*\nHasil: ${result[i].wiki}\nImage: ${result[i].thumb}`
-                }
-                buff = await getBuffer(result[0].thumb)
-                 sanz.sendMessage(from, buff, MessageType.image, {caption: wik})
-                 .catch(e => {
-faketoko('error')
-})      
-break
 //tools
-     case 'get':
-      if(!q) return reply('linknya?')
+     case prefix+ 'get':
+      if(!q) return reply('link :3?')
 			.then(res => res.json())
 			qweryna = args.join(' ')
 			eses = await axios.get(`https://shot.screenshotapi.net/screenshot?token=D2TDY3F-G5YMM94-K9JEQT8-FYBDQBB&url=${qweryna}&full_page=true&fresh=true&output=json&file_type=png&wait_for_event=load`)
 			buffqw = await getBuffer(eses.data.screenshot)
-			sanz.sendMessage(from, buffqw, image, {quoted: mek})
+			pato.sendMessage(from, buffqw, image, {quoted: mek})
 			.catch(err => {
-				return('Mengulang lord ada yg mengerror...')
+				return(' 𝐑𝐞𝐩𝐞𝐭𝐢𝐧𝐝𝐨 𝐬𝐞𝐧𝐡𝐨𝐫, 𝐡𝐚 𝐮𝐦 𝐞𝐫𝐫𝐨...')
 			})
 			break
-    case 'revip':
-			if (args.length < 1) return reply('Domain/Ip nya mana bang??')
+    case prefix+ 'revip':
+			if (args.length < 1) return reply(' 𝐎𝐧𝐝𝐞 𝐞𝐬𝐭𝐚 𝐨 𝐝𝐨𝐦𝐢𝐧𝐢𝐨 / 𝐢𝐩?')
 			var qwery = args.join(' ')
 			var repip = await fetchJson(`https://sonar.omnisint.io/reverse/${qwery}`)
-			sanz.sendMessage(from, `${repip}`, text)
+			pato.sendMessage(from, `${repip}`, text)
       .catch((error) => {
-            reply('Invalid domain/ip'); 
+            reply(' 𝐃𝐨𝐦𝐢𝐧𝐢𝐨 / 𝐢𝐩 𝐢𝐧𝐯𝐚𝐥𝐢𝐝𝐨!'); 
             })
 			break
 //WIBU
-case 'avatar':
+case prefix+ 'avatar':
 			anu = await axios.get('https://nekos.life/api/v2/img/avatar')
 				avatars = await getBuffer(anu.data.url)
-				sanz.sendMessage(from, avatars, image, {quoted: mek})
+				pato.sendMessage(from, avatars, image, {quoted: mek})
 			break
-		case 'loli':
+		case prefix+ 'loli':
 		  anu = await axios.get('https://nekos.life/api/v2/img/neko')
 				loliz = await getBuffer(anu.data.url)
-				sanz.sendMessage(from, loliz, image, {quoted: mek})
+				pato.sendMessage(from, loliz, image, {quoted: mek})
 			break
-		case 'waifu':
+		case prefix+ 'waifu':
 			waifud = await axios.get('https://nekos.life/api/v2/img/waifu')
 			nyed = await getBuffer(waifud.data.url)
-			sanz.sendMessage(from, nyed, image, { caption: 'Gatau caption nya apa', quoted: mek })
+			pato.sendMessage(from, nyed, image, { caption: ' 𝐍𝐚𝐨 𝐬𝐞𝐢 𝐪𝐮𝐚𝐥 𝐞 𝐚 𝐥𝐞𝐠𝐞𝐧𝐝𝐚 ', quoted: mek })
 			.catch(err => {
-				return('Mengulang lord ada yg mengerror...')
+				return(' 𝐒𝐢𝐧𝐭𝐨 𝐦𝐮𝐢𝐭𝐨!')
 			})
 			break
-	case 'husbu':
-            gis('husbu', async (error, result) => {
-            n = result
-            images = n[Math.floor(Math.random() * n.length)].url
-            sanz.sendMessage(from,{url:images},image,{quoted:mek})
-            });
-            break
-     case 'otakuongoing':
-                o = await onGoing()
-                console.log(o)
-                ot = 'Ongoing Otakudesu'
-                for (let i = 0; i < o.length; i++) {
-                  ot += `\n\nJudul : ${o[i].judul}\nEpisode : ${o[i].eps}\nEps berikutnya pada hari : ${o[i].hri}\nTanggal : ${o[i].tgl}\n\nImage : ${o[i].thumb}`
-                }
-                buff = await getBuffer(o[0].thumb)
-                sanz.sendMessage(from, buff, MessageType.image, {caption: ot})
-                break
+	case prefix+ 'husbu':
+			husbud = await fetchJson(`https://api.fdci.se/rep.php?gambar=husbu`)
+			sasu = JSON.parse(JSON.stringify(husbud));
+			ke =  sasu[Math.floor(Math.random() * sasu.length)];
+			nye = await getBuffer(ke)
+			pato.sendMessage(from, nye, image, { caption: ' 𝐍𝐚𝐨 𝐬𝐞𝐢 𝐪𝐮𝐚𝐥 𝐞 𝐚 𝐥𝐞𝐠𝐞𝐧𝐝𝐚 !', quoted: mek })
+			.catch(err => {
+				return(' 𝐒𝐢𝐧𝐭𝐨 𝐦𝐮𝐢𝐭𝐨!')
+			})
+			break
 //IMAGE
-case 'image':
-            if (args.length < 1) return reply('Masukan teks!')
-            const gimg = args.join(' ');
+case prefix+ 'image':
+            if (args.length < 1) return reply(' 𝐈𝐧𝐠𝐫𝐞𝐬𝐬𝐞 𝐨 𝐭𝐞𝐱𝐭𝐨!')
+            const gimg = args.join('');
             reply(mess.wait)
             gis(gimg, async (error, result) => {
             n = result
             images = n[Math.floor(Math.random() * n.length)].url
-            sanz.sendMessage(from,{url:images},image,{quoted:mek})
+            pato.sendMessage(from,{url:images},image,{quoted:mek})
             });
             break
-case 'pinterest':
+case prefix+ 'pinterest':
 			goblog = args.join(" ")
-			anu = await fetchJson(`http://fdciabdul.tech/api/pinterest?keyword=${goblog}`)
+			anu = await fetchJson(`https://api.fdci.se/rep.php?gambar=${goblog}`)
 			sasu = JSON.parse(JSON.stringify(anu));
 			ke =  sasu[Math.floor(Math.random() * sasu.length)];
 			nye = await getBuffer(ke)
-			sanz.sendMessage(from, nye, image, { caption: 'Powered bai gatau pinterest lah bang awokwok', quoted: mek })
+			pato.sendMessage(from, nye, image, { caption: ' ☙𝐊𝐚𝐋𝐢↭𝐋𝐢𝐍𝐮𝐗❧ ', quoted: mek })
 			.catch(err => {
-				return('lagi sange bang? nyari apaan loh?, puasa bang xixixi')
+				return(' 𝐓𝐞𝐧𝐭𝐞 𝐝𝐞 𝐧𝐨𝐯𝐨! 𝐎 𝐪𝐮𝐞 𝐯𝐨𝐜𝐞 𝐞𝐬𝐭𝐚 𝐛𝐮𝐬𝐜𝐚𝐧𝐝𝐨?')
 			})
 			break
-    case 'anime':
+    case prefix+ 'anime':
             reply(mess.wait)
             fetch('https://raw.githubusercontent.com/pajaar/grabbed-results/master/pajaar-2020-gambar-anime.txt')
             .then(res => res.text())
@@ -1240,7 +973,7 @@ case 'pinterest':
             imageToBase64(pjr)
             .then((response) => {
             media =  Buffer.from(response, 'base64');
-            sanz.sendMessage(from,media,image,{quoted:mek,caption:'NIH'})
+            pato.sendMessage(from,media,image,{quoted:mek,caption:'NIH'})
             }
             )
             .catch((error) => {
@@ -1249,24 +982,24 @@ case 'pinterest':
             )
             });
             break
-	case 'wallpaperanime':
+	case prefix+ 'wallpaperanime':
 			wanime = await axios.get('https://nekos.life/api/v2/img/wallpaper')
 			bufwanime = await getBuffer(wanime.data.url)
-			sanz.sendMessage(from, bufwanime, image, { quoted: mek })
+			pato.sendMessage(from, bufwanime, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return(' 𝐀𝐧𝐮𝐧𝐜𝐢𝐨 𝐜𝐨𝐦 𝐞𝐫𝐫𝐨𝐬, 𝐭𝐞𝐧𝐭𝐞 𝐧𝐨𝐯𝐚𝐦𝐞𝐧𝐭𝐞...')
 			})
 			break
 //HARAM FEATURE
-case 'nsfwavatar':
+case prefix+ 'nsfwavatar':
 			anu = await axios.get('https://nekos.life/api/v2/img/nsfw_avatar')
 				nsavatar = await getBuffer(anu.data.url)
-				sanz.sendMessage(from, nsavatar, image, {quoted: mek})
+				pato.sendMessage(from, nsavatar, image, {quoted: mek})
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7.')
 			})	
 			break
-case 'nekopoi':
+case prefix+ 'nekopoi':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/nsfw_neko_gif')
@@ -1274,11 +1007,11 @@ case 'nekopoi':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'pussy':
+case prefix+ 'pussy':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/pussy')
@@ -1286,19 +1019,27 @@ case 'pussy':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'pussyimage':
+case prefix+ 'pussyimage':
   pusiimg = await axios.get('https://nekos.life/api/v2/img/pussy_jpg')
 			bufpusy = await getBuffer(pusiimg.data.url)
-				sanz.sendMessage(from, bufpusy, MessageType.image, {quoted: mek})
+				pato.sendMessage(from, bufpusy, MessageType.image, {quoted: mek})
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7.')
 			})
 			break
-case 'feetg':
+case prefix+ 'oppai':
+			opai = await axios.get('https://nekos.life/api/v2/img/tits')
+			opaiz = await getBuffer(opai.data.url)
+			pato.sendMessage(from, opaiz, image, { quoted: mek })
+			.catch(err => {
+			return('Error 7-7.')
+			})
+			break
+case prefix+ 'feetg':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/feetg')
@@ -1306,11 +1047,11 @@ case 'feetg':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'bj':
+case prefix+ 'bj':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/bj')
@@ -1318,35 +1059,35 @@ case 'bj':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'ero':
+case prefix+ 'ero':
 			eroz = await axios.get('https://nekos.life/api/v2/img/ero')
 			bufero = await getBuffer(eroz.data.url)
-			sanz.sendMessage(from, bufero, image, { quoted: mek })
+			pato.sendMessage(from, bufero, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7.')
 			})
 			break
-case 'erokemo':
+case prefix+ 'erokemo':
 			erokz = await axios.get('https://nekos.life/api/v2/img/erokemo')
 			erokzs = await getBuffer(erokz.data.url)
-			sanz.sendMessage(from, erokzs, image, { quoted: mek })
+			pato.sendMessage(from, erokzs, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7.')
 			})
 			break
-case 'eroyuri':
+case prefix+ 'eroyuri':
 			eroyuriz = await axios.get('https://nekos.life/api/v2/img/eroyuri')
-			buferoyu = await getBuffer(eroyuriz.data.url)
-			sanz.sendMessage(from, buferoyu, image, { quoted: mek })
+			buferoyu = await getBuffer(opai.data.url)
+			pato.sendMessage(from, buferoyu, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7')
 			})
 			break
-case 'tickle':
+case prefix+ 'tickle':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/tickle')
@@ -1354,11 +1095,11 @@ case 'tickle':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'feed':
+case prefix+ 'feed':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/feed')
@@ -1366,11 +1107,11 @@ case 'feed':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'kuni':
+case prefix+ 'kuni':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/kuni')
@@ -1378,24 +1119,24 @@ case 'kuni':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'femdom':
+case prefix+ 'femdom':
       anu = await axios.get('https://nekos.life/api/v2/img/femdom')
 			bupemdom = await getBuffer(anu.data.url)
-				sanz.sendMessage(from, bupemdom, image, {quoted: mek})
+				pato.sendMessage(from, bupemdom, image, {quoted: mek})
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7.')
 			})
 			break
-case 'futanari':
+case prefix+ 'futanari':
 			futan = await axios.get('https://nekos.life/api/v2/img/futanari')
 			futanz = await getBuffer(futan.data.url)
-			sanz.sendMessage(from, futanz, image, { quoted: mek })
+			pato.sendMessage(from, futanz, image, { quoted: mek })
 			break
-case 'les':
+case prefix+ 'les':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/les')
@@ -1403,19 +1144,19 @@ case 'les':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'trap':
+case prefix+ 'trap':
 			trapx = await axios.get('https://nekos.life/api/v2/img/tits')
 			traps = await getBuffer(trapx.data.url)
-			sanz.sendMessage(from, traps, image, { quoted: mek })
+			pato.sendMessage(from, traps, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7.')
 			})
 			break
-case 'pat':
+case prefix+ 'pat':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/pat')
@@ -1423,11 +1164,11 @@ case 'pat':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'boobs':
+case prefix+ 'boobs':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/boobs')
@@ -1435,57 +1176,57 @@ case 'boobs':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'blowjob':
+case prefix+ 'blowjob':
 			blowz = await axios.get('https://nekos.life/api/v2/img/blowjob')
 			bufblowz = await getBuffer(blowz.data.url)
-			sanz.sendMessage(from, bufblowz, image, {quoted: mek})
+			pato.sendMessage(from, bufblowz, image, {quoted: mek})
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7.')
 			})
 			break
-	case 'hentai':
+	case prefix+ 'hentai':
 			hentaiz = await axios.get('https://nekos.life/api/v2/img/hentai')
 			bufhtz = await getBuffer(hentaiz.data.url)
-			sanz.sendMessage(from, bufhtz, image, {quoted: mek})
+			pato.sendMessage(from, bufhtz, image, {quoted: mek})
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7.')
 			})
 			break
-	case 'hololewed':
+	case prefix+ 'hololewed':
 			hololew = await axios.get('https://nekos.life/api/v2/img/hololewd')
 			hololewx = await getBuffer(hololew.data.url)
-			sanz.sendMessage(from, hololewx, image, { quoted: mek })
+			pato.sendMessage(from, hololewx, image, { quoted: mek })
 			.catch(err =>{
-			  return('Tobat puasa goblokk..')
+			  return('Pwro')
 			})
 			break
-case 'lewd':
+case prefix+ 'lewd':
 			lewdd = await axios.get('https://nekos.life/api/v2/img/lewd')
 			buflewd = await getBuffer(lewdd.data.url)
-			sanz.sendMessage(from, buflewd, image, { quoted: mek })
+			pato.sendMessage(from, buflewd, image, { quoted: mek })
 			
 			break
-	case 'lewdk':
+	case prefix+ 'lewdk':
 			lewdkk = await axios.get('https://nekos.life/api/v2/img/lewdk')
 			lewdkz = await getBuffer(lewdkz.data.url)
-			sanz.sendMessage(from, lewdkz, image, { quoted: mek })
+			pato.sendMessage(from, lewdkz, image, { quoted: mek })
 			.catch(err =>{
-			  return('Tobat puasa goblokk..')
+			  return('Pwro..')
 			})
 			break
-case 'lewdkemo':
+case prefix+ 'lewdkemo':
 			lewdkm = await axios.get('https://nekos.life/api/v2/img/lewdkemo')
 			buflewd = await getBuffer(lewdkm.data.url)
-			sanz.sendMessage(from, buflewd, image, { quoted: mek })
+			pato.sendMessage(from, buflewd, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Pwro..')
 			})
 			break
-case 'goose':
+case prefix+ 'goose':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/goose')
@@ -1493,11 +1234,11 @@ case 'goose':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'solog':
+case prefix+ 'solog':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/solog')
@@ -1505,19 +1246,19 @@ case 'solog':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'yuri':
-			yuriz = await axios.get('https://nekos.life/api/v2/img/yuri')
+case prefix+ 'yuri':
+			yuriz = await axios.get('https://nekos.life/api/v2/img/tits')
 			bupyuri = await getBuffer(yuriz.data.url)
-			sanz.sendMessage(from, bupyuri, image, { quoted: mek })
+			pato.sendMessage(from, bupyuri, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7.')
 			})
 			break
-	case 'anal':
+	case prefix+ 'anal':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/anal')
@@ -1525,11 +1266,11 @@ case 'yuri':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break		
-case 'pwankg':
+case prefix+ 'pwankg':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/pwankg')
@@ -1537,19 +1278,19 @@ case 'pwankg':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'eron':
+case prefix+ 'eron':
 			eronz = await axios.get('https://nekos.life/api/v2/img/eron')
 			buferon = await getBuffer(eronz.data.url)
-			sanz.sendMessage(from, buferon, image, { quoted: mek })
+			pato.sendMessage(from, buferon, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7..')
 			})
 			break
-case 'kiss':
+case prefix+ 'kiss':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/kiss')
@@ -1557,19 +1298,19 @@ case 'kiss':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'keta':
+case prefix+ 'keta':
 			ketaz = await axios.get('https://nekos.life/api/v2/img/keta')
 			bufketa = await getBuffer(ketaz.data.url)
-			sanz.sendMessage(from, bufketa, image, { quoted: mek })
+			pato.sendMessage(from, bufketa, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7..')
 			})
 			break
-case 'cum':
+case prefix+ 'cum':
       ranp = getRandom('.gif')
       rano = getRandom('.webp')
 			anu = await axios.get('https://nekos.life/api/v2/img/cum')
@@ -1577,42 +1318,42 @@ case 'cum':
 			  fs.unlinkSync(ranp)
 				if (err) return reply('error')
 				buffer = fs.readFileSync(rano)
-				sanz.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
+				pato.sendMessage(from, buffer, MessageType.sticker, {quoted: mek})
 				fs.unlinkSync(rano)
 			})
 			break
-case 'cumimage':
+case prefix+ 'cumimage':
 			cumjpg = await axios.get('https://nekos.life/api/v2/img/cum_jpg')
 			bupjpg = await getBuffer(cumjpg.data.url)
-			sanz.sendMessage(from, bupjpg, image, { quoted: mek })
+			pato.sendMessage(from, bupjpg, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7..')
 			})
 			break
-case 'oppai':
+case prefix+ 'oppai':
 			opai = await axios.get('https://nekos.life/api/v2/img/tits')
 			opaiz = await getBuffer(opai.data.url)
-			sanz.sendMessage(from, opaiz, image, { quoted: mek })
+			pato.sendMessage(from, opaiz, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7..')
 			})
 			break
-case 'holoero':
+case prefix+ 'holoero':
 		holox = await axios.get('https://nekos.life/api/v2/img/holoero')
 			bufholox = await getBuffer(holox.data.url)
-			sanz.sendMessage(from, bufholox, image, { quoted: mek })
+			pato.sendMessage(from, bufholox, image, { quoted: mek })
 			.catch(err => {
-			return('Ad yg mengerror ulang coba..')
+			return('Error 7-7..')
 			})
 			break
 //MAKER
-    case 'sticker': 
-    case 'stiker':
-    case 'sg':
-    case 's':
+    case prefix+ 'sticker': 
+    case prefix+ 'stiker':
+    case prefix+ 'sg':
+    case prefix+ 's':
             if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
             const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            const media = await sanz.downloadAndSaveMediaMessage(encmedia)
+            const media = await pato.downloadAndSaveMediaMessage(encmedia)
                 ran = '666.webp'
                 await ffmpeg(`./${media}`)
                 .input(media)
@@ -1626,7 +1367,7 @@ case 'holoero':
                 })
                 .on('end', function () {
                 console.log('Finish')
-                sanz.sendMessage(from, fs.readFileSync(ran), MessageType.sticker, {quoted: mek})
+                pato.sendMessage(from, fs.readFileSync(ran), MessageType.sticker, {quoted: mek})
                  fs.unlinkSync(media)
                 fs.unlinkSync(ran)
                 })
@@ -1635,7 +1376,7 @@ case 'holoero':
                 .save(ran)
                 } else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
                 const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-                const media = await sanz.downloadAndSaveMediaMessage(encmedia)
+                const media = await pato.downloadAndSaveMediaMessage(encmedia)
             ran = '999.webp'
             reply(mess.wait)
             await ffmpeg(`./${media}`)
@@ -1651,7 +1392,7 @@ case 'holoero':
             })
             .on('end', function () {
             console.log('Finish')
-            sanz.sendMessage(from, fs.readFileSync(ran), MessageType.sticker, {quoted: mek})
+            pato.sendMessage(from, fs.readFileSync(ran), MessageType.sticker, {quoted: mek})
             fs.unlinkSync(media)
             fs.unlinkSync(ran)
                 })
@@ -1659,31 +1400,31 @@ case 'holoero':
                 .toFormat('webp')
                 .save(ran)
             } else {
-                reply(`Kirim gambar dengan caption ${prefix}sticker\nDurasi Sticker Video 1-9 Detik`)
+                reply(` 𝐄𝐧𝐯𝐢𝐞 𝐮𝐦𝐚 𝐟𝐨𝐭𝐨 𝐜𝐨𝐦 𝐮𝐦  ${prefix}𝐬𝐭𝐢𝐜𝐤𝐞𝐫\n𝐃𝐮𝐫𝐚ç𝐚𝐨 𝐝𝐨 𝐯𝐢𝐝𝐞𝐨 𝐝𝐞 1-9 𝐬𝐞𝐠𝐮𝐧𝐝𝐨𝐬.`)
             }
             break
-	case 'stikerwm':
-	case 'stickerwm':
-    case 'swm':
-            pe = args.join(' ')
+	case prefix+ 'stikerwm':
+	case prefix+ 'stickerwm':
+    case prefix+ 'swm':
+            pe = args.join('')
             var a = pe.split("|")[0];
             var b = pe.split("|")[1];
             if (isMedia && !mek.message.videoMessage || isQuotedImage ) {
             const encmedia = isQuotedImage   ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-             media = await sanz.downloadAndSaveMediaMessage(encmedia)
+             media = await pato.downloadAndSaveMediaMessage(encmedia)
             await createExif(a,b)
             out = getRandom('.webp')
             ffmpeg(media)
             .on('error', (e) => {
             console.log(e)
-            sanz.sendMessage(from, 'Terjadi kesalahan', 'conversation', { quoted: mek })
+            pato.sendMessage(from, ' 𝐎𝐜𝐨𝐫𝐫𝐞𝐮 𝐮𝐦 𝐞𝐫𝐫𝐨 ',' 𝐓𝐞𝐧𝐭𝐞 𝐧𝐨𝐯𝐚𝐦𝐞𝐧𝐭𝐞', { quoted: mek })
             fs.unlinkSync(media)
             })
             .on('end', () => {
             _out = getRandom('.webp')
             spawn('webpmux', ['-set','exif','./stik/data.exif', out, '-o', _out])
             .on('exit', () => {
-            sanz.sendMessage(from, fs.readFileSync(_out),'stickerMessage', { quoted: mek })
+            pato.sendMessage(from, fs.readFileSync(_out),'stickerMessage', { quoted: mek })
             fs.unlinkSync(out)
             fs.unlinkSync(_out)
             fs.unlinkSync(media)
@@ -1694,8 +1435,8 @@ case 'holoero':
             .save(out) 
             } else if ((isMedia && mek.message.videoMessage.seconds < 11 || isQuotedVideo && mek.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage.seconds < 11) && args.length == 0) {
             const encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-            const media = await sanz.downloadAndSaveMediaMessage(encmedia)
-            pe = args.join(' ')
+            const media = await pato.downloadAndSaveMediaMessage(encmedia)
+            pe = args.join('')
             var a = pe.split("|")[0];
             var b = pe.split("|")[1];
             await createExif(a,b)
@@ -1703,14 +1444,14 @@ case 'holoero':
             ffmpeg(media)
             .on('error', (e) => {
             console.log(e)
-            sanz.sendMessage(from, 'Terjadi kesalahan', 'conversation', { quoted: mek })
+            pato.sendMessage(from, ' 𝐎𝐜𝐨𝐫𝐫𝐞𝐮 𝐮𝐦 𝐞𝐫𝐫𝐨 ',' 𝐂𝐨𝐧𝐯𝐞𝐫𝐬𝐚𝐨 ', { quoted: mek })
             fs.unlinkSync(media)
             })
             .on('end', () => {
             _out = getRandom('.webp')
             spawn('webpmux', ['-set','exif','./stik/data.exif', out, '-o', _out])
             .on('exit', () => {
-            sanz.sendMessage(from, fs.readFileSync(_out),'stickerMessage', { quoted: mek })
+            pato.sendMessage(from, fs.readFileSync(_out),'stickerMessage', { quoted: mek })
             fs.unlinkSync(out)
             fs.unlinkSync(_out)
             fs.unlinkSync(media)
@@ -1720,48 +1461,47 @@ case 'holoero':
             .toFormat('webp')
             .save(out)       
             } else {
-            reply(`Kirim gambar dengan caption ${prefix}swm teks|teks atau tag gambar yang sudah dikirim`)
+            reply(` 𝐄𝐧𝐯𝐢𝐞 𝐮𝐦𝐚 𝐟𝐨𝐭𝐨 𝐜𝐨𝐦 𝐮𝐦𝐚 𝐥𝐞𝐠𝐞𝐧𝐝𝐚 ${prefix}swm 𝐭𝐚𝐠𝐬 𝐝𝐞 𝐭𝐞𝐱𝐭𝐨 | 𝐭𝐞𝐱𝐭𝐨 𝐨𝐮 𝐢𝐦𝐚𝐠𝐞𝐦 𝐪𝐮𝐞 𝐟𝐨𝐫𝐚𝐦 𝐞𝐧𝐯𝐢𝐚𝐝𝐚𝐬`)
             }
             break
-    case 'take':
-    case 'colong':
-    		if (!isQuotedSticker) return reply('Stiker aja om')
+    case prefix+ 'take':
+    case prefix+ 'colong':
+    		if (!isQuotedSticker) return reply('𝐒𝐨 𝐚𝐝𝐞𝐬𝐢𝐯𝐨𝐬')
             encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-		    media = await sanz.downloadAndSaveMediaMessage(encmedia)
+		    media = await pato.downloadAndSaveMediaMessage(encmedia)
             anu = args.join(' ').split('|')
             satu = anu[0] !== '' ? anu[0] : `SELF`
             dua = typeof anu[1] !== 'undefined' ? anu[1] : `BOT`
             require('./lib/fetcher.js').createExif(satu, dua)
-			require('./lib/fetcher.js').modStick(media, sanz, mek, from)
+			require('./lib/fetcher.js').modStick(media, pato, mek, from)
 			break
-case 'jagokata':
-case 'quotes':
-if (args.length < 1) return reply('Yang mau di cari apaan?')
-teks = args.join(' ')
-res = await jagoKata(teks)
-let hasil = `*~* ${res[0].isi}
-_~${res[0].by}_`
-reply(hasil)
-break
-            case 'fdeface': 
-		var nn = budy.slice(9)
-                var urlnye = nn.split("|")[0];
-                var titlenye = nn.split("|")[1];
-	        var descnye = nn.split("|")[2];
-                run = getRandom('.jpeg')
-                var media1 = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-                var media2 = await sanz.downloadAndSaveMediaMessage(media1)
-                var ddatae = await imageToBase64(JSON.stringify(media2).replace(/\"/gi, ''))
-                sanz.sendMessage(from, {
-                    text: `${urlnye}`,
-                    matchedText: `${urlnye}`,
-                    canonicalUrl: `${urlnye}`,
-                    description: `${descnye}`,
-                    title: `${titlenye}`,
-                    jpegThumbnail: ddatae }, 'extendedTextMessage', { detectLinks: false })
-		break
-case 'emoji':
-			if (!q) return fakegroup('emojinya?')
+    case prefix+ 'fdeface':
+            ge = args.join('')           
+            var pe = ge.split("|")[0];
+            var pen = ge.split("|")[1];
+            var pn = ge.split("|")[2];
+            var be = ge.split("|")[3];
+            const fde = `𝐄𝐧𝐯𝐢𝐚𝐫 / 𝐫𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐫 𝐢𝐦𝐚𝐠𝐞𝐦 𝐜𝐨𝐦 𝐥𝐞𝐠𝐞𝐧𝐝𝐚 ${prefix}fdeface 𝐥𝐢𝐧𝐤 | 𝐭𝐢𝐭𝐮𝐥𝐨 | 𝐝𝐞𝐬𝐜 | 𝐭𝐞𝐤𝐬`
+            if (args.length < 1) return reply (fde)
+            const dipes = isQuotedSticker || isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
+            const tipes = await pato.downloadAndSaveMediaMessage(dipes)        
+            const bufer = fs.readFileSync(tipes)
+            const desc = `${pn}`
+            const title = `${pen}`
+            const url = `${pe}`
+            const buu = `https://${be}`
+    		var anu = {
+        	detectLinks: false
+    		}
+    		var mat = await pato.generateLinkPreview(url)
+    		mat.title = title;
+    		mat.description = desc;
+    		mat.jpegThumbnail = bufer;
+   			mat.canonicalUrl = buu; 
+    		pato.sendMessage(from, mat, MessageType.extendedText, anu)
+            break
+case prefix+ 'emoji':
+			if (!q) return fakegroup('𝐄𝐦𝐨𝐣𝐢 𝐮𝐦?')
 			qes = args.join(' ')
 			emoji.get(`${qes}`).then(emoji => {
 			teks = `${emoji.images[4].url}`
@@ -1769,148 +1509,162 @@ case 'emoji':
     		console.log(teks)
    			})
            .catch((err) => {
-            reply('emojinya satu aja bang xixixi'); 
+            reply(' 𝐃𝐞𝐬𝐜𝐮𝐥𝐩𝐞-𝐦𝐞 𝐢𝐬𝐬𝐨 𝐧𝐚𝐨 𝐩𝐨𝐝𝐞!'); 
             })
     		break
-case 'attp':
-						if (args.length < 1) return reply(`Text Nya Mana Ajg?\n> *Contoh* : *${prefix}attp* _Aku Ganz_`)
+case prefix+ 'attp':
+						if (args.length < 1) return reply(` 𝐎𝐧𝐝𝐞 𝐞𝐬𝐭𝐚 𝐨 𝐭𝐞𝐱𝐭𝐨?\n> 𝐄𝐱𝐞𝐦𝐩𝐥𝐨 : ${prefix}attp  _𝐁𝐨𝐬𝐨𝐧𝐚𝐫𝐨 𝐅𝐢𝐥𝐡𝐨 𝐝𝐚 𝐏𝐮𝐭𝐚_`)
 						attp2 = await getBuffer(`https://api.xteam.xyz/attp?file&text=${body.slice(6)}`)
-						sanz.sendMessage(from, attp2, MessageType.sticker, {quoted: mek})
+						pato.sendMessage(from, attp2, MessageType.sticker, {quoted: mek})
 						break
 //MAKERIMAGE
 //COMINGSOON
 //CONVERTER
-    case 'toimg':
-			if (!isQuotedSticker) return reply('𝗥𝗲𝗽𝗹𝘆/𝘁𝗮𝗴 𝘀𝘁𝗶𝗰𝗸𝗲𝗿 !')
+    case prefix+ 'toimg':
+			if (!isQuotedSticker) return reply(' 𝐑𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐫 𝐮𝐦 𝐚𝐝𝐞𝐬𝐢𝐯𝐨!')
 			reply(mess.wait)
 			encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-			media = await sanz.downloadAndSaveMediaMessage(encmedia)
+			media = await pato.downloadAndSaveMediaMessage(encmedia)
 			ran = getRandom('.png')
 			exec(`ffmpeg -i ${media} ${ran}`, (err) => {
 			fs.unlinkSync(media)
-			if (err) return reply('Yah gagal, coba ulangi ^_^')
+			if (err) return reply(' 𝐅𝐚𝐥𝐡𝐨𝐮, 𝐭𝐞𝐧𝐭𝐞 𝐧𝐨𝐯𝐚𝐦𝐞𝐧𝐭𝐞!')
 			buffer = fs.readFileSync(ran)
 			fakethumb(buffer,'NIH')
 			fs.unlinkSync(ran)
 			})
 			break
-    case 'tovid':
-    case 'tovideo':
+    case prefix+ 'tovid':
+    case prefix+ 'tovideo':
             if ((isMedia && !mek.message.videoMessage || isQuotedSticker) && args.length == 0) {
             ger = isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            owgi = await sanz.downloadAndSaveMediaMessage(ger)
+            owgi = await pato.downloadAndSaveMediaMessage(ger)
             webp2mp4File(owgi).then(res=>{
             sendMediaURL(from,res.result,'Done')
             })
             }else {
-            reply('reply stiker')
+            reply(' 𝐑𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐫 𝐮𝐦 𝐚𝐝𝐞𝐬𝐢𝐯𝐨')
             }
             fs.unlinkSync(owgi)
             break
-    case 'tomp3':
-            if (!isQuotedVideo) return fakegroup('Reply videonya!')
+    case prefix+ 'tomp3':
+            if (!isQuotedVideo) return fakegroup(' 𝐑𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐫 𝐮𝐦 𝐯𝐢𝐝𝐞𝐨!')
             fakegroup(mess.wait)
             encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-            media = await sanz.downloadAndSaveMediaMessage(encmedia)
+            media = await pato.downloadAndSaveMediaMessage(encmedia)
             ran = getRandom('.mp4')
             exec(`ffmpeg -i ${media} ${ran}`, (err) => {
             fs.unlinkSync(media)
             if (err) return fakegroup(`Err: ${err}`)
             buffer453 = fs.readFileSync(ran)
-            sanz.sendMessage(from, buffer453, audio, { mimetype: 'audio/mp4', quoted: mek })
+            pato.sendMessage(from, buffer453, audio, { mimetype: 'audio/mp4', quoted: mek })
             fs.unlinkSync(ran)
             })
             break
-    case 'fast':
-            if (!isQuotedVideo) return fakegroup('Reply videonya!')
+    case prefix+ 'fast':
+            if (!isQuotedVideo) return fakegroup(' 𝐑𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐫 𝐮𝐦 𝐯𝐢𝐝𝐞𝐨')
             fakegroup(mess.wait)
             encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-            media = await sanz.downloadAndSaveMediaMessage(encmedia)
+            media = await pato.downloadAndSaveMediaMessage(encmedia)
             ran = getRandom('.mp4')
             exec(`ffmpeg -i ${media} -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2[a]" -map "[v]" -map "[a]" ${ran}`, (err) => {
             fs.unlinkSync(media)
             if (err) return fakegroup(`Err: ${err}`)
             buffer453 = fs.readFileSync(ran)
-            sanz.sendMessage(from, buffer453, video, { mimetype: 'video/mp4', quoted: mek })
+            pato.sendMessage(from, buffer453, video, { mimetype: 'video/mp4', quoted: mek })
             fs.unlinkSync(ran)
             })
             break
-    case 'slow':
-            if (!isQuotedVideo) return fakegroup('Reply videonya!')
+    case prefix+ 'slow':
+            if (!isQuotedVideo) return fakegroup(' 𝐑𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐫 𝐮𝐦 𝐯𝐢𝐝𝐞𝐨!')
             fakegroup(mess.wait)
             encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-            media = await sanz.downloadAndSaveMediaMessage(encmedia)
+            media = await pato.downloadAndSaveMediaMessage(encmedia)
             ran = getRandom('.mp4')
             exec(`ffmpeg -i ${media} -filter_complex "[0:v]setpts=2*PTS[v];[0:a]atempo=0.5[a]" -map "[v]" -map "[a]" ${ran}`, (err) => {
             fs.unlinkSync(media)
             if (err) return fakegroup(`Err: ${err}`)
             buffer453 = fs.readFileSync(ran)
-            sanz.sendMessage(from, buffer453, video, { mimetype: 'video/mp4', quoted: mek })
+            pato.sendMessage(from, buffer453, video, { mimetype: 'video/mp4', quoted: mek })
             fs.unlinkSync(ran)
             })
             break
-    case 'reverse':
-            if (!isQuotedVideo) return fakegroup('Reply videonya!')
+    case prefix+ 'reverse':
+            if (!isQuotedVideo) return fakegroup(' 𝐑𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐫 𝐮𝐦 𝐯𝐢𝐝𝐞𝐨!')
             encmedia = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-            media = await sanz.downloadAndSaveMediaMessage(encmedia)
+            media = await pato.downloadAndSaveMediaMessage(encmedia)
             ran = getRandom('.mp4')
             exec(`ffmpeg -i ${media} -vf reverse -af areverse ${ran}`, (err) => {
             fs.unlinkSync(media)
             if (err) return fakegroup(`Err: ${err}`)
             buffer453 = fs.readFileSync(ran)
-            sanz.sendMessage(from, buffer453, video, { mimetype: 'video/mp4', quoted: mek })
+            pato.sendMessage(from, buffer453, video, { mimetype: 'video/mp4', quoted: mek })
             fs.unlinkSync(ran)
             })
             break
-    case 'tourl':
+    case prefix+ 'tourl':
             if ((isMedia && !mek.message.videoMessage || isQuotedImage || isQuotedVideo ) && args.length == 0) {
             boij = isQuotedImage || isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-            owgi = await sanz.downloadMediaMessage(boij)
+            owgi = await pato.downloadMediaMessage(boij)
             res = await upload(owgi)
             reply(res)
             } else {
-            reply('kirim/reply gambar/video')
+            reply(' 𝐑𝐞𝐬𝐩𝐨𝐧𝐝𝐞 𝐯𝐢𝐝𝐞𝐨 𝐨𝐮 𝐢𝐦𝐚𝐠𝐞𝐦.')
             }
             break
 //Upload Story WeA
-    case 'upswteks':
-            if (!q) return fakestatus('Isi teksnya!')
-            sanz.sendMessage('status@broadcast', `${q}`, extendedText)
+    case prefix+ 'upswteks':
+            if (!q) return fakestatus('𝐎 𝐭𝐞𝐱𝐭𝐨? ._.')
+            pato.sendMessage('status@broadcast', `${q}`, extendedText)
             fakegroup(`Sukses Up story wea teks ${q}`)
             break
-    case 'upswimage':
+    case prefix+ 'upswimage':
             if (isQuotedImage) {
             const swsw = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            cihcih = await sanz.downloadMediaMessage(swsw)
-            sanz.sendMessage('status@broadcast', cihcih, image, { caption: `${q}` })
+            cihcih = await pato.downloadMediaMessage(swsw)
+            pato.sendMessage('status@broadcast', cihcih, image, { caption: `${q}` })
             bur = `Sukses Upload Story Image dengan Caption: ${q}`
-            sanz.sendMessage(from, bur, text, { quoted: mek })
+            pato.sendMessage(from, bur, text, { quoted: mek })
             } else {
-            fakestatus('Reply gambarnya!')
+            fakestatus('Responder imagen!')
             }
             break
-    case 'upswvideo':
+    case prefix+ 'upswvideo':
             if (isQuotedVideo) {
             const swsw = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            cihcih = await sanz.downloadMediaMessage(swsw)
-            sanz.sendMessage('status@broadcast', cihcih, video, { caption: `${q}` }) 
+            cihcih = await pato.downloadMediaMessage(swsw)
+            pato.sendMessage('status@broadcast', cihcih, video, { caption: `${q}` }) 
             bur = `Sukses Upload Story Video dengan Caption: ${q}`
-            sanz.sendMessage(from, bur, text, { quoted: mek })
+            pato.sendMessage(from, bur, text, { quoted: mek })
             } else {
-            fakestatus('reply videonya!')
+            fakestatus(' 𝐑𝐞𝐬𝐩𝐨𝐧𝐝𝐞𝐫 𝐮𝐦 𝐯𝐢𝐝𝐞𝐨!')
             }
             break
+			case prefix+ 'fitnah':
+            if (args.length < 1) return reply(` 𝐔𝐬𝐨 :\n${prefix}𝐜𝐚𝐥𝐮𝐧𝐢𝐚 [@𝐭𝐚𝐠||𝐦𝐞𝐧𝐬𝐚𝐠𝐞𝐦||𝐫𝐞𝐩𝐥𝐲𝐛𝐨𝐭]]\n\nEx : \n${prefix}𝐜𝐚𝐥𝐮𝐧𝐢𝐚 @𝐭𝐚𝐠𝐦𝐞𝐦𝐛𝐞𝐫||𝐎𝐥𝐚|𝐎𝐥𝐚𝐭𝐚𝐦𝐛𝐞𝐦`)
+            var gh = args.join(' ')
+            mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
+            var replace = gh.split("|")[0];
+            var target = gh.split("|")[1];
+            var bot = gh.split("|")[2];
+            pato.sendMessage(from, `${bot}`, text, {quoted: { key: { fromMe: false, participant: `${mentioned}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target}` }}})
+            break
+            case 'dono':
+            memein = await kagApi.memeindo()
+            buffer = await getBuffer(`https://i.ibb.co/FWJYx2v/HCBR-PRo.png`)
+            client.sendMessage(from, buffer, image, {quoted: mek, caption: '\nㅤㅤ𝐂𝐫𝐢𝐚𝐝𝐨𝐫ㅤᵏᵃˡⁱˡⁱⁿᵘˣ\nㅤㅤ𝐘𝐨𝐮𝐓𝐮𝐛𝐞ㅤhttps://bit.ly/3v0brKy\nㅤㅤ𝐖𝐡𝐚𝐭𝐬ㅤwa.me/+5521981449242\nㅤㅤ𝐈𝐧𝐬𝐭𝐚ㅤ@kαliliиυxdiรтяσ\n\n\nㅤㅤㅤㅤㅤ↶»𝘉𝘰𝘛⇝☠⇜𝘏𝘊𝘉𝘙«↷ㅤ'})
+            break
 //MOBIL LEJEN
-case 'herolist':
+case prefix+ 'herolist':
 await herolist().then((ress) => {
-let listt = `*List hero untuk feature ${prefix}herodetail*\n\n`
+let listt = ` 𝐋𝐢𝐬𝐭𝐚 𝐝𝐞 𝐡𝐞𝐫𝐨𝐢𝐬 𝐩𝐚𝐫𝐚 𝐫𝐞𝐜𝐮𝐫𝐬𝐨𝐬 ${prefix}𝐝𝐞𝐭𝐚𝐥𝐡𝐞 𝐝𝐨 𝐡𝐞𝐫𝐨𝐢\n\n`
 for (var i = 0; i < ress.hero.length; i++) {
 listt += '-  ' + ress.hero[i] + '\n'
 }
 faketokoforwaded(listt)
 })
 break
-      case 'herodetail':
+      case prefix+ 'herodetail':
         res = await herodetails(body.slice(12))
         her = `*Hero details ${body.slice(12)}*
 
@@ -1942,9 +1696,9 @@ break
 faketokoforwaded(her)
 break
 //Downloader
-	case 'play':
-			if (args.length === 0) return reply(`Kirim perintah *${prefix}play* _Judul lagu yang akan dicari_`)
-            var srch = args.join(' ')
+	case prefix+ 'play':
+			if (args.length === 0) return reply(` 𝐄𝐧𝐯𝐢𝐞 𝐨 𝐜𝐨𝐦𝐚𝐧𝐝𝐨${prefix}play _𝐎 𝐭𝐢𝐭𝐮𝐥𝐨 𝐝𝐚 𝐦𝐮𝐬𝐢𝐜𝐚 𝐚 𝐬𝐞𝐫 𝐩𝐞𝐬𝐪𝐮𝐢𝐬𝐚𝐝𝐚_`)
+            var srch = args.join('')
     		aramas = await yts(srch);
     		aramat = aramas.all 
    			var mulaikah = aramat[0].url							
@@ -1954,8 +1708,8 @@ break
                         const { dl_link, thumb, title, filesizeF, filesize } = res
                         axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
                         .then(async (a) => {
-                        if (Number(filesize) >= 20000) return sendMediaURL(from, thumb, `*PLAY MUSIC*\n\n*Title* : ${title}\n*Ext* : MP3\n*Filesize* : ${filesizeF}\n*Link* : ${a.data}\n\n_Untuk durasi lebih dari batas disajikan dalam mektuk link_`)
-                        const captions = `*PLAY MUSIC*\n\n*Title* : ${title}\n*Ext* : MP3\n*Size* : ${filesizeF}\n*Link* : ${a.data}\n\n_Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
+                        if (Number(filesize) >= 100000) return sendMediaURL(from, thumb, `ㅤㅤㅤㅤ♬⇜ℙ𝕝𝕒𝕪↭𝕄𝕦𝕤𝕚𝕔𝕒⇝♫\n\nㅤㅤ𝕋𝕚𝕥𝕝𝕖⇝ ${title}\nㅤㅤ𝔽𝕠𝕣𝕞𝕒𝕥𝕠⇝ MP3\nㅤㅤ𝕋𝕒𝕞𝕒𝕟𝕙𝕠 𝕕𝕠 𝕒𝕣𝕢𝕦𝕚𝕧𝕠⇝ ${filesizeF}\nㅤㅤLink⇝ ${a.data}\n\nㅤㅤ_ᵖᵃʳᵃ ᵈᵘʳᵃᶜᵒᵉˢ ˢᵘᵖᵉʳⁱᵒʳᵉˢ ᵃᵒ ˡⁱᵐⁱᵗᵉ ˢᵃᵒ ᵃᵖʳᵉˢᵉⁿᵗᵃᵈᵃˢ ⁿᵒ ˡⁱⁿᵏ ᵐᵉᵏᵗᵘᵏ_`)
+                        const captions = `ㅤㅤㅤㅤ♬⇜ℙ𝕝𝕒𝕪↭𝕄𝕦𝕤𝕚𝕔𝕒⇝♫\n\nㅤㅤ𝕋𝕚𝕥𝕝𝕖⇝ ${title}\nㅤㅤ𝔽𝕠𝕣𝕞𝕒𝕥𝕠⇝ MP3\nㅤㅤ𝕋𝕒𝕞𝕒𝕟𝕙𝕠 𝕕𝕠 𝕒𝕣𝕢𝕦𝕚𝕧𝕠⇝ ${filesizeF}\nㅤㅤLink⇝ ${a.data}\n\nㅤㅤ_ᵖᵒʳ ᶠᵃᵛᵒʳ, ᵃᵍᵘᵃʳᵈᵉ ᵒ ᵉⁿᵛⁱᵒ ᵈᵒ ᵃʳˤᵘⁱᵛᵒ ᵈᵉ ᵐⁱᵈⁱᵃ; ⁱˢˢᵒ ᵖᵒᵈᵉ ˡᵉᵛᵃʳ ᵃˡᵍᵘⁿˢ ᵐⁱⁿᵘᵗᵒˢ_`
                         sendMediaURL(from, thumb, captions)
                         await sendMediaURL(from, dl_link).catch(() => reply('error'))
                         })                
@@ -1963,11 +1717,10 @@ break
                         } catch (err) {
                         reply(mess.error.api)
                         }
-                   break
-
-        case 'video':
-            if (args.length === 0) return reply(`Kirim perintah *${prefix}video* _Judul lagu yang akan dicari_`)
-            var srch = args.join(' ')
+                   break  
+        case prefix+ 'video':
+            if (args.length === 0) return reply(` 𝐄𝐧𝐯𝐢𝐚𝐫 𝐜𝐨𝐦𝐚𝐧𝐝𝐨 ${prefix}video _𝐎 𝐭𝐢𝐭𝐮𝐥𝐨 𝐝𝐚 𝐦𝐮𝐬𝐢𝐜𝐚 𝐚 𝐬𝐞𝐫 𝐩𝐞𝐬𝐪𝐮𝐢𝐬𝐚𝐝𝐚_`)
+            var srch = args.join('')
             aramas = await yts(srch);
             aramat = aramas.all 
             var mulaikah = aramat[0].url                            
@@ -1977,8 +1730,8 @@ break
                         const { dl_link, thumb, title, filesizeF, filesize } = res
                         axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
                         .then(async (a) => {
-                        if (Number(filesize) >= 20000) return sendMediaURL(from, thumb, `*PLAY VIDEO*\n\n*Title* : ${title}\n*Ext* : MP3\n*Filesize* : ${filesizeF}\n*Link* : ${a.data}\n\n_Untuk durasi lebih dari batas disajikan dalam mektuk link_`)
-                        const captions = `*PLAY VIDEO*\n\n*Title* : ${title}\n*Ext* : MP4\n*Size* : ${filesizeF}\n*Link* : ${a.data}\n\n_Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
+                        if (Number(filesize) >= 100000) return sendMediaURL(from, thumb, `ㅤㅤㅤㅤ𝐏𝐋𝐀𝐘 𝐕𝐈𝐃𝐄𝐎 ▶\n\nㅤㅤ𝐓𝐢𝐭𝐮𝐥𝐨⇝ ${title}\nㅤㅤ𝔽𝕠𝕣𝕞𝕒𝕥𝕠⇝ MP3\nㅤㅤ𝕋𝕒𝕞𝕒𝕟𝕙𝕠 𝕕𝕠 𝕒𝕣𝕢𝕦𝕚𝕧𝕠⇝ ${filesizeF}\nㅤㅤLink⇝ ${a.data}\n\nㅤㅤ_ᵖᵃʳᵃ ᵈᵘʳᵃᶜᵒᵉˢ ˢᵘᵖᵉʳⁱᵒʳᵉˢ ᵃᵒ ˡⁱᵐⁱᵗᵉ ˢᵃᵒ ᵃᵖʳᵉˢᵉⁿᵗᵃᵈᵃˢ ⁿᵒ ˡⁱⁿᵏ ᵐᵉᵏᵗᵘᵏ_`)
+                        const captions = `ㅤㅤㅤㅤ𝐏𝐋𝐀𝐘 𝐕𝐈𝐃𝐄𝐎 ▶\n\nㅤㅤ𝐓𝐢𝐭𝐮𝐥𝐨⇝ ${title}\nㅤㅤ𝔽𝕠𝕣𝕞𝕒𝕥𝕠⇝ MP4\nㅤㅤ𝕋𝕒𝕞𝕒𝕟𝕙𝕠 𝕕𝕠 𝕒𝕣𝕢𝕦𝕚𝕧𝕠⇝ ${filesizeF}\nㅤㅤLink⇝ ${a.data}\n\nㅤㅤ_ᵖᵒʳ ᶠᵃᵛᵒʳ, ᵃᵍᵘᵃʳᵈᵉ ᵒ ᵉⁿᵛⁱᵒ ᵈᵒ ᵃʳˤᵘⁱᵛᵒ ᵈᵉ ᵐⁱᵈⁱᵃ; ⁱˢˢᵒ ᵖᵒᵈᵉ ˡᵉᵛᵃʳ ᵃˡᵍᵘⁿˢ ᵐⁱⁿᵘᵗᵒˢ_`
                         sendMediaURL(from, thumb, captions)
                         await sendMediaURL(from, dl_link).catch(() => reply('error'))
                         })                
@@ -1987,8 +1740,8 @@ break
                         reply(mess.error.api)
                         }
                    break
-	case 'ytmp3':
-			if (args.length === 0) return reply(`Kirim perintah *${prefix}ytmp3 [linkYt]*`)
+	case prefix+ 'ytmp3':
+			if (args.length === 0) return reply(`𝐄𝐧𝐯𝐢𝐚𝐫 𝐩𝐞𝐝𝐢𝐝𝐨 ${prefix}ytmp3 [𝐥𝐢𝐧𝐤𝐘𝐓]`)
 			let isLinks = args[0].match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)
 			if (!isLinks) return reply(mess.error.Iv)
 				try {
@@ -1998,8 +1751,8 @@ break
 				const { dl_link, thumb, title, filesizeF, filesize } = res
 				axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
 				.then((a) => {
-			    if (Number(filesize) >= 20000) return sendMediaURL(from, thumb, `*Data Berhasil Dimekatkan!*\n\n*Title* : ${title}\n*Ext* : MP3\n*Filesize* : ${filesizeF}\n*Link* : ${a.data}\n\n_Untuk durasi lebih dari batas disajikan dalam mektuk link_`)
-				const captions = `*YTMP3*\n\n*Title* : ${title}\n*Ext* : MP3\n*Size* : ${filesizeF}\n\n_Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
+			    if (Number(filesize) >= 30000) return sendMediaURL(from, thumb, `𝐃𝐚𝐝𝐨𝐬 𝐨𝐛𝐭𝐢𝐝𝐨𝐬 𝐜𝐨𝐦 𝐬𝐮𝐜𝐞𝐬𝐬𝐨!\n\nㅤㅤ𝐓𝐢𝐭𝐮𝐥𝐨⇝  ${title}\nㅤㅤ𝔽𝕠𝕣𝕞𝕒𝕥𝕠⇝ MP3\nㅤㅤ𝕋𝕒𝕞𝕒𝕟𝕙𝕠 𝕕𝕠 𝕒𝕣𝕢𝕦𝕚𝕧𝕠⇝ ${filesizeF}\nㅤㅤLink⇝ ${a.data}\n\nㅤㅤ_ᵖᵃʳᵃ ᵈᵘʳᵃᶜᵒᵉˢ ˢᵘᵖᵉʳⁱᵒʳᵉˢ ᵃᵒ ˡⁱᵐⁱᵗᵉ ˢᵃᵒ ᵃᵖʳᵉˢᵉⁿᵗᵃᵈᵃˢ ⁿᵒ ˡⁱⁿᵏ ᵐᵉᵏᵗᵘᵏ_`)
+				const captions = `YTMP3\n\nㅤㅤ𝐓𝐢𝐭𝐮𝐥𝐨⇝  ${title}\nㅤㅤ𝔽𝕠𝕣𝕞𝕒𝕥𝕠⇝ MP3\nㅤㅤ𝕋𝕒𝕞𝕒𝕟𝕙𝕠 𝕕𝕠 𝕒𝕣𝕢𝕦𝕚𝕧𝕠⇝ ${filesizeF}\n\n 𝐒𝐞𝐣𝐚 𝐩𝐚𝐜𝐢𝐞𝐧𝐭𝐞, 𝐞𝐬𝐭𝐨𝐮 𝐞𝐧𝐯𝐢𝐚𝐧𝐝𝐨 𝐨 𝐚𝐫𝐪𝐮𝐢𝐯𝐨!`
 				sendMediaURL(from, thumb, captions)
 				sendMediaURL(from, dl_link).catch(() => reply(mess.error.api))
 				})
@@ -2008,8 +1761,8 @@ break
 				reply(mess.error.api)
 				}
 				break
- 		case 'ytmp4':
-			if (args.length === 0) return reply(`Kirim perintah *${prefix}ytmp4 [linkYt]*`)
+ 		case prefix+ 'ytmp4':
+			if (args.length === 0) return reply(`𝐄𝐧𝐯𝐢𝐚𝐫 𝐩𝐞𝐝𝐢𝐝𝐨 ${prefix}ytmp4 [𝐥𝐢𝐧𝐤𝐘𝐓]`)
 			let isLinks2 = args[0].match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/)
 			if (!isLinks2) return reply(mess.error.Iv)
 				try {
@@ -2019,8 +1772,8 @@ break
 				const { dl_link, thumb, title, filesizeF, filesize } = res
 				axios.get(`https://tinyurl.com/api-create.php?url=${dl_link}`)
 				.then((a) => {
-				if (Number(filesize) >= 20000) return sendMediaURL(from, thumb, `*YTMP 4!*\n\n*Title* : ${title}\n*Ext* : MP3\n*Filesize* : ${filesizeF}\n*Link* : ${a.data}\n\n_Untuk durasi lebih dari batas disajikan dalam mektuk link_`)
-				const captionsYtmp4 = `*Data Berhasil Dimekatkan!*\n\n*Title* : ${title}\n*Ext* : MP4\n*Size* : ${filesizeF}\n\n_Silahkan tunggu file media sedang dikirim mungkin butuh beberapa menit_`
+				if (Number(filesize) >= 40000) return sendMediaURL(from, thumb, `YTMP 4!\n\nㅤㅤ𝐓𝐢𝐭𝐮𝐥𝐨⇝  ${title}\nㅤㅤ𝔽𝕠𝕣𝕞𝕒𝕥𝕠⇝ MP3\nㅤㅤ𝕋𝕒𝕞𝕒𝕟𝕙𝕠 𝕕𝕠 𝕒𝕣𝕢𝕦𝕚𝕧𝕠⇝ ${filesizeF}\nㅤㅤLink⇝ ${a.data}\n\nㅤㅤ_ᵖᵃʳᵃ ᵈᵘʳᵃᶜᵒᵉˢ ˢᵘᵖᵉʳⁱᵒʳᵉˢ ᵃᵒ ˡⁱᵐⁱᵗᵉ ˢᵃᵒ ᵃᵖʳᵉˢᵉⁿᵗᵃᵈᵃˢ ⁿᵒ ˡⁱⁿᵏ ᵐᵉᵏᵗᵘᵏ_`)
+				const captionsYtmp4 = `𝐀𝐫𝐪𝐮𝐢𝐯𝐨 𝐞𝐧𝐜𝐨𝐧𝐭𝐫𝐚𝐝𝐨!\n\nㅤㅤ𝐓𝐢𝐭𝐮𝐥𝐨⇝  ${title}\nㅤㅤ𝔽𝕠𝕣𝕞𝕒𝕥𝕠⇝ MP4\nㅤㅤ𝕋𝕒𝕞𝕒𝕟𝕙𝕠 𝕕𝕠 𝕒𝕣𝕢𝕦𝕚𝕧𝕠⇝ ${filesizeF}\n\n 𝐒𝐞𝐣𝐚 𝐩𝐚𝐜𝐢𝐞𝐧𝐭𝐞, 𝐞𝐬𝐭𝐨𝐮 𝐞𝐧𝐯𝐢𝐚𝐧𝐝𝐨 𝐨 𝐚𝐫𝐪𝐮𝐢𝐯𝐨!`
 				sendMediaURL(from, thumb, captionsYtmp4)
 				sendMediaURL(from, dl_link).catch(() => reply(mess.error.api))
 				})		
@@ -2029,57 +1782,57 @@ break
 			    reply(mess.error.api)
 				}
 				break
-	case 'ytsearch':
-			if (args.length < 1) return reply('Tolong masukan query!')
-			var srch = args.join(' ');
+	case prefix+ 'ytsearch':
+			if (args.length < 1) return reply(' 𝐎 𝐪𝐮𝐞 𝐯𝐨𝐮 𝐩𝐫𝐨𝐜𝐮𝐫𝐚𝐫?')
+			var srch = args.join('');
 			try {
         	var aramas = await yts(srch);
    			} catch {
-        	return await sanz.sendMessage(from, 'Error!', MessageType.text, dload)
+        	return await pato.sendMessage(from, 'Error!', MessageType.text, dload)
     		}
     		aramat = aramas.all 
     		var tbuff = await getBuffer(aramat[0].image)
     		var ytresult = '';
-    		ytresult += '「 *YOUTUBE SEARCH* 」'
+    		ytresult += '「 𝐏𝐄𝐒𝐐𝐔𝐈𝐒𝐀 𝐍𝐎 𝐘𝐎𝐔𝐓𝐔𝐁𝐄 」'
     		ytresult += '\n________________________\n\n'
    			aramas.all.map((video) => {
         	ytresult += '❏ Title: ' + video.title + '\n'
             ytresult += '❏ Link: ' + video.url + '\n'
-            ytresult += '❏ Durasi: ' + video.timestamp + '\n'
-            ytresult += '❏ Upload: ' + video.ago + '\n________________________\n\n'
+            ytresult += '❏ 𝐃𝐮𝐫𝐚ç𝐚𝐨: ' + video.timestamp + '\n'
+            ytresult += '❏ Subida: ' + video.ago + '\n________________________\n\n'
     		});
-    		ytresult += '◩ *SA-BOT*'
+    		ytresult += '☙𝐊𝐚𝐋𝐢↭𝐋𝐢𝐍𝐮𝐗❧'
     		await fakethumb(tbuff,ytresult)
 			break
     case 'ig':
         if (!isUrl(args[0]) && !args[0].includes('instagram.com')) return reply(mess.Iv)
-        if (!q) return fakegroup('Linknya?')
+        if (!q) return fakegroup('Link?')
         reply(mess.wait)
 	    igdl(args[0])
 	    .then(async(result) => {
             for (let ink of result.url_list)	{
             if (ink.includes('.mp4')){
             const igvdl = await getBuffer(ink)	
-	    sanz.sendMessage(from,igvdl,video,{mimetype:'video/mp4',quoted:mek,caption:'Nih'})
+	    pato.sendMessage(from,igvdl,video,{mimetype:'video/mp4',quoted:mek,caption:'Etto.UvU'})
             } else if (ink.includes('.jpg')){
             const igpdl = await getBuffer(ink)
-            sanz.sendMessage(from,igpdl,image,{mimetype:'image/jpeg',quoted:mek,caption:'Nih'})
+            pato.sendMessage(from,igpdl,image,{mimetype:'image/jpeg',quoted:mek,caption:'Etto UvU'})
 	    }
             }
 	    })
 	    break
-    case 'igstalk':
-            if (!q) return fakegroup('Usernamenya?')
+    case prefix+ 'igstalk':
+            if (!q) return fakegroup('𝐍𝐨𝐦𝐞 𝐝𝐨 𝐮𝐬𝐮𝐚𝐫𝐢𝐨!')
             ig.fetchUser(`${args.join(' ')}`).then(Y => {
             console.log(`${args.join(' ')}`)
             ten = `${Y.profile_pic_url_hd}`
-            teks = `*ID* : ${Y.profile_id}\n*Username* : ${args.join(' ')}\n*Full Name* : ${Y.full_name}\n*Bio* : ${Y.biography}\n*Followers* : ${Y.following}\n*Following* : ${Y.followers}\n*Private* : ${Y.is_private}\n*Verified* : ${Y.is_verified}\n\n*Link* : https://instagram.com/${args.join(' ')}`
+            teks = `*ID* : ${Y.profile_id}\n*Username* : ${args.join('')}\n*Full Name* : ${Y.full_name}\n*Bio* : ${Y.biography}\n*Followers* : ${Y.following}\n*Following* : ${Y.followers}\n*Private* : ${Y.is_private}\n*Verified* : ${Y.is_verified}\n\n*Link* : https://instagram.com/${args.join('')}`
             sendMediaURL(from,ten,teks) 
             })      
             break    
-    case 'twitter':
+    case prefix+ 'twitter':
             if (!isUrl(args[0]) && !args[0].includes('twitter.com')) return reply(mess.Iv)
-            if (!q) return fakegroup('Linknya?')
+            if (!q) return fakegroup('Link?')
             ten = args[0]
             var res = await twitterGetUrl(`${ten}`)
             .then(g => {
@@ -2087,9 +1840,9 @@ break
             sendMediaURL(from,ren,'DONE')
             })
             break
- 	case 'tiktok':
+ 	case prefix+ 'tiktok':
  		if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) return reply(mess.Iv)
- 		if (!q) return fakegroup('Linknya?')
+ 		if (!q) return fakegroup('Link?')
  		reply(mess.wait)
 		tik.ssstik(`${args[0]}`)
     		.then(result => {
@@ -2098,24 +1851,24 @@ break
     		axios.get(`https://tinyurl.com/api-create.php?url=${videonowm2}`)
     		.then(async (a) => {
     		me = `*Title* : ${text}\n*Link* : ${a.data}`
-		sanz.sendMessage(from,{url:`${videonowm}`},video,{mimetype:'video/mp4',quoted:mek,caption:me})
+		pato.sendMessage(from,{url:`${videonowm}`},video,{mimetype:'video/mp4',quoted:mek,caption:me})
 		})
 		})
      		.catch(e => console.log(e))
      		break
-    case 'tiktokaudio':
+    case prefix+ 'tiktokaudio':
  		if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) return reply(mess.Iv)
- 		if (!q) return fakegroup('Linknya?')
+ 		if (!q) return fakegroup('Link?')
  		reply(mess.wait)
  		tik.ssstik(`${args[0]}`)
     		.then(result => {
     		const { music,text } = result
-		sanz.sendMessage(from,{url:`${music}`},audio,{mimetype:'audio/mp4',filename : `${text}`,quoted:mek})
+		pato.sendMessage(from,{url:`${music}`},audio,{mimetype:'audio/mp4',filename : `${text}`,quoted:mek})
 		})
      		.catch(e => console.log(e))
      		break
-    case 'fb':
-            if (!q) return reply('Linknya?')
+    case prefix+ 'fb':
+            if (!q) return reply('Link?')
             if (!isUrl(args[0]) && !args[0].includes('facebook.com')) return reply(mess.Iv)
             reply(mess.wait)
             te = args.join(' ')
@@ -2126,170 +1879,112 @@ break
             tek = `${G.title}`
             sendMediaURL(from,ten,`*Title* : ${tek}\n\n*Link* : ${ten}`)
            .catch((error) => {
-            reply('error bang mengmaaf:('); 
+            reply('lo siento hermano:('); 
             })
 })
             break 
 //Learn
-case 'brainly':
-			if (args.length < 1) return reply('Pertanyaan apa')
+case prefix+ 'brainly':
+			if (args.length < 1) return reply('Que clase de pregunta es esa')
           	brien = args.join(' ')
 			brainly(`${brien}`).then(res => {
 			teks = '❉───────────────────────❉\n'
 			for (let Y of res.data) {
-			teks += `\n*「 _BRAINLY_ 」*\n\n*➸ Pertanyaan:* ${Y.pertanyaan}\n\n*➸ Jawaban:* ${Y.jawaban[0].text}\n❉──────────────────❉\n`
+			teks += `\n*「 _BRAINLY_ 」*\n\n*➸ Pregunta:* ${Y.pertanyaan}\n\n*➸ Respuesta:* ${Y.jawaban[0].text}\n❉──────────────────❉\n`
 			}
-			sanz.sendMessage(from, teks, text,{quoted:mek,detectLinks: false})                        
+			pato.sendMessage(from, teks, text,{quoted:mek,detectLinks: false})                        
             })              
 			break
-case 'google':
+case prefix+ 'google':
       if(!q) return reply('Yang mau di cari afa?')
 			.then(res => res.json())
 			afanya = args.join(' ')
-			gogel = await axios.get(`https://shot.screenshotapi.net/screenshot?token=D2TDY3F-G5YMM94-K9JEQT8-FYBDQBB&url=https://www.google.com/search?q=${afanya}&source=lmns&bih=2340&biw=1261&safe=strict&hl=id&sa=X&ved=2ahUKEwjFysWKotfwAhXVAXIKHYTqBUYQ_AUoAHoECAEQAA&full_page=true&fresh=true&output=json&file_type=png&wait_for_event=load`)
+			gogel = await axios.get(`https://shot.screenshotapi.net/screenshot?token=D2TDY3F-G5YMM94-K9JEQT8-FYBDQBB&url=https://www.google.com/search?q=${afanya}&safe=strict&sxsrf=ALeKk03WtBNqunvK303Qm3aEToejzpQvag%3A1621384426733&source=hp&ei=6lykYJbUKtPmz7sP-MugmAU&oq=p&gs_lcp=ChFtb2JpbGUtZ3dzLXdpei1ocBADMgQIIxAnMgQIIxAnMgQIIxAnMggIABCxAxCDATIFCAAQsQMyBQguELEDMggIABCxAxCDATIICAAQsQMQgwE6BwgjEOoCECdQlg9Ylg9g9hJoAXAAeACAAVmIAVmSAQExmAEAoAEBsAEP&sclient=mobile-gws-wiz-hp&full_page=true&fresh=true&output=json&file_type=png&wait_for_event=load`)
 			bupnyah = await getBuffer(gogel.data.screenshot)
-			sanz.sendMessage(from, bupnyah, image, {quoted: mek, sendEphemeral: true})
-			.catch(err => {
-				return('Mengulang lord ada yg mengerror...')
-			})
-			break
-case 'googleimage':
-      if(!q) return reply('Yang mau di cari afa?')
-			.then(res => res.json())
-			qweri = args.join(' ')
-			gogel = await axios.get(`https://shot.screenshotapi.net/screenshot?token=D2TDY3F-G5YMM94-K9JEQT8-FYBDQBB&url=https://www.google.com/search?q=${qweri}&tbm=isch&ved=2ahUKEwjnm5_xo9fwAhX-03MBHcheA6YQ2-cCegQIABAA&oq=${qweri}&gs_lcp=CgNpbWcQAzIFCAAQsQMyAggAMgUIABCxAzIFCAAQsQMyAggAMgIIADIFCAAQsQMyAggAMgIIADICCAA6BwgjEOoCECc6BAgAEENQmhxY9R5gzSNoAXAAeACAAXCIAdoBkgEDMC4ymAEAoAEBqgELZ3dzLXsanzei1pbWewAQrAAQE&ssanz=img&ei=btKlYOesA_6nz7sPyL2NsAo&bih=2355&biw=1269&safe=strict&full_page=true&fresh=true&output=json&file_type=png&wait_for_event=load`)
-			bupnyah = await getBuffer(gogel.data.screenshot)
-			sanz.sendMessage(from, bupnyah, image, {quoted: mek, sendEphemeral: true})
+			pato.sendMessage(from, bupnyah, image, {quoted: mek, sendEphemeral: true})
 			.catch(err => {
 				return('Mengulang lord ada yg mengerror...')
 			})
 			break
 	//Group Feature
-		        case 'grup':
-                if (!isGroup) return reply(mess.only.group)
-              ////
-                if (!isGroupAdmins) return reply(mess.only.admin)
-                if (args[0] === 'y') {
-				reply(`*Done now setting group open!!*`)
-                sanz.groupSettingChange(from, GroupSettingChange.messageSend, false)
-                } else if (args[0] === 'n') {
-                reply(`*Group now setting group close!!*`)
-				sanz.groupSettingChange(from, GroupSettingChange.messageSend, true)
-                }
-                break
-case 'add':
+case prefix+ 'add':
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
-if (args.length < 1) return reply('Yang mau di add jin ya?')
-if (args[0].startsWith('08')) return reply('Gunakan kode negara mas')
+if (!isBotGroupAdmins) return reply(mess.only.Badmin)
+if (args.length < 1) return reply('A quien quieres agregar oni chan O~O?')
+if (args[0].startsWith('08')) return reply('Utilice el código de país')
 try {
 num = `${args[0].replace(/ /g, '')}@s.whatsapp.net`
-sanz.groupAdd(from, [num])
+pato.groupAdd(from, [num])
 } catch (e) {
 console.log('Error :', e)
-reply('Gagal menambahkan target, mungkin karena di private')
+reply('No se pudo agregar el objetivo, tal vez porque en privado')
 }
 break
-case 'kick':
+case prefix+ 'kick':
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return reply('Tag yg ingin angda tusbol!')
 mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 if (mentioned.length > 1) {
-teks = '*Mengeluarkan :* '
+teks = '*Adios putito >:] :* '
 for (let _ of mentioned) {
 teks += `@${_.split('@')[0]}\n`
 }
 mentions(teks, mentioned, true)
-sanz.groupRemove(from, mentioned)
+pato.groupRemove(from, mentioned)
 					} else {
 mentions(`byee.. @${mentioned[0].split('@')[0]}`, mentioned, true)
-sanz.groupRemove(from, mentioned)
+pato.groupRemove(from, mentioned)
 }
 break
-case 'promote':
+case prefix+ 'promote':
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return
 mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 if (mentioned.length > 1) {
-teks = 'Berhasil Promote\n'
+teks = 'Promovido Mi niñ@ lind@ UwU\n'
 for (let _ of mentioned) {
 teks += `@${_.split('@')[0]}\n`
 }
 mentions(from, mentioned, true)
-sanz.groupRemove(from, mentioned)
+pato.groupRemove(from, mentioned)
 } else {
 mentions(`Ok @${mentioned[0].split('@')[0]} kamu jadi admin!`, mentioned, true)
-sanz.groupMakeAdmin(from, mentioned)
+pato.groupMakeAdmin(from, mentioned)
 }
 break
-case 'demote':
+case prefix+ 'demote':
 if (!isGroup) return reply(mess.only.group)
 if (!isGroupAdmins) return reply(mess.only.admin)
+if (!isBotGroupAdmins) return reply(mess.only.Badmin)
 if (mek.message.extendedTextMessage === undefined || mek.message.extendedTextMessage === null) return
 mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
 if (mentioned.length > 1) {
-teks = 'Berhasil Demote\n'
+teks = 'Degradar con éxito UnU\n'
 for (let _ of mentioned) {
 teks += `@${_.split('@')[0]}\n`
 }
 mentions(teks, mentioned, true)
-sanz.groupRemove(from, mentioned)
+pato.groupRemove(from, mentioned)
 } else {
 mentions(`Oke @${mentioned[0].split('@')[0]} kamu gak admin lagi yaa!`, mentioned, true)
-sanz.groupDemoteAdmin(from, mentioned)
+pato.groupDemoteAdmin(from, mentioned)
 }
 break//DONE
-case 'inspect':
-            try {
-            if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply(mess.Iv)
-            if (!q) return reply('masukan link wa')
-            cos = args[0]
-            var net = cos.split('https://chat.whatsapp.com/')[1]
-            if (!net) return reply('pastikan itu link https://whatsapp.com/')
-            jids = []
-            let { id, owner, subject, subjectOwner, desc, descId, participants, size, descOwner, descTime, creation} = await sanz.query({ 
-            json: ["query", "invite",net],
-            expect200:true })
-            let par = `*Id* : ${id}
-${owner ? `*Owner* : @${owner.split('@')[0]}` : '*Owner* : -'}
-*Nama Gc* : ${subject}
-*Gc dibuat Tanggal* : ${formatDate(creation * 1000)}
-*Jumlah Member* : ${size}
-${desc ? `*Desc* : ${desc}` : '*Desc* : tidak ada'}
-*Id desc* : ${descId}
-${descOwner ? `*Desc diubah oleh* : @${descOwner.split('@')[0]}` : '*Desc diubah oleh* : -'}\n*Tanggal* : ${descTime ? `${formatDate(descTime * 1000)}` : '-'}\n\n*Kontak yang tersimpan*\n`
-           for ( let y of participants) {
-             par += `> @${y.id.split('@')[0]}\n*Admin* : ${y.isAdmin ? 'Ya' : 'Tidak'}\n`
-             jids.push(`${y.id.replace(/@c.us/g,'@s.whatsapp.net')}`)
-             jids.push(`${owner ? `${owner.replace(/@c.us/g,'@s.whatsapp.net')}` : '-'}`)
-             jids.push(`${descOwner ? `${descOwner.replace(/@c.us/g,'@s.whatsapp.net')}` : '-'}`)
-             }
-             sanz.sendMessage(from,par,text,{quoted:mek,contextInfo:{mentionedJid:jids}})
-             } catch {
-             reply('Link error')
-             }
-             break
-case 'fitnah':
-            if (args.length < 1) return reply(`Usage :\n${prefix}fitnah [@tag|pesan|balasanbot]]\n\nEx : \n${prefix}fitnah @tagmember|hai|hai juga`)
-            var gh = args.join(' ')
-            mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
-            var replace = gh.split("|")[0];
-            var target = gh.split("|")[1];
-            var bot = gh.split("|")[2];
-            sanz.sendMessage(from, `${bot}`, text, {quoted: { key: { fromMe: false, participant: `${mentioned}`, ...(from ? { remoteJid: from } : {}) }, message: { conversation: `${target}` }}})
-            break
-    case 'fitnahpc':
+    case prefix+ 'fitnahpc':
             if(!q) return reply(`${prefix}fitnahpc teks target|teks lu`)
             jids = `${targetpc}@s.whatsapp.net` // nomer target
             var split = args.join(' ').replace(/@|\d/gi, '').split('|')
             var taged = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
             var options = {contextInfo: {quotedMessage: {extendedTextMessage: {text: split[0]}}}}
-            const responye = await sanz.sendMessage(jids, `${split[1]}`, MessageType.text, options)
-            await sanz.deleteMessage(jids, { id: responye.messageID, remoteJid: jids, fromMe: true })
+            const responye = await pato.sendMessage(jids, `${split[1]}`, MessageType.text, options)
+            await pato.deleteMessage(jids, { id: responye.messageID, remoteJid: jids, fromMe: true })
             break
-    case 'kontak':
+    case prefix+ 'kontak':
             pe = args.join(' ') 
             entah = pe.split('|')[0]
             nah = pe.split('|')[1]
@@ -2299,15 +1994,13 @@ case 'fitnah':
             + `FN:${nah}\n`
             + `TEL;type=CELL;type=VOICE;waid=${entah}:${phoneNum('+' + entah).getNumber('internasional')}\n`
             + 'END:VCARD'.trim()
-            sanz.sendMessage(from, {displayName: `${nah}`, vcard: vcard}, contact)
+            pato.sendMessage(from, {displayName: `${nah}`, vcard: vcard}, contact)
             break
-//tag
- 	case 'hidetag':
-			if (!isMe) return reply(mess.only.me)
+ 	case prefix+ 'hidetag':
+			if (!mek.key.fromMe) return fakestatus('SATANCITO ᵈᵃʳʸ⛥')
 			if (!isGroup) return reply(mess.only.group)
-			if (!isGroupAdmins) return reply(mess.only.admin)
 			var value = args.join(' ')
-			var group = await sanz.groupMetadata(from)
+			var group = await pato.groupMetadata(from)
 			var member = group['participants']
 			var mem = []
 			member.map(async adm => {
@@ -2318,50 +2011,14 @@ case 'fitnah':
 			contextInfo: { mentionedJid: mem },
 			quoted: mek
 			}
-			sanz.sendMessage(from, optionshidetag, text)
+			pato.sendMessage(from, optionshidetag, text)
 			break
-case 'tagall':
-if (!isMe) return reply(mess.only.me)
-if (!isGroup) return reply(mess.only.group)
-members_id = []
-teks = (args.length > 1) ? body.slice(8).trim() : ''
-teks += '\n\n'
-for (let mem of groupMembers) {
-teks += `*#* @${mem.jid.split('@')[0]}\n`
-members_id.push(mem.jid)
-}
-mentions(teks, members_id, true)
-break
-case 'tagall2':
-if (!isMe) return reply(mess.only.me)
-if (!isGroup) return reply(mess.only.group)
-members_id = []
-teks = (args.length > 1) ? body.slice(8).trim() : ''
-teks += '\n\n'
-for (let mem of groupMembers) {
-teks += `> @${mem.jid.split('@')[0]}\n`
-members_id.push(mem.jid)
-}
-fakekontak(teks)
-break
-case 'tagall3':
-if (!isMe) return reply(mess.only.me)
-if (!isGroup) return reply(mess.only.group)
-members_id = []
-teks = (args.length > 1) ? body.slice(8).trim() : ''
-teks += '\n\n'
-for (let mem of groupMembers) {
-teks += `> https://wa.me/${mem.jid.split('@')[0]}\n`
-members_id.push(mem.jid)
-					}
-sanz.sendMessage(from, teks, text, {detectLinks: false, sendEphemeral:true, quoted: mek})
-break
-    case 'sticktag':
+    case prefix+ 'sticktag':
             if ((isMedia && !mek.message.videoMessage || isQuotedSticker) && args.length == 0) {
             encmedia = isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await sanz.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
+            file = await pato.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
             value = args.join(" ")
-            var group = await sanz.groupMetadata(from)
+            var group = await pato.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -2372,46 +2029,46 @@ break
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            sanz.sendMessage(from, ini_buffer, MessageType.sticker, options)
+            pato.sendMessage(from, ini_buffer, MessageType.sticker, options)
             fs.unlinkSync(file)
             } else {
             reply(`*Reply sticker yang sudah dikirim*`)
             }
             break
-		    case 'giftag':
+		    case prefix+ 'giftag':
 		      //by Dehanjing
                 if (!isQuotedVideo) return reply(`Reply Gif nya dengan caption ${prefix + command}`)
                 quoted = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-                download = await sanz.downloadMediaMessage(quoted)
+                download = await pato.downloadMediaMessage(quoted)
                 await fs.writeFileSync(`giftag.gif`, download)
-                var group = await sanz.groupMetadata(from)
+                var group = await pato.groupMetadata(from)
                 var member = group['participants']
                 var mem = []
                 member.map(async adm => {
                 mem.push(adm.id.replace('c.us', 's.whatsapp.net'))
                 })
                 thumb = fs.readFileSync(`giftag.gif`)
-                sanz.sendMessage(from, thumb, video, { contextInfo: {mentionedJid: mem }, quoted: mek, mimetype: 'video/gif', thumbnail: thumb })
+                pato.sendMessage(from, thumb, video, { contextInfo: {mentionedJid: mem }, quoted: mek, mimetype: 'video/gif', thumbnail: thumb })
 			    await fs.unlinkSync(`giftag.gif`)
 			    break
-			case 'doctag':
+			case prefix+ 'doctag':
 			  //by Dehanjing
 		        if (!isQuotedDocument) return amek.reply(from, `Reply Document dengan caption *${prefix + command}*`, mek)
                 quoted = JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo
-                download = await sanz.downloadMediaMessage(quoted)
+                download = await pato.downloadMediaMessage(quoted)
                 await fs.writeFileSync(`doc.txt`, download)
-                var group = await sanz.groupMetadata(from)
+                var group = await pato.groupMetadata(from)
                 var member = group['participants']
                 var mem = []
                 member.map(async adm => {
                 mem.push(adm.id.replace('c.us', 's.whatsapp.net'))
                 })
-                sanz.sendMessage(from, fs.readFileSync(`doc.txt`), document, { contextInfo: {mentionedJid: mem }, quoted: mek, mimetype: 'text/plain' })
+                pato.sendMessage(from, fs.readFileSync(`doc.txt`), document, { contextInfo: {mentionedJid: mem }, quoted: mek, mimetype: 'text/plain' })
 			    await fs.unlinkSync(`doc.txt`)
 			    break
-    case 'kontag':
-            if (!mek.key.fromMe) return reply('SELF-BOT')
-            pe = args.join(' ')
+    case prefix+ 'kontag':
+            if (!mek.key.fromMe) return reply('SATANCITO ᵈᵃʳʸ⛥')
+            pe = args.join('')
             entah = pe.split('|')[0]
             nah = pe.split('|')[1]
             if (isNaN(entah)) return reply('Invalid phone number');
@@ -2424,14 +2081,14 @@ break
             + `FN:${nah}\n`
             + `TEL;type=CELL;type=VOICE;waid=${entah}:${phoneNum('+' + entah).getNumber('internasional')}\n`
             + 'END:VCARD'.trim()
-            sanz.sendMessage(from, {displayName: `${nah}`, vcard: vcard}, contact, {contextInfo: {"mentionedJid": members_ids}})
+            pato.sendMessage(from, {displayName: `${nah}`, vcard: vcard}, contact, {contextInfo: {"mentionedJid": members_ids}})
             break
-    case 'totag':
+    case prefix+ 'totag':
             if ((isMedia && !mek.message.videoMessage || isQuotedSticker) && args.length == 0) {
             encmedia = isQuotedSticker ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await sanz.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
+            file = await pato.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
             value = args.join(" ")
-            var group = await sanz.groupMetadata(from)
+            var group = await pato.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -2442,13 +2099,13 @@ break
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            sanz.sendMessage(from, ini_buffer, MessageType.sticker, options)
+            pato.sendMessage(from, ini_buffer, MessageType.sticker, options)
             fs.unlinkSync(file)
             } else if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
             encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await sanz.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
+            file = await pato.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
             value = args.join(" ")
-            var group = await sanz.groupMetadata(from)
+            var group = await pato.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -2459,13 +2116,13 @@ break
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            sanz.sendMessage(from, ini_buffer, image, options)
+            pato.sendMessage(from, ini_buffer, image, options)
             fs.unlinkSync(file)
         } else if ((isMedia && !mek.message.videoMessage || isQuotedAudio) && args.length == 0) {
             encmedia = isQuotedAudio ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await sanz.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
+            file = await pato.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
             value = args.join(" ")
-            var group = await sanz.groupMetadata(from)
+            var group = await pato.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -2478,13 +2135,13 @@ break
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            sanz.sendMessage(from, ini_buffer, audio, options)
+            pato.sendMessage(from, ini_buffer, audio, options)
             fs.unlinkSync(file)
         }  else if ((isMedia && !mek.message.videoMessage || isQuotedVideo) && args.length == 0) {
             encmedia = isQuotedVideo ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : mek
-            file = await sanz.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
+            file = await pato.downloadAndSaveMediaMessage(encmedia, filename = getRandom())
             value = args.join(" ")
-            var group = await sanz.groupMetadata(from)
+            var group = await pato.groupMetadata(from)
             var member = group['participants']
             var mem = []
             member.map(async adm => {
@@ -2496,34 +2153,34 @@ break
                 quoted: mek
             }
             ini_buffer = fs.readFileSync(file)
-            sanz.sendMessage(from, ini_buffer, video, options)
+            pato.sendMessage(from, ini_buffer, video, options)
             fs.unlinkSync(file)
         } else{
-          reply(`reply gambar/sticker/audio/video dengan caption ${prefix}totag`)
+          reply(`responde a un video imagen o sticker con : ${prefix}totag`)
         }
         break
 //OTHER 
-    case 'join':
+    case prefix+ 'join':
             try {
             if (!isUrl(args[0]) && !args[0].includes('whatsapp.com')) return reply(mess.Iv)
             hen = args[0]
-            if (!q) return fakestatus('Masukan link group')
+            if (!q) return fakestatus('Ingrese el enlace del grupo')
             var codeInvite = hen.split('https://chat.whatsapp.com/')[1]
-            if (!codeInvite) return fakegroup ('pastikan link sudah benar!')
-            var response = await sanz.acceptInvite(codeInvite)
-            fakestatus('SUKSES')
+            if (!codeInvite) return fakegroup ('asegúrese de que el enlace sea correcto T-T!')
+            var response = await pato.acceptInvite(codeInvite)
+            fakestatus('Lito')
             } catch {
             fakegroup('LINK ERROR!')
             }
             break
-    case 'runtime':
-    case 'test':
+    case prefix+ 'runtime':
+    case prefix+ 'test':
             run = process.uptime() 
             teks = `${kyun(run)}`
             fakegroup(teks)
             break  
-	case 'speed':
-	case 'ping':
+	case prefix+ 'speed':
+	case prefix+ 'ping':
 			const timestamp = speed();
 			const latensi = speed() - timestamp
 			exec(`neofetch --stdout`, (error, stdout, stderr) => {
@@ -2536,92 +2193,59 @@ break
 
 //Maker
 
-case 'bc':
-					if (!isMe) return reply(mess.only.me)
+case prefix+ 'bc':
+					if (!isMe) return reply('No eres mi dueño UnU...')
 					if (args.length < 1) return reply('.......')
 					const more = String.fromCharCode(8206)
                     const readmore = more.repeat(4001)
-					anu = await sanz.chats.all()
+					anu = await pato.chats.all()
 					if (isMedia && !mek.message.videoMessage || isQuotedImage) {
 						const encmedia = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo : mek
-						bc = await sanz.downloadMediaMessage(encmedia)
+						bc = await pato.downloadMediaMessage(encmedia)
 						for (let _ of anu) {
-							sanz.sendMessage(_.jid, bc, image, {caption: `${body.slice(4)}\n> Izin Broadcast`, sendEphemeral: true})
+							pato.sendMessage(_.jid, bc, image, {caption: `${body.slice(4)}\n> Izin Broadcast`, sendEphemeral: true})
 						}
-						reply('Suksess broadcast')
+						reply('Lito')
 					} else {
 						for (let _ of anu) {
 							sendMess(_.jid,`${body.slice(4)}` + readmore + `\n>Broadcast`)
 						}
-						reply('Suksess broadcast')
+						reply('Lito UwU')
 					}
 					break
-                /*case 'level':
+					case prefix+ 'level':
                 if (!isGroup) return reply(mess.only
 .group)
                 const Level = getLevelingLevel(sender)
                 const Xp = getLevelingXp(sender)
-                if (Level === undefined && Xp === undefined) return reply('MANGSUD?')
+                if (Level === undefined && Xp === undefined) return reply('Etto O^O?')
                 const requiredXp = 5000 * (Math.pow(2, Level) - 1)
-                resul = `┌──⫶ *LEVEL* ⫶──\n├ XP :  ${Xp}/${requiredXp}\n└ Level : ${Level}`
+                resul = `┌──⫶ *Nivel* ⫶──\n├ *Nombre* : ${pushname}\n├ Número : wa.me/${sender.split("@")[0]}\n├ XP :  ${Xp}/${requiredXp}\n└ Nivel : ${Level}`
                 faketokoforwaded(resul, text, numbernye, per)
 				break 
-				case 'narutod':
+				case prefix+ 'narutod':
 				oi = body.slice(8)
-				oii = await getBuffer(`https://sanzapi.herokuapp.com/api/photooxy/naruto?text=${oi}`)
-				sanz.sendMessage(from, oii, image, {quoted: mek, caption: 'Ok brother'})
-				break*/
-                    case 'level': //Cek Player Level
-                    if (!isGroup) return reply(mess.only.group)
-                      const userLevel = getLevelingLevel(sender, _level)
-                      const userXp = getLevelingXp(sender, _level)
-                      try {
-                      profilePic = await sanz.getProfilePicture(sender)
-                      } catch {
-                      profilePic = 'https://i.ibb.co/Tq7d7TZ/age-hananta-495-photo.png'
-                      }
-                      let colour = ["f0f8ff", "faebd7", "00ffff", "7fffd4", "f0ffff", "f5f5dc", "ffe4c4", "000000", "ffebcd", "0000ff", "8a2be2", "a52a2a", "deb887", "5f9ea0", "7fff00", "d2691e", "ff7f50", "6495ed", "fff8dc", "dc143c", "00ffff", "00008b", "008b8b", "b8860b", "a9a9a9", "006400", "bdb76b", "8b008b", "556b2f", "ff8c00", "9932cc", "8b0000", "e9967a", "8fbc8f", "483d8b", "2f4f4f", "00ced1", "9400d3", "ff1493", "00bfff", "696969", "1e90ff", "b22222", "fffaf0", "228b22", "ff00ff", "dcdcdc", "f8f8ff", "ffd700", "daa520", "808080", "008000", "adff2f", "f0fff0", "ff69b4", "cd5c5c", "4b0082", "fffff0", "f0e68c", "e6e6fa", "fff0f5", "7cfc00", "fffacd", "add8e6", "f08080", "e0ffff", "fafad2", "d3d3d3", "90ee90", "ffb6c1", "ffa07a", "20b2aa", "87cefa", "778899", "b0c4de", "ffffe0", "00ff00", "32cd32", "faf0e6", "ff00ff", "800000", "66cdaa", "0000cd", "ba55d3", "9370d8", "3cb371", "7b68ee", "00fa9a", "48d1cc", "c71585", "191970", "f5fffa", "ffe4e1", "ffe4b5", "ffdead", "000080", "fdf5e6", "808000", "6b8e23", "ffa500", "ff4500", "da70d6", "eee8aa", "98fb98", "afeeee", "d87093", "ffefd5", "ffdab9", "cd853f", "ffc0cb", "dda0dd", "b0e0e6", "800080", "663399", "ff0000", "bc8f8f", "4169e1", "8b4513", "fa8072", "f4a460", "2e8b57", "fff5ee", "a0522d", "c0c0c0", "87ceeb", "6a5acd", "708090", "fffafa", "00ff7f", "4682b4", "d2b48c", "008080", "d8bfd8", "ff6347", "40e0d0", "ee82ee", "f5deb3", "ffffff", "f5f5f5", "ffff00", "9acd32"]
-                      let acak = Math.floor(Math.random() * colour.length - 1);
-                      const requiredXp = 10 * Math.pow(userLevel, 2) + 50 * userLevel + 100
-                      const rankk = new canvass.Rank()
-                          .setAvatar(profilePic)
-                          .setLevel(userLevel)
-                          .setLevelColor('#' + colour[acak], '#' + colour[acak])
-                          .setRank(Number(getLevelingLevel(sender, _level)))
-                          .setRankColor('#' + colour[acak], '#' + colour[acak])
-                          .setCurrentXP(userXp)
-                          .setOverlay('#' + colour[acak], 100, false)
-                          .setRequiredXP(requiredXp)
-                          .setProgressBar('#' + colour[acak], 'COLOR')
-                          .setCustomStatusColor('#' + colour[acak], 'COLOR')
-                          .setBackground('COLOR', '#000000')
-                          .setUsername(pushname)
-                          .setDiscriminator(sender.split('@')[0].substring(6,10))
-                          rankk.build()
-                          .then(async (buffer) => {
-                              canvass.write(buffer, `${sender}_card.png`)
-                              await sanz.sendMessage(from, buffer, MessageType.image, {quoted: mek})
-                              fs.unlinkSync(`${sender}_card.png`)
-                          })
-                          .catch(async (err) => {
-                          console.error(err)
-                      })
-                  break
+				oii = await getBuffer(`https://patoapi.herokuapp.com/api/photooxy/naruto?text=${oi}`)
+				pato.sendMessage(from, oii, image, {quoted: mek, caption: 'Ok brother'})
+				break
+				
+//END BANG RAKIT SENDIRI YAA DAN JGN LUPA KASIH NAMA SAYA YG SUDAH MENGBANGUN INI SC :(
+
 default:
-//
+
 if (budy.startsWith('$')){
-                        if (!isMe) return reply(mess.only.me)
+                        if (!isMe) return 
                             var konsol = budy.slice(2)
                         exec(konsol, (err, stdout) => {
                             if(err) return reply(`${err}`)
                                 if (stdout) {
                                     reply(`${stdout}`)
-                                    console.log('\x1b[1;37m>', '[', '\x1b[1;36mEVALL\x1b[1;37m', ']', time, color("$", "aqua"), 'from', color(senderNumber.split('@')[0]), 'args :', color(args.length))
+                                    console.log('\x1b[1;37m>', '[', '\x1b[1;36mEVALL\x1b[1;37m', ']', time, color("$", "aqua"), 'from', color(senderme.split('@')[0]), 'args :', color(args.length))
                                 }
                             })
                     } 
                     if (budy.startsWith('>')){
-                        if (!isMe) return reply(mess.only.me)
+                        if (!isMe) return
                             var konsol = budy.slice(2)
                             function _return(sul) {
                             var sat = JSON.stringify(sul, null, 2)
@@ -2630,19 +2254,20 @@ if (budy.startsWith('$')){
                         }
                         try {
                             reply(util.format(eval(`;(async () => { ${konsol} })()`)))
-                            console.log('\x1b[1;37m>', '[', '\x1b[1;36mEVALL\x1b[1;37m', ']', time, color(">", "aqua"), 'from', color(senderNumber.split('@')[0]), 'args :', color(args.length))
+                            console.log('\x1b[1;37m>', '[', '\x1b[1;36mEVALL\x1b[1;37m', ']', time, color(">", "aqua"), 'from', color(senderme.split('@')[0]), 'args :', color(args.length))
                         } catch (e) {
                               err = String(e)
                                 reply(err)
                             }
                         } else {
                             if (budy != undefined) {
-                                //console.log('>', '[',color('INGFO','red'),']',`Message : ${budy} From`, color(senderNumber.split('@')[0]))
+                                //console.log('>', '[',color('INGFO','red'),']',`Message : ${budy} From`, color(senderme.split('@')[0]))
                             } 
                         }
                         if (!budy.startsWith('$')) return
                             if (!budy.startsWith('>')) return
                         }
+
                 
 if (isGroup && budy != undefined) {
 	} else {
@@ -2656,3 +2281,5 @@ if (isGroup && budy != undefined) {
         }
 	}
 })
+}
+starts()
